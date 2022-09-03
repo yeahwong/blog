@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sogola.com\/posts\/planet\/"
-        },"image": ["https:\/\/sogola.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IPFS, ENS, p2p","wordcount":  3283 ,
+        },"image": ["https:\/\/sogola.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IPFS, ENS, p2p","wordcount":  3263 ,
         "url": "https:\/\/sogola.com\/posts\/planet\/","datePublished": "2022-09-03T11:52:18+08:00","dateModified": "2022-09-03T15:58:26+08:00","publisher": {
             "@type": "Organization",
             "name": "王小嗨"},"author": {
@@ -85,11 +85,28 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Planet：一款IPFS静态站点生成器</h1><div class="post-meta">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#planet的缘起">Planet的缘起</a></li>
+    <li><a href="#站点的访问">站点的访问</a></li>
+    <li><a href="#开始使用">开始使用</a></li>
+    <li><a href="#域名绑定">域名绑定</a>
+      <ul>
+        <li><a href="#传统域名绑定">传统域名绑定</a></li>
+        <li><a href="#ens绑定">ENS绑定</a></li>
+      </ul>
+    </li>
+    <li><a href="#关于planet的疑问">关于Planet的疑问</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Planet：一款IPFS静态站点生成器</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreffer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/crypto/"><i class="far fa-folder fa-fw"></i>Crypto</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-03">2022-09-03</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-09-03">2022-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3283 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-03">2022-09-03</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-09-03">2022-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3263 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/3.0/" target="_blank">CC BY-NC 3.0</a></span>&nbsp;
                     </span>&nbsp;</div>
@@ -99,8 +116,27 @@
         data-srcset="../../images/planet/1.png, ../../images/planet/1.png 1.5x, ../../images/planet/1.png 2x"
         data-sizes="auto"
         alt="/images/planet/1.png"
-        title="/images/planet/1.png" height="auto" width="auto"></div><div class="content" id="content"><h1 id="planet一款ipfs静态站点生成器" class="headerLink">
-    <a href="#planet%e4%b8%80%e6%ac%beipfs%e9%9d%99%e6%80%81%e7%ab%99%e7%82%b9%e7%94%9f%e6%88%90%e5%99%a8" class="header-mark"></a>Planet：一款IPFS静态站点生成器</h1><p>对于不少人来说，搭建一个自己的网站是件不好入手的事情。抛开一系列眼花缭乱的技术术语，还需搞定服务器、域名、建站工具等等，这些都要气力去认知与实践。况且随着互联网寡头横行霸道，似乎发布或拥有一个网志站点已变为画蛇添足的笨蛋行为。</p>
+        title="/images/planet/1.png" height="auto" width="auto"></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#planet的缘起">Planet的缘起</a></li>
+    <li><a href="#站点的访问">站点的访问</a></li>
+    <li><a href="#开始使用">开始使用</a></li>
+    <li><a href="#域名绑定">域名绑定</a>
+      <ul>
+        <li><a href="#传统域名绑定">传统域名绑定</a></li>
+        <li><a href="#ens绑定">ENS绑定</a></li>
+      </ul>
+    </li>
+    <li><a href="#关于planet的疑问">关于Planet的疑问</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>对于不少人来说，搭建一个自己的网站是件不好入手的事情。抛开一系列眼花缭乱的技术术语，还需搞定服务器、域名、建站工具等等，这些都要气力去认知与实践。况且随着互联网寡头横行霸道，似乎发布或拥有一个网志站点已变为画蛇添足的笨蛋行为。</p>
 <p>万幸，分布式网路虽英雄末路，但还未乘鹤西去，已有开发者将发布分布式网站做成了一件用户操作友好的事情。妳只需在macOS上安装Planet，就可将IPFS作为托管服务器，几下点击就可发布一个网志站点。</p>
 <h2 id="planet的缘起" class="headerLink">
     <a href="#planet%e7%9a%84%e7%bc%98%e8%b5%b7" class="header-mark"></a>Planet的缘起</h2><p>Planet的创始人Livid也是大型程序员交友网站<a href="https://www.v2ex.com/" target="_blank" rel="noopener noreffer">v2ex</a>的创始人，在Planet发布前的<a href="https://www.xiaoyuzhoufm.com/episode/626ba660bf39836fd02b78e9" target="_blank" rel="noopener noreffer">一档播客访谈</a>
