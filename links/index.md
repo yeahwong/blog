@@ -9,3 +9,4 @@
 
 {{< friend "Foxhole" "https://blog.southfox.me" "https://blog.southfox.me/favicon.png" "KEEP CALM AND CARRY ON." >}}
 
+{{< friend "olivida.eth" "https://olivida.eth.limo" "https://olivida.eth.limo/avatar.png" "Building planetable.xyz" >}}
