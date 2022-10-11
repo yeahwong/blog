@@ -5,12 +5,12 @@
 
 这里，我列举两点matters的做法。
 
-- 不许用户修改用户名和绑定的likeid和eth地址
+- 不许用户修改用户名和绑定的likerid和eth地址
 - 诱导用户将IPFS认知为永久储存
 
 就连臭名昭著的微信都允许用户定期进行用户名的修改，可matters并未有任何修改用户名（Matters ID）或注销账户的选项。这与其宣称的「生態：自主、自由」完全背离。
 
-事实上，所谓的 Matters ID，抑或账户与 likeid 与eth 地址的绑定，只是 matters.news 的数据库上的一串数字而已，并未存储在 blockchain 之上，完全不存在不能修改的技术问题。
+事实上，所谓的 Matters ID，抑或账户与 likerid 与eth 地址的绑定，只是 matters.news 的数据库上的一串数字而已，并未存储在 blockchain 之上，完全不存在不能修改的技术问题。
 
 早先，我有给 matters.news 发过电子邮件，要求解除likedi绑定，得到回复如下：
 
@@ -28,7 +28,7 @@
 
 {{< figure src="/images/mattersnews/2.png">}}
 
-亦有[用户反应](https://matters.news/@mthree/130425-%E5%85%AC%E5%91%8A-%E7%AE%A1%E7%90%86%E5%91%98%E6%81%B6%E6%84%8F%E5%88%A0%E9%99%A4%E6%9C%AC%E4%BA%BA%E6%96%87%E7%AB%A0-bafyreibia52hidunyzn5s2hsgtxozz5ugf4qhqhxv2k2an5vieefk4ijni) matters.news 「管理员」将其文章恶意隐藏，丝毫不掩饰其中心化平台的狰狞面目。「去中心化的創作社群與內容生態」看起来像个地狱笑话。
+亦有[用户反应](https://matters.news/@mthree/130425-%E5%85%AC%E5%91%8A-%E7%AE%A1%E7%90%86%E5%91%98%E6%81%B6%E6%84%8F%E5%88%A0%E9%99%A4%E6%9C%AC%E4%BA%BA%E6%96%87%E7%AB%A0-bafyreibia52hidunyzn5s2hsgtxozz5ugf4qhqhxv2k2an5vieefk4ijni) matters.news 「管理员」将其文章恶意隐藏，它们丝毫不掩饰其中心化平台的狰狞面目。「去中心化的創作社群與內容生態」，看起来像个地狱笑话。
 
 最近一段时间，matters.news 在其首页疯狂推送NFT等诈骗信息，也许是时候该NFT祛魅了。
 
