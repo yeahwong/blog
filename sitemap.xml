@@ -2,21 +2,22 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://sogola.com/categories/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/categories/crypto/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/tags/ens/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/tags/ipfs/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/tags/p2p/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/posts/planet/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/posts/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/tags/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sogola.com/posts/read-blockchain-in-action/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://sogola.com/tags/bitcoin/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://sogola.com/tags/blockchain/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://sogola.com/tags/filecoin/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://sogola.com/categories/reader/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://sogola.com/tags/zeronet/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://sogola.com/categories/</loc><lastmod>2022-10-11T17:30:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/categories/crypto/</loc><lastmod>2022-10-11T17:30:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/tags/ipfs/</loc><lastmod>2022-10-11T17:30:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/posts/mattersnews/</loc><lastmod>2022-10-11T17:30:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/tags/p2p/</loc><lastmod>2022-10-11T17:30:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/posts/</loc><lastmod>2022-10-11T17:30:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/tags/</loc><lastmod>2022-10-11T17:30:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/</loc><lastmod>2022-10-11T17:30:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/tags/ens/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sogola.com/posts/planet/</loc><lastmod>2022-09-03T15:58:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sogola.com/posts/read-blockchain-in-action/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sogola.com/tags/bitcoin/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sogola.com/tags/blockchain/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sogola.com/tags/filecoin/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sogola.com/categories/reader/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sogola.com/tags/zeronet/</loc><lastmod>2022-09-01T20:12:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/categories/capitalism/</loc><lastmod>2021-11-22T18:57:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/tags/%E5%93%B2%E5%AD%A6/</loc><lastmod>2021-11-22T18:57:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/tags/%E7%A7%BB%E6%B0%91%E5%B7%A5%E4%BA%BA/</loc><lastmod>2021-11-22T18:57:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
