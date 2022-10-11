@@ -12,7 +12,7 @@
 
 事实上，所谓的 Matters ID，抑或账户与 likerid 与eth 地址的绑定，只是 matters.news 的数据库上的一串数字而已，并未存储在 blockchain 之上，完全不存在不能修改的技术问题。
 
-早先，我有给 matters.news 发过电子邮件，要求解除likedi绑定，得到回复如下：
+早先，我有给 matters.news 发过电子邮件，要求解除likerid绑定，得到回复如下：
 
 > Liker ID 目前無法解綁或更換。
 
