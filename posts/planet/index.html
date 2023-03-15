@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Planet：一款IPFS静态站点生成器 - 王小嗨的不老歌</title><meta name="Description" content=""><meta property="og:title" content="Planet：一款IPFS静态站点生成器" />
+<meta property="og:description" content="对于不少人来说，搭建一个自己的网站是件不好入手的事情。抛开一系列眼花缭乱的技术术语，还需搞定服务器、域名、建站工具等等，这些都要气力去认知与实践。况且随着互联网寡头横行霸道，似乎发布或拥有一个网志站点已变为画蛇添足的笨蛋行为。万幸，分布式网路虽英雄末路，但还未乘鹤西去，日前已有开发者将发布分布式网站做成了一件用户操作友好的事情。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sogola.com/posts/planet/" /><meta property="og:image" content="https://sogola.com/images/planet/1.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-03T11:52:18+08:00" />
+<meta property="article:modified_time" content="2022-09-03T15:58:26+08:00" /><meta property="og:site_name" content="王小嗨的不老歌" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sogola.com/images/planet/1.png"/>
+
+<meta name="twitter:title" content="Planet：一款IPFS静态站点生成器"/>
+<meta name="twitter:description" content="对于不少人来说，搭建一个自己的网站是件不好入手的事情。抛开一系列眼花缭乱的技术术语，还需搞定服务器、域名、建站工具等等，这些都要气力去认知与实践。况且随着互联网寡头横行霸道，似乎发布或拥有一个网志站点已变为画蛇添足的笨蛋行为。万幸，分布式网路虽英雄末路，但还未乘鹤西去，日前已有开发者将发布分布式网站做成了一件用户操作友好的事情。"/>
+<meta name="application-name" content="王小嗨的不老歌">
+<meta name="apple-mobile-web-app-title" content="王小嗨的不老歌">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png"><link rel="canonical" href="https://sogola.com/posts/planet/" /><link rel="prev" href="https://sogola.com/posts/read-blockchain-in-action/" /><link rel="next" href="https://sogola.com/posts/mattersnews/" /><link rel="stylesheet" href="../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../css/color.css"><link rel="stylesheet" href="../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Planet：一款IPFS静态站点生成器",
+        "inLanguage": "",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/sogola.com\/posts\/planet\/"
+        },"image": ["https:\/\/sogola.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IPFS, ENS, p2p","wordcount":  3261 ,
+        "url": "https:\/\/sogola.com\/posts\/planet\/","datePublished": "2022-09-03T11:52:18+08:00","dateModified": "2022-09-03T15:58:26+08:00","publisher": {
+            "@type": "Organization",
+            "name": "王小嗨"},"author": {
+                "@type": "Person",
+                "name": "王小嗨"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="../../" title="王小嗨的不老歌">王小嗨的不老歌</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="../../"> Home </a><a class="menu-item" href="../../posts/"> Archives </a><a class="menu-item" href="../../categories/"> Categories </a><a class="menu-item" href="../../tags/"> Tags </a><a class="menu-item" href="../../links"> Links </a><a class="menu-item" href="../../about"> About </a><span class="menu-item delimiter"></span><a href="#" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="../../" title="王小嗨的不老歌">王小嗨的不老歌</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="../../" title="">Home</a><a class="menu-item" href="../../posts/" title="">Archives</a><a class="menu-item" href="../../categories/" title="">Categories</a><a class="menu-item" href="../../tags/" title="">Tags</a><a class="menu-item" href="../../links" title="">Links</a><a class="menu-item" href="../../about" title="">About</a><a href="#" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#planet的缘起">Planet的缘起</a></li>
+    <li><a href="#站点的访问">站点的访问</a></li>
+    <li><a href="#开始使用">开始使用</a></li>
+    <li><a href="#域名绑定">域名绑定</a>
+      <ul>
+        <li><a href="#传统域名绑定">传统域名绑定</a></li>
+        <li><a href="#ens绑定">ENS绑定</a></li>
+      </ul>
+    </li>
+    <li><a href="#关于planet的疑问">关于Planet的疑问</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Planet：一款IPFS静态站点生成器</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/crypto/"><i class="far fa-folder fa-fw"></i>Crypto</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-03">2022-09-03</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-09-03">2022-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3261 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/3.0/" target="_blank">CC BY-NC 3.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="../../images/planet/1.png"
+        srcset="../../images/planet/1.png, ../../images/planet/1.png 1.5x, ../../images/planet/1.png 2x"
+        sizes="auto"
+        alt="/images/planet/1.png"
+        title="/images/planet/1.png" height="auto" width="auto"></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#planet的缘起">Planet的缘起</a></li>
+    <li><a href="#站点的访问">站点的访问</a></li>
+    <li><a href="#开始使用">开始使用</a></li>
+    <li><a href="#域名绑定">域名绑定</a>
+      <ul>
+        <li><a href="#传统域名绑定">传统域名绑定</a></li>
+        <li><a href="#ens绑定">ENS绑定</a></li>
+      </ul>
+    </li>
+    <li><a href="#关于planet的疑问">关于Planet的疑问</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>对于不少人来说，搭建一个自己的网站是件不好入手的事情。抛开一系列眼花缭乱的技术术语，还需搞定服务器、域名、建站工具等等，这些都要气力去认知与实践。况且随着互联网寡头横行霸道，似乎发布或拥有一个网志站点已变为画蛇添足的笨蛋行为。</p>
+<p>万幸，分布式网路虽英雄末路，但还未乘鹤西去，已有开发者将发布分布式网站做成了一件用户操作友好的事情。妳只需在macOS上安装Planet，就可将IPFS作为托管服务器，几下点击就可发布一个网志站点。</p>
+<h2 id="planet的缘起" class="headerLink">
+    <a href="#planet%e7%9a%84%e7%bc%98%e8%b5%b7" class="header-mark"></a>Planet的缘起</h2><p>Planet的创始人Livid也是大型程序员交友网站<a href="https://www.v2ex.com/" target="_blank" rel="noopener noreferrer">v2ex</a>的创始人，在Planet发布前的<a href="https://www.xiaoyuzhoufm.com/episode/626ba660bf39836fd02b78e9" target="_blank" rel="noopener noreferrer">一档播客访谈</a>
+中，Livid称维护v2ex的服务器与数据库是一件漫长且痛苦的事情，并表示如果再开发一款程序，自己不会选择再托管用户的数据。</p>
+<blockquote>
+<p>星际文件系统（Interplanetary File System，缩写为IPFS）是一个旨在实现文件的分布式存储、共享和持久化的网络传输协议。[2]它是一种内容可寻址（英语：Content-addressable storage）的对等超媒体分发协议。在IPFS网络中的节点构成一个分布式文件系统。</p>
+<p>——<a href="https://zh.m.wikipedia.org/zh-hans/%E6%98%9F%E9%99%85%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F" target="_blank" rel="noopener noreferrer">维基百科「星际文件系统」词条</a></p>
+</blockquote>
+<p>IPFS作为分布式网路技术，并且可实现用户自己托管自己的数据，这让Livid看到了光亮，遂有了开发Planet的想法。西元2022年07月11日，Livid在v2ex<a href="https://www.v2ex.com/t/857404" target="_blank" rel="noopener noreferrer">发帖</a>，「如果你之前用过 IPFS 或者 ENS，你可能会想要试试我们在做的这个App」，Planet正式上线。</p>
+<p>Livid在访谈中表示，底层协议的迭代已经成熟，分布式站点完全可能，Planet会做一个用户友好的进入分布式的入口。</p>
+<h2 id="站点的访问" class="headerLink">
+    <a href="#%e7%ab%99%e7%82%b9%e7%9a%84%e8%ae%bf%e9%97%ae" class="header-mark"></a>站点的访问</h2><p>在开始使用Planet部署自己的分布式站点之前，我们有必要有了解一下访问一个万维网站点的过程。</p>
+<figure><img src="../../images/planet/2.png"/><figcaption>
+            <h4>浏览器访问万维网过程的简易示意图</h4>
+        </figcaption>
+</figure>
+
+<p>在访问传统万维网站点的过程中，首先浏览器要跟DNS服务器请求服务器地址，我们可以把这个过程想象成在手机地图中输入商家名称，获得商家地址；然后，有服务器地址，浏览器就可以与服务器建立连接，我们可以把这个过程想象成有商家地址，我们就可以乘坐共同交通前往与返回；最后，当建立了连接，客户浏览器就可以发送需要的文件，服务器收到了这个请求，就会将相应的文件返回给浏览器，浏览器得到文件就可以将内容显示给用户，我们可以将这个过程想象成我们在外送app上点了一个红烧肉，商家收到了订单，做好后就发送给用户。</p>
+<figure><img src="../../images/planet/3.jpg"/><figcaption>
+            <h4>世界上第一台服务器</h4>
+        </figcaption>
+</figure>
+
+<p>也许有人会问，什么是服务器呢？事实上，服务器就是一台电脑，任何联网的设备都可以成为一台服务器，妳的手机或电脑都可以作为服务器供她人访问。被提姆·柏内兹-李在CERN所使用的这台NeXT计算机成为了世界上第一台网页服务器，上面写着「这台机器是服务器，不要关闭电源」。</p>
+<p>然而，时至今日，互联网寡头大行其道，加之国内糟糕的联网环境，已经很少人在家中自行搭建站点服务器了。我们平时所访问站点更多是托管在云服务器商（阿里云、亚马逊云等等）之上，这与万维网的理念完全背离，回滚到电台广播的时代。「偷听敌台」，「私建电台」，已然成为抗命行为。</p>
+<p>那么，Planet生成的IPFS站点有什么不同？</p>
+<figure><img src="../../images/planet/4.png"/><figcaption>
+            <h4>浏览器通过ENS域名访问IPFS站点的简易示意图</h4>
+        </figcaption>
+</figure>
+
+<p>我们可以简单地认为IPNS代替了传统域名和DNS服务器，IPFS代替了服务器。</p>
+<p>一个网站主要使用由域名与服务器构成，与传统站点不同，IPFS的域名与服务器可完全实现分布式。IPNS是IPFS生态中的一个重要组件，全称是 Interplanetary Name System，一个去中心化的类似域名的系统。IPNS可绑定在一些去中心域名，也可绑定在传统域名域名中。而由于IPFS是一个分布式文件存储系统，所以使用IPFS作为站点服务器，也就实现了服务器的分布式。</p>
+<h2 id="开始使用" class="headerLink">
+    <a href="#%e5%bc%80%e5%a7%8b%e4%bd%bf%e7%94%a8" class="header-mark"></a>开始使用</h2><figure><img src="../../images/planet/5.png"/><figcaption>
+            <h4>点击「Download for Mac」下载</h4>
+        </figcaption>
+</figure>
+
+<p>Planet是一个开源的macOS原生App，我们通过它的<a href="https://www.planetable.xyz/" target="_blank" rel="noopener noreferrer">官網</a>与<a href="https://github.com/Planetable/Planet" target="_blank" rel="noopener noreferrer">GitHub</a>进行下载。</p>
+<p>下载安装完成后，打开Planet，它会自动follow这两个站点：</p>
+<ul>
+<li>vitalik.eth - Ethereum 的创始人之一</li>
+<li>Planetable.eth - Planet 项目的博客</li>
+</ul>
+<figure><img src="../../images/planet/6.png"/><figcaption>
+            <h4>点击主界面下方的加号</h4>
+        </figcaption>
+</figure>
+
+<figure><img src="../../images/planet/7.png"/><figcaption>
+            <h4>写入名字与简介，选择模版，创建自己的Planet</h4>
+        </figcaption>
+</figure>
+
+<figure><img src="../../images/planet/8.png"/><figcaption>
+            <h4>点击撰写按钮</h4>
+        </figcaption>
+</figure>
+
+<figure><img src="../../images/planet/9.png"/><figcaption>
+            <h4>写入网志内容，并点击发布</h4>
+        </figcaption>
+</figure>
+
+<p>发布完第一个篇文章之后，妳的 Planet 就会被发布为一个 IPNS。右键点击侧栏里你的站点，选择 Copy IPNS。然后你就会在剪贴板中获得像这样的一串东西：</p>
+<figure><img src="../../images/planet/10.png"/><figcaption>
+            <h4>Copy IPNS</h4>
+        </figcaption>
+</figure>
+
+<p>k51qzi5uqu5dhxd50115dn1hfvuwiqwej3dki72uyopetqua71i6lp96pem0a6</p>
+<p>然后妳把这串IPNS发给其它Planet用户，她们就可以收到来自妳的更新了。</p>
+<p>妳用Planet发布的网站，也可能可以通过各种 Public Gateway 访问，比如这是你当前正在阅读的这篇文章在各个 Gateway 上的地址（URL 拼接规则是 Public Gateway 域名 + /ipns/ + Planet.ipns + / + Article.UUID）：</p>
+<ul>
+<li>ipfs.io</li>
+<li>dweb.link</li>
+<li>cf-ipfs.com</li>
+</ul>
+<h2 id="域名绑定" class="headerLink">
+    <a href="#%e5%9f%9f%e5%90%8d%e7%bb%91%e5%ae%9a" class="header-mark"></a>域名绑定</h2><h3 id="传统域名绑定" class="headerLink">
+    <a href="#%e4%bc%a0%e7%bb%9f%e5%9f%9f%e5%90%8d%e7%bb%91%e5%ae%9a" class="header-mark"></a>传统域名绑定</h3><p>绑定传统域名，需要使用的是<a href="https://docs.ipfs.tech/concepts/dnslink/" target="_blank" rel="noopener noreferrer">DNSlink</a>服务，大概的意思就是在DNS上写入txt记录，以供读取。因为使用到传统的DNS服务，所以IPNS关联到传统域名，并非是一个去中心的解决方案。</p>
+<figure><img src="../../images/planet/11.png"/>
+</figure>
+
+<p>例如，绑定Planet到sogola.com主域名，</p>
+<p>IPNS的地址：</p>
+<p>k51qzi5uqu5dhxd50115dn1hfvuwiqwej3dki72uyopetqua71i6lp96pem0a6</p>
+<p>则到域名DNS管理页上创建一个txt记录</p>
+<p>设置name值为：</p>
+<ul>
+<li>_dnslink</li>
+</ul>
+<p>设置Content值为：</p>
+<ul>
+<li>dnslink=/ipns/k51qzi5uqu5dhxd50115dn1hfvuwiqwej3dki72uyopetqua71i6lp96pem0a6</li>
+</ul>
+<figure><img src="../../images/planet/12.png"/>
+</figure>
+
+<p>例如，绑定Planet到www.sogola.com二级域名，</p>
+<p>设置name值为：</p>
+<ul>
+<li>_dnslink.www</li>
+</ul>
+<p>设置Content值为：</p>
+<ul>
+<li>dnslink=/ipns/k51qzi5uqu5dhxd50115dn1hfvuwiqwej3dki72uyopetqua71i6lp96pem0a6</li>
+</ul>
+<figure><img src="../../images/planet/13.png"/>
+</figure>
+
+<p>等待DNS生效，使用原生支持IPFS的Brave浏览器就可以直接访问 ipns://sogola.com/ 。</p>
+<figure><img src="../../images/planet/14.png"/>
+</figure>
+
+<p>如果在DNS中添加cloudflare的IPFS gateway，也可以使用普通浏览器的访问。</p>
+<h3 id="ens绑定" class="headerLink">
+    <a href="#ens%e7%bb%91%e5%ae%9a" class="header-mark"></a>ENS绑定</h3><p>使用ENS绑定IPNS，就是利用Ethereum账本作为DNS账本。在ENS合约之中，将IPNS地址记录到Content Hash，这样任何人都可以访问Ethereum账本，查询相应的ENS绑定的IPNS。</p>
+<p>因为设定Content Hash会是一个 ENS 合约上的操作，所以这一步会有gas fee。但是之后妳在 Planet里发布新的内容，妳的IPNS不会发生改变，也不会再有gas fee的问题。</p>
+<figure><img src="../../images/planet/15.png"/>
+</figure>
+
+<p>首先，打开ENS管理页面 <a href="https://app.ens.domains/" target="_blank" rel="noopener noreferrer">https://app.ens.domains/</a></p>
+<p>ipns://k51qzi5uqu5dhxd50115dn1hfvuwiqwej3dki72uyopetqua71i6lp96pem0a6</p>
+<p>然后，将IPNS写入Content Hash，并确定上链。</p>
+<figure><img src="../../images/planet/16.png"/>
+</figure>
+
+<p>这里有一个小tip，如果妳并不着急解析立刻失效，可自定义Max base fee和Priority fee。在metamask中打开gas fee的高级管理选项，在确认操作的时候，编辑gas fee选项即可。</p>
+<p>在完成了ENS绑定之后，也可以直接用类似下面这样的地址通过Public Gateway打开妳的 ENS：</p>
+<ul>
+<li><a href="https://ipfs.io/ipns/sogola.eth" target="_blank" rel="noopener noreferrer">https://ipfs.io/ipns/sogola.eth</a></li>
+<li><a href="https://sogola.eth.limo" target="_blank" rel="noopener noreferrer">https://sogola.eth.limo</a></li>
+</ul>
+<figure><img src="../../images/planet/17.png"/>
+</figure>
+
+<p>在原生支持IPFS的Brave浏览器里，你甚至可以用 ipns://sogola.eth 这样的地址直接打开妳的IPFS站点。</p>
+<h2 id="关于planet的疑问" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8eplanet%e7%9a%84%e7%96%91%e9%97%ae" class="header-mark"></a>关于Planet的疑问</h2><blockquote>
+<p>阅读器用自己的格式渲染原文，可以让体验更一致，及对离线阅读更友好。但对于网站的原作者，会丢失原始网站的设计及影响源网站的利益。</p>
+<p>—— Livid在Planet中的发言</p>
+</blockquote>
+<p>使用Planet订阅Planet、IPFS站点或RSS，会自动加载站点的原生样式，这样的做法无疑是在开发一款浏览器，而非阅读器。对于读者用户来讲，这不是一个好的体验，比较kindle这样的电纸书也不会不允许读者自定义图书的样式。至于创作者的收益与读者的便利，我想肯定应该会有一个平衡点，但将阅读器重新发明为浏览器，无疑不是一种好的选择。</p>
+<p>因为IPFS的特性，Planet站点使用普通域名往往访问过慢，这时候每个用户要尽可能地获得更多follower。</p>
+<p>对于这一点，Livid在用户聊天群中表示：将来可以成立一个数据DAO来提供托管服务，但目前的主要工作还是完善软件、扩大用户数量。</p>
+<p>Planet目前只支援macOS，至于使用更为普遍的Windows，开发者好像并没有支援计划。桌面操作系统的份额，Windows是最大，分布式网路依靠用户数量壮大才能取胜，只支援macOS与扩大节点数量是存在矛盾的，我们只能寄希望于有其它开发者会开发一款兼容Windows的客户端。</p>
+<p>如果使用过程中遇到什么问题，可进入Planet的中文用户群，Livid是一位热心的开发者，他很乐意与用户交流。</p>
+<p><a href="https://t.me/&#43;5bl7FIsxeChlOWIz" target="_blank" rel="noopener noreferrer">https://t.me/+5bl7FIsxeChlOWIz</a></p>
+<p>最后，衷心地祝福Planet做强做大，分布式永垂不朽。</p>
+<h2 id="参考资料" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" class="header-mark"></a>参考资料</h2><ul>
+<li>Livid的Planet <a href="https://olivida.eth.limo" target="_blank" rel="noopener noreferrer">https://olivida.eth.limo</a></li>
+</ul>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-09-03</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/3.0/" target="_blank">CC BY-NC 3.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=../../posts/planet/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" title="Share on Twitter" data-sharer="twitter" data-url="https://sogola.com/posts/planet/" data-title="Planet：一款IPFS静态站点生成器" data-via="yeahwong" data-hashtags="IPFS,ENS,p2p"><i class="fab fa-twitter fa-fw"></i></a><a href="#" title="Share on Pocket" data-sharer="pocket" data-url="https://sogola.com/posts/planet/"><i class="fab fa-get-pocket fa-fw"></i></a><a href="#" title="Share on 微博" data-sharer="weibo" data-url="https://sogola.com/posts/planet/" data-title="Planet：一款IPFS静态站点生成器" data-image="/images/planet/1.png" data-ralateuid="yeahwong"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../../tags/ipfs/">IPFS</a>,&nbsp;<a href="../../tags/ens/">ENS</a>,&nbsp;<a href="../../tags/p2p/">p2p</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="../../">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="../../posts/read-blockchain-in-action/" class="prev" rel="prev" title="《区块链实战：从技术创新到商业模式》读书笔记"><i class="fas fa-angle-left fa-fw"></i>《区块链实战：从技术创新到商业模式》读书笔记</a>
+            <a href="../../posts/mattersnews/" class="next" rel="next" title="matters.news：一个故弄玄虚的伪去中心化站点">matters.news：一个故弄玄虚的伪去中心化站点<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.111.0">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2008 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sogola.com/" target="_blank" rel="noopener noreferrer">王小嗨</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/3.0/" target="_blank">CC BY-NC 3.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+</body>
+
+</html>
