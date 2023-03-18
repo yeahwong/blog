@@ -49,7 +49,7 @@ A Marxist inside.
 
 **Email:** `high#sogola.com` (請將#替換為@)
 
-**PGP Fingerprint:** `CB6B 633E CB7A D0E2 A6D9  8DE5 429F 8B72 DDDD 503A`
+**PGP Fingerprint:** `7E93 0067 6E28 C52F D194  A5C1 1CBB AD7D 8BF7 E3C8`
 
 **PGP Public Key:** https://sogola.com/public-key-yeahwong.asc
 
