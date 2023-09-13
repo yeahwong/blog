@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -44,7 +46,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -85,7 +87,7 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">鲁难未已，我将继续战斗</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">鲁难未已，我将继续战斗</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/life/"><i class="far fa-folder fa-fw"></i>Life</a></span></div>
@@ -100,7 +102,7 @@
         srcset="../../images/give-me-force/1.jpg, ../../images/give-me-force/1.jpg 1.5x, ../../images/give-me-force/1.jpg 2x"
         sizes="auto"
         alt="/images/give-me-force/1.jpg"
-        title="/images/give-me-force/1.jpg" height="auto" width="auto"></div><div class="content" id="content"><p>西元2020年4月21日午间10点半，我看到了尖椒部落关于我个人维护劳动权益事件的声明。在认真阅读了这份充斥语病的不过数百字的声明后，我决定对此事件进行最后的说明。写这篇文章的目的，一是为了再次厘清真相，我会为自己的劳动权益斗争到底；二是对各位支持我的朋友和围观本次事件的人有一个交代。所以这是份关于我维护劳动权益事件的最终声明。</p>
+        title="/images/give-me-force/1.jpg" height="auto"   width="auto" ></div><div class="content" id="content"><p>西元2020年4月21日午间10点半，我看到了尖椒部落关于我个人维护劳动权益事件的声明。在认真阅读了这份充斥语病的不过数百字的声明后，我决定对此事件进行最后的说明。写这篇文章的目的，一是为了再次厘清真相，我会为自己的劳动权益斗争到底；二是对各位支持我的朋友和围观本次事件的人有一个交代。所以这是份关于我维护劳动权益事件的最终声明。</p>
 <p>在此，我愿和尖椒部落的各位一起努力过的前同事们，平静地真诚地说一些心里话。同时，为了更好地回答尖椒部落的无端指责，请允许我为自己的经历做一个描述。作为一个坚定的马克思主义者，一个坚定的女权主义者，我至今仍然记得，在得知可以加入尖椒部落时的兴奋和喜悦。那是一种让人觉得可以实现人生理想和看到希望的喜悦，让我一个无枝可依仅有理想的二流学校的马哲硕士，看到了无数的远方和无数的人们。</p>
 <p>2007年我开始接触马克思主义，2010年专科毕业，至此开始了我的无产阶级生活。在工厂做鱼丸工，在码头当保安。无产阶级工人的苦痛和挣扎，就是我生活的样子。当保安时，我开始研习马克思主义哲学，后来不凑巧考上了一所二流学校的马哲硕士。在学校的时候，我参与读书会，参与社会实践。毕业后，为了糊口，我天天陪老板去各种饭局喝酒，半夜摇晃身体才能回到家。直到我遇到了尖椒部落，我才见识到了南方不下雪的工业区。</p>
 <p>在维权这65天里，我经历了太多的污蔑和指责。有人将我从左派除名，说我只是一个投机分子，我想告诉妳们，若不是对马克思主义的无比坚定，我不可能「游手好闲」地做了十几年「不务正业」的事情；有人说我贪得无厌，只想要钱，我想告诉妳们，我只是拿回应有的赔偿，这是身处这个时代里的无产者被损害之后仅剩的「安慰」。</p>
@@ -110,7 +112,8 @@
 <p>鲁难未已，劳工荣光还未到来，加油！</p>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><div class="sponsor-custom"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2952783020327566" crossorigin="anonymous"></script><!-- sogola --><ins class="adsbygoogle" style="display:block; max-height: 90px;" data-ad-client="ca-pub-2952783020327566" data-ad-slot="2322972430" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -152,7 +155,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

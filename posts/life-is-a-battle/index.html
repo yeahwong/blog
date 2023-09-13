@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -44,7 +46,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -85,7 +87,7 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">生活就是一场战斗</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">生活就是一场战斗</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/reader/"><i class="far fa-folder fa-fw"></i>Reader</a></span></div>
@@ -100,7 +102,7 @@
         srcset="../../images/life-is-a-battle/1.jpg, ../../images/life-is-a-battle/1.jpg 1.5x, ../../images/life-is-a-battle/1.jpg 2x"
         sizes="auto"
         alt="/images/life-is-a-battle/1.jpg"
-        title="/images/life-is-a-battle/1.jpg" height="auto" width="auto"></div><div class="content" id="content"><p><em><strong>This land is your land</strong></em></p>
+        title="/images/life-is-a-battle/1.jpg" height="auto"   width="auto" ></div><div class="content" id="content"><p><em><strong>This land is your land</strong></em></p>
 <p><em><strong>This land is my land</strong></em></p>
 <p>许多大哥发来新工人乐团的新专辑《家在哪里》，第一时间下载听了，感动不已，热泪盈眶。早就过了多愁善感的年纪了，也许说流泪矫情，但你们的歌让我回忆起在那些简单充实在工厂的日子里。那时，每天天还不亮就吃完妈妈起早做的早饭，然后穿着夏天海边返到岸上的雾气，揣着几块零钱去赶公交。车间里蒸气浓浓，眼镜经常会变白，每天十二个小时面对一大桶一大桶的「料」和一个沉默的机器，一天里最开心的时候是和我师傅姐姐聊天，她教我怎么偷懒怎么不被车间主任发现在玩手机。下午下班，天已经蒙蒙黑了，一身酸臭在月亮和星星下走回家。每晚要看完《政治经济学概论》后，听完张广天老师和新工人乐团的歌才能入睡。工人的生活就是困难。</p>
 <p>伴随凯歌式工业化进程的是3亿生活在这片土地上的人们被帝国的铁蹄裹挟制造着大国崛起梦，有多少人在为遍布这颗星球的廉价工业品欢呼，又有多少人在CCTV的生活里幸福着。然而，商品的后背，背井离乡的工人们，他们在中国梦里失语。穿着漂亮衣服的帅哥靓女，嫌他们脏；活在自我想象里的小资们，说他们是人渣说他们是剩余的人。「他们身上穿着漂亮的衣服却总也看不起你，究竟是谁养活谁，他们总是弄不清」。他们的生活，他们的喜怒哀乐，他们的诉求，总是淹没在非诚勿扰的相亲节目里。还好，有你们在歌唱，唱出了工友们的辛酸苦辣。</p>
@@ -109,7 +111,8 @@
 <p>他人经受的，我必经受。多少劳动多少建设，你脏脏的背影说出来全世界的繁华和苦难。我是一个工人，工人的生活是困难的。今天，听到这些歌曲自行惭愧，还有那么多工作没有做好，还有那么多字没有认识。成熟起来，为了生活，为了无产阶级。知晓真理的人们在构建人间天国的路上并不孤独，那些骚动资本家和走狗们大腿小腿的渺小征人们，那些天还不亮就要做工的苦痛工人们，都陪伴着我们一起经历着各种理论、历史和生活的冒险。同志曾经告诉我，一个人能独自地战斗和生活，是幸福的。是的，生活就是一场战斗。「雄关漫道真如铁，而今迈步从头越。聚在一起是一团火，散开之后是满天的星星。」</p>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><div class="sponsor-custom"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2952783020327566" crossorigin="anonymous"></script><!-- sogola --><ins class="adsbygoogle" style="display:block; max-height: 90px;" data-ad-client="ca-pub-2952783020327566" data-ad-slot="2322972430" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -151,7 +154,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

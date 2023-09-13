@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -44,7 +46,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -85,7 +87,7 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">穷忙、低欲望、老后破产......日本青年终于不乐意了</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">穷忙、低欲望、老后破产......日本青年终于不乐意了</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/translation/"><i class="far fa-folder fa-fw"></i>Translation</a></span></div>
@@ -100,7 +102,7 @@
         srcset="../../images/japan-fight-for-15-living-wage-aequitas/20190417.1.jpg, ../../images/japan-fight-for-15-living-wage-aequitas/20190417.1.jpg 1.5x, ../../images/japan-fight-for-15-living-wage-aequitas/20190417.1.jpg 2x"
         sizes="auto"
         alt="/images/japan-fight-for-15-living-wage-aequitas/20190417.1.jpg"
-        title="/images/japan-fight-for-15-living-wage-aequitas/20190417.1.jpg" height="auto" width="auto"></div><div class="content" id="content"><p>日本偶像在中国俘获了一大票年轻人的心，提起那些漂亮的小姐姐小哥哥，总会听到几声兴奋的尖叫。</p>
+        title="/images/japan-fight-for-15-living-wage-aequitas/20190417.1.jpg" height="auto"   width="auto" ></div><div class="content" id="content"><p>日本偶像在中国俘获了一大票年轻人的心，提起那些漂亮的小姐姐小哥哥，总会听到几声兴奋的尖叫。</p>
 <p>从流行文化，到各类物件，再到生活方式，两国年轻人似乎越来越亲近。</p>
 <p>日本青年低欲望，中国青年佛系生活；日本青年穷忙，中国青年996；老后破产的可怕景象也袭遍朋友圈。</p>
 <p>时至今日，日本与中国在经济、社会和人口等等问题有着相似的症状。</p>
@@ -177,7 +179,8 @@
 </ul>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><div class="sponsor-custom"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2952783020327566" crossorigin="anonymous"></script><!-- sogola --><ins class="adsbygoogle" style="display:block; max-height: 90px;" data-ad-client="ca-pub-2952783020327566" data-ad-slot="2322972430" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -219,7 +222,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

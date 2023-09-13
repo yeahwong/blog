@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -44,7 +46,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -85,7 +87,7 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">台左维新</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">台左维新</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/capitalism/"><i class="far fa-folder fa-fw"></i>Capitalism</a></span></div>
@@ -100,7 +102,7 @@
         srcset="../../images/the-left-of-taiwan/1.jpg, ../../images/the-left-of-taiwan/1.jpg 1.5x, ../../images/the-left-of-taiwan/1.jpg 2x"
         sizes="auto"
         alt="/images/the-left-of-taiwan/1.jpg"
-        title="/images/the-left-of-taiwan/1.jpg" height="auto" width="auto"></div><div class="content" id="content"><p>1895年，清国战败割让台湾，日本帝国开始在台的殖民统治。1928年，台湾的革命青年们在上海成立「日本共产党台湾民族支部」，主张台湾民族独立、反帝和劳工权益，这些共产党人在台湾组织农会发展新文化以抵抗帝国的殖民统治。当时按照共产国际的要求各国只组织一党原则，台共的最高最高指令都来自日共。因日共在战时被帝国政府迫害而处于瓦解状态，日共台湾民族支部也因此被停滞；1946年，中共台湾籍党员张志忠等人返台组织「中国共产党台湾省工作委员会」。1949年，毛主席领导的中国革命胜利，人民解放军过长江追穷寇，轰轰烈烈的人民解放运动中蒋匪帮退败台湾岛。彼时，台共党人的主张从日据时期的民族解放转成与中国革命相一致的阶级革命。</p>
+        title="/images/the-left-of-taiwan/1.jpg" height="auto"   width="auto" ></div><div class="content" id="content"><p>1895年，清国战败割让台湾，日本帝国开始在台的殖民统治。1928年，台湾的革命青年们在上海成立「日本共产党台湾民族支部」，主张台湾民族独立、反帝和劳工权益，这些共产党人在台湾组织农会发展新文化以抵抗帝国的殖民统治。当时按照共产国际的要求各国只组织一党原则，台共的最高最高指令都来自日共。因日共在战时被帝国政府迫害而处于瓦解状态，日共台湾民族支部也因此被停滞；1946年，中共台湾籍党员张志忠等人返台组织「中国共产党台湾省工作委员会」。1949年，毛主席领导的中国革命胜利，人民解放军过长江追穷寇，轰轰烈烈的人民解放运动中蒋匪帮退败台湾岛。彼时，台共党人的主张从日据时期的民族解放转成与中国革命相一致的阶级革命。</p>
 <p>1945年，国府代表盟军接收台湾。衣服破烂的国军渡海上岸之时，就是台湾人民的对「祖国」这个词的幻灭之时，因为那个「祖国」带来的是深刻的压迫。终于，1947年爆发「二二八」运动，陈仪血洗台湾。这个反官僚反压迫的运动，在今天演化成为台湾民族意识的起源。台湾人民对国府的失望变成了对新中国的期盼，一个社会主义祖国，没有压迫没有剥削。 来自「祖国」的红色歌曲，在校园传唱，社会主义成为风尚。1949年，伪ROC政府流亡台湾，开始白色恐怖的殖民统治。举报「共谍」成为那个世代的记忆，那些「年轻的骨头化作了春泥」构成马场町的山。</p>
 <p>马场町的山，他们构成了我对恐怖的所有想象。所有的共党人的肉体消灭，所有带有马列共产思想的书籍被焚灭。不要说日剧时代，就是渣滓洞也足以让我们和他们链接在一起。然而，对于生长在红旗下但早已告别阶级斗争学说的我们，「台湾」这个词充满了太多的意义。这个名词首先首先构成了我们大一统的想象，作为一个中国人的想象。不，这是我的想象。作为一个革命者，链接在对岸人民与我之间不是民族共同体的幻象，而是对全球资本主义体系的反抗。从日据到今天，台湾从威权政府到今日。而，我看到的是亚细亚孤儿对不公和不义的反抗，看到了许多可歌可泣的台共党人化作了春泥。</p>
 <p>1976年，毛主席逝世。一直到今日，凯歌般的中国崛起。几十年间，中国完成从一个革命之介入到资本之介入的转变。对于台湾，这也意味着「中国」这个词内涵的转变，从革命到殖民。90年代，台湾的政治变得宽松，党外活动变得普遍。以对白色恐怖拷问和社会主义追寻的劳动党得以成立，他们以白色恐怖时期的被迫害者和新时期的劳工们为链接组成。然而，以「祖国」为想象的社会主义，并不与现实为考量。社会主义祖国已经帝国主义化，劳动党的所代表的统派越来越式微。年轻的一代的台共党人，已经越来越脱离劳动党所所代表的统派叙事。从黑色岛国青年到台左维新，到今天我们已经看到的已厌倦台湾两党选举政治的人民所所支持的第三股势力的兴起。</p>
@@ -111,7 +113,8 @@
 <p>作为本岸的青年，面对对岸青年们的风起云涌的运动，那些化作春泥的骨头和此时不低头的骨头。我羞愧的低下头。革命尚未成功，同志仍要努力。</p>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><div class="sponsor-custom"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2952783020327566" crossorigin="anonymous"></script><!-- sogola --><ins class="adsbygoogle" style="display:block; max-height: 90px;" data-ad-client="ca-pub-2952783020327566" data-ad-slot="2322972430" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -153,7 +156,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

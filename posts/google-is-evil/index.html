@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -44,7 +46,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -85,7 +87,7 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Google不作恶？我们都笑了...</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Google不作恶？我们都笑了...</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/technology/"><i class="far fa-folder fa-fw"></i>Technology</a></span></div>
@@ -100,7 +102,7 @@
         srcset="../../images/google-is-evil/1.jpg, ../../images/google-is-evil/1.jpg 1.5x, ../../images/google-is-evil/1.jpg 2x"
         sizes="auto"
         alt="/images/google-is-evil/1.jpg"
-        title="/images/google-is-evil/1.jpg" height="auto" width="auto"></div><div class="content" id="content"><p>西元2011年3月23日，Google宣布关闭中国境内服务器，google.cn指向Google香港的简体中文服务。同日，网友们自发组织起来到Google中国总部门前「非法献花」，并在「草泥马之歌」中进入高潮。对于「Google重返中国市场」，中文互联网有着执念的幻想。每隔一段时间，总有媒体对一些信息进行捕风捉影，幻想Google又开启了重返中国市场的进程，意淫出种种时间表和路线图。它们天真地想象这个重返会给一个散发恶臭的局域网咸鱼摊带来冰镇可乐，但可乐毕竟只是「肥宅快乐水」，功效有限，也不过徒增骨质疏松罢了。</p>
+        title="/images/google-is-evil/1.jpg" height="auto"   width="auto" ></div><div class="content" id="content"><p>西元2011年3月23日，Google宣布关闭中国境内服务器，google.cn指向Google香港的简体中文服务。同日，网友们自发组织起来到Google中国总部门前「非法献花」，并在「草泥马之歌」中进入高潮。对于「Google重返中国市场」，中文互联网有着执念的幻想。每隔一段时间，总有媒体对一些信息进行捕风捉影，幻想Google又开启了重返中国市场的进程，意淫出种种时间表和路线图。它们天真地想象这个重返会给一个散发恶臭的局域网咸鱼摊带来冰镇可乐，但可乐毕竟只是「肥宅快乐水」，功效有限，也不过徒增骨质疏松罢了。</p>
 <p>在数位原住民（digital native）出现之前，那些史前人类对互联网有着天然的想象。互联网公司是真实世界秩序的对抗者，硅谷是实践政治正确的良心。共享、互助和去中心化的开放互联，的确是互联网精神之所在。但理念的天国在现实中不堪一击，这些信息孤岛依然按照经济规律运行。信息孤岛并不止是由微信所构筑，Facebook同样在卖力添砖添瓦，它们把原住民当作免费劳力驱用。在信息孤岛中，原住民在筑墙者们的操纵下生产数据，这些数据成为它们发家致富的神圣秘密。有人不禁大声疾呼，「互联网，已死」。同样的幻灭也会发生在Google这里，毕竟Google是一间上市公司，它对股东负责，追逐利润。许多人把所向往的美好生活寄托在一间托拉斯式商业寡头公司之上，这种寄托因其自身的资本逻辑必然是脆弱的。不经意间轻轻掉落，就会破碎了一地。</p>
 <p>说起竞价排名的罪恶，我们都会众口同声讨伐百度。参与杯葛百度，已然成了中文互联网的政治正确。人们在细数百度种种罪恶的同时，不忘忆苦思甜，回忆一下Google带来的种种美好。其中一个恩赐就是Google的纯净搜索，一个没有莆田系迫害魏则西的搜索。可惜Google的历史并不是那么清白，它的罪恶并不比百度少一些。Google和百度一样，它的主要营收是贩售广告。虽然都是依靠广告收入，Google比百度稍稍好一点，毕竟百度宣称它的广告不是广告，而是竞价排名，不接受广告法监管。但这一点也不影响Google不做黑心广告。</p>
 <blockquote>
@@ -190,7 +192,8 @@
 </div>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><div class="sponsor-custom"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2952783020327566" crossorigin="anonymous"></script><!-- sogola --><ins class="adsbygoogle" style="display:block; max-height: 90px;" data-ad-client="ca-pub-2952783020327566" data-ad-slot="2322972430" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -232,7 +235,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

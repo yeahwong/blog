@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -36,7 +38,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -84,7 +86,7 @@
         srcset="../../images/avatar.jpg, ../../images/avatar.jpg 1.5x, ../../images/avatar.jpg 2x"
         sizes="auto"
         alt="/images/avatar.jpg"
-        title="/images/avatar.jpg" height="100" width="100"></a></div><h1 class="home-title">A marxist inside.</h1><div class="links"><a href="https://twitter.com/yeahwong" title="Twitter" target="_blank" rel="noopener noreferrer me"><i class="fab fa-twitter fa-fw"></i></a><a href="https://www.instagram.com/yeahwong" title="Instagram" target="_blank" rel="noopener noreferrer me"><i class="fab fa-instagram fa-fw"></i></a><a href="https://t.me/hsiaohigh" title="Telegram" target="_blank" rel="noopener noreferrer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="https://weibo.com/yeahwong" title="微博" target="_blank" rel="noopener noreferrer me"><i class="fab fa-weibo fa-fw"></i></a><a href="https://www.zhihu.com/people/yeahwong" title="知乎" target="_blank" rel="noopener noreferrer me"><i data-svg-src="../../lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://www.douban.com/people/yeahwong" title="豆瓣" target="_blank" rel="noopener noreferrer me"><i data-svg-src="../../lib/simple-icons/icons/douban.min.svg"></i></a><a href="https://cryptodon.lol/@yeahwong" title="Mastodon" target="_blank" rel="noopener noreferrer me"><i class="fab fa-mastodon fa-fw"></i></a><a href="mailto:high@sogola.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="../../index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+        title="/images/avatar.jpg" height="100"   width="100" ></a></div><h1 class="home-title">A marxist inside.</h1><div class="links"><a href="https://twitter.com/yeahwong" title="Twitter" target="_blank" rel="noopener noreferrer me"><i class="fab fa-twitter fa-fw"></i></a><a href="https://www.instagram.com/yeahwong" title="Instagram" target="_blank" rel="noopener noreferrer me"><i class="fab fa-instagram fa-fw"></i></a><a href="https://t.me/hsiaohigh" title="Telegram" target="_blank" rel="noopener noreferrer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="https://weibo.com/yeahwong" title="微博" target="_blank" rel="noopener noreferrer me"><i class="fab fa-weibo fa-fw"></i></a><a href="https://www.zhihu.com/people/yeahwong" title="知乎" target="_blank" rel="noopener noreferrer me"><i data-svg-src="../../lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://www.douban.com/people/yeahwong" title="豆瓣" target="_blank" rel="noopener noreferrer me"><i data-svg-src="../../lib/simple-icons/icons/douban.min.svg"></i></a><a href="https://cryptodon.lol/@yeahwong" title="Mastodon" target="_blank" rel="noopener noreferrer me"><i class="fab fa-mastodon fa-fw"></i></a><a href="mailto:high@sogola.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="../../index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="../../posts/additional-note-on-my-illegal-dismissal/" aria-label=关于我被非法解雇一事的补充说明><img
         
@@ -93,7 +95,7 @@
         srcset="../../images/additional-note-on-my-illegal-dismissal/1.jpg, ../../images/additional-note-on-my-illegal-dismissal/1.jpg 1.5x, ../../images/additional-note-on-my-illegal-dismissal/1.jpg 2x"
         sizes="auto"
         alt="/images/additional-note-on-my-illegal-dismissal/1.jpg"
-        title="/images/additional-note-on-my-illegal-dismissal/1.jpg" height="auto" width="auto"></a>
+        title="/images/additional-note-on-my-illegal-dismissal/1.jpg" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="../../posts/additional-note-on-my-illegal-dismissal/">关于我被非法解雇一事的补充说明</a>
     </h1><div class="post-meta">
@@ -109,7 +111,7 @@
         srcset="../../images/i-was-fired-illegally/2020215.1.jpg, ../../images/i-was-fired-illegally/2020215.1.jpg 1.5x, ../../images/i-was-fired-illegally/2020215.1.jpg 2x"
         sizes="auto"
         alt="/images/i-was-fired-illegally/2020215.1.jpg"
-        title="/images/i-was-fired-illegally/2020215.1.jpg" height="auto" width="auto"></a>
+        title="/images/i-was-fired-illegally/2020215.1.jpg" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="../../posts/i-was-fired-illegally/">我被尖椒部落非法开除：为什么劳工机构的官僚比资本家还要凶狠</a>
     </h1><div class="post-meta">
@@ -125,7 +127,7 @@
         srcset="../../images/against-big-tech/1.jpg, ../../images/against-big-tech/1.jpg 1.5x, ../../images/against-big-tech/1.jpg 2x"
         sizes="auto"
         alt="/images/against-big-tech/1.jpg"
-        title="/images/against-big-tech/1.jpg" height="auto" width="auto"></a>
+        title="/images/against-big-tech/1.jpg" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="../../posts/against-big-tech/">美国工人是如何反击大型科技公司的？</a>
     </h1><div class="post-meta">
@@ -141,7 +143,7 @@
         srcset="../../images/a-new-beginning/1.jpg, ../../images/a-new-beginning/1.jpg 1.5x, ../../images/a-new-beginning/1.jpg 2x"
         sizes="auto"
         alt="/images/a-new-beginning/1.jpg"
-        title="/images/a-new-beginning/1.jpg" height="auto" width="auto"></a>
+        title="/images/a-new-beginning/1.jpg" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="../../posts/a-new-beginning/">阿兰·巴丢：我们正处在马克思主义的新起点</a>
     </h1><div class="post-meta">
@@ -157,7 +159,7 @@
         srcset="../../images/godsofsanhe1111/20191111.1.jpg, ../../images/godsofsanhe1111/20191111.1.jpg 1.5x, ../../images/godsofsanhe1111/20191111.1.jpg 2x"
         sizes="auto"
         alt="/images/godsofsanhe1111/20191111.1.jpg"
-        title="/images/godsofsanhe1111/20191111.1.jpg" height="auto" width="auto"></a>
+        title="/images/godsofsanhe1111/20191111.1.jpg" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="../../posts/godsofsanhe1111/">三和大神的双十一怎么过？</a>
     </h1><div class="post-meta">
@@ -173,7 +175,7 @@
         srcset="../../images/european-leftists/1.jpg, ../../images/european-leftists/1.jpg 1.5x, ../../images/european-leftists/1.jpg 2x"
         sizes="auto"
         alt="/images/european-leftists/1.jpg"
-        title="/images/european-leftists/1.jpg" height="auto" width="auto"></a>
+        title="/images/european-leftists/1.jpg" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="../../posts/european-leftists/">齐泽克：欧洲左翼背叛了库尔德人</a>
     </h1><div class="post-meta">
@@ -228,7 +230,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

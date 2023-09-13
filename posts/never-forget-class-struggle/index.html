@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -44,7 +46,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -85,7 +87,7 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">千万不要忘记阶级斗争</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">千万不要忘记阶级斗争</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/ideology/"><i class="far fa-folder fa-fw"></i>Ideology</a></span></div>
@@ -100,14 +102,15 @@
         srcset="../../images/never-forget-class-struggle/1.jpg, ../../images/never-forget-class-struggle/1.jpg 1.5x, ../../images/never-forget-class-struggle/1.jpg 2x"
         sizes="auto"
         alt="/images/never-forget-class-struggle/1.jpg"
-        title="/images/never-forget-class-struggle/1.jpg" height="auto" width="auto"></div><div class="content" id="content"><p>有那么一次坐火车的时候，火车每次到站报完站后面都会加一句各位旅客请注意你的随身物体安全，然后旁边的老大爷笑呵呵的说以前的时候啊说完话都要加一句千万不要忘记阶级斗争，后来人民都麻木了，说到最后都不知道为神马加那么一句话了&hellip;是啊是啊，我们真的麻木了，不然那帮走资派怎么会&hellip;唉。。。可是喊口号是真的不能解决问题的，关键是用马克思主义分析问题解决问题。</p>
+        title="/images/never-forget-class-struggle/1.jpg" height="auto"   width="auto" ></div><div class="content" id="content"><p>有那么一次坐火车的时候，火车每次到站报完站后面都会加一句各位旅客请注意你的随身物体安全，然后旁边的老大爷笑呵呵的说以前的时候啊说完话都要加一句千万不要忘记阶级斗争，后来人民都麻木了，说到最后都不知道为神马加那么一句话了&hellip;是啊是啊，我们真的麻木了，不然那帮走资派怎么会&hellip;唉。。。可是喊口号是真的不能解决问题的，关键是用马克思主义分析问题解决问题。</p>
 <p>互联网时代风起云涌的各种姐各种哥各种话题，我们不排除资本权力炒作的可能，但web2.0时代的话题更多的是碎片化的信息通过社区，SNS，微博等技术手段聚集起来。也就是说这些话题产生是整个社会无意识的喧嚣，像《网瘾战争》就是不挑战制度的消极对抗了。大他者的意识形态是由社会经济政治决定的，也就说神马样子的底层建筑决定了上层浮现出来神马样子无意识话语。无意识是他者的言语，互联网的喧嚣是整个社会的声音。</p>
 <p>在中国，官方意识形态宣传在互联网领域是很失败的，很多时候更是被嘲弄的对象。互联网自我聚集出来的碎片信息看起来很反动，可是你如果仔细看就会发现这些信息根本就没有触及根本，他们不断制造话题使你经常性地处于很爽的状态，后果嘛就是你爽完后第二天该上班还得上班该上学还得上学。还有重要一点，移动互联网的普及啊可以使你随时随地爽了..哈哈，GOV如果聪明的话，看这一点应该会很开心，因为社会的无意识恰当的制造了些让你很爽却没有实际用处的鸦片让你每天沉醉其中，这丫是一自洽的体系嘛，可以不用花那么多维稳费用了。毛主席说一切反动派都是纸老虎，所以我们马克思主义者看到这个惨痛事实也不要害怕。社区SNS微博这些弱关系社交工具在麻痹你的同时，也给我们提供通过它们结识同志建立强关系网络party的可能，而强关系网络的战斗力是超级强大的。</p>
 <p>豆瓣的一装逼犯说神马重构公共空间是解决的方法。好吧，我只能说你们太反动了！明明是经济基础决定上层建筑，要想到升仙到人的自由王国，首先要解决经济问题，再讲别的。经济基础不变，公共空间重构了，话语权还是会落在资本手里，不要本末倒置了。</p>
 <p>阶级斗争在互联网时代是更艰难的，我们面对是强大的大他者生产的话语。如果我们不占领媒体学术话语或者不在微博上有很多follower的话，斗争会很艰难，当前紧迫的任务拉队伍抢占话语权，学院里拉建一批有机知识分子。当然也应该乐观地看到我们也是大他者的声音，虽然很弱小可是很先进，不是说矛盾斗争中，先进力量总是会消灭掉落后力量嘛，所以啊我们总归会胜利的。</p>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><div class="sponsor-custom"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2952783020327566" crossorigin="anonymous"></script><!-- sogola --><ins class="adsbygoogle" style="display:block; max-height: 90px;" data-ad-client="ca-pub-2952783020327566" data-ad-slot="2322972430" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -149,7 +152,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -44,7 +46,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -85,7 +87,7 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LH汽車站宛若疫情前的三和</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LH汽車站宛若疫情前的三和</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/capitalism/"><i class="far fa-folder fa-fw"></i>Capitalism</a></span></div>
@@ -100,7 +102,7 @@
         srcset="../../images/lh-bus-station/1.jpg, ../../images/lh-bus-station/1.jpg 1.5x, ../../images/lh-bus-station/1.jpg 2x"
         sizes="auto"
         alt="/images/lh-bus-station/1.jpg"
-        title="/images/lh-bus-station/1.jpg" height="auto" width="auto"></div><div class="content" id="content"><p>昨夜九點半去LH汽車站溜達了一圈，好多老哥，熙熙攘攘，空氣中又有一點點焦躁，我彷彿回到了西元2019年的三和。剛到汽車站，就有差人及鄉勇排排站，走進人群，我才知道原來是驅逐在台階上休憩的老哥，隱約間，聽到鄉勇說道：這影響了市容。差人及鄉勇掃過整個廣場，頗有氣勢。</p>
+        title="/images/lh-bus-station/1.jpg" height="auto"   width="auto" ></div><div class="content" id="content"><p>昨夜九點半去LH汽車站溜達了一圈，好多老哥，熙熙攘攘，空氣中又有一點點焦躁，我彷彿回到了西元2019年的三和。剛到汽車站，就有差人及鄉勇排排站，走進人群，我才知道原來是驅逐在台階上休憩的老哥，隱約間，聽到鄉勇說道：這影響了市容。差人及鄉勇掃過整個廣場，頗有氣勢。</p>
 <p>可偏偏有老哥不信邪，「執法要有有法可依，睡這裡並不違法」，周遭圍觀的老哥一陣起哄叫好。在老哥們的注視下，差人及鄉勇無奈地走開了。我拿起手機想抓拍幾張相片，剛剛沒拍幾張，就有老哥提醒不要亂拍，小心有老哥揪住妳不放，跟妳要兩百塊。我想到前幾年在三和被打的經歷，還是將手機乖乖地收起來。</p>
 <p>今晚的南方有點冷，我將雙手插進兜裏，兩手緊貼大腿。剛到十點鐘，一位環衛大爺開著噴水三輪車來到廣場。這時候，一陣騷動彷彿漣漪一般，在廣場搖曳開來，「真他媽壞」，「睡覺都不讓睡」。水槍掃過台階，濕冷的氣息撲面而來，「拍下來，爆光她們」。水槍掃了一小截，就遭遇了一位已經打地鋪睡下的老哥，水槍聲響了下來。老哥起身假意收拾被褥，鄉勇趕了過來，老哥們也聚攏過來了。</p>
 <p>人越聚越多，人群跳出來一位老哥，他索性坐在了台階之上。鄉勇質問老哥，老哥反問我們有錢的話，誰會願意睡在這裡呢。「誰不知道旅館二十塊一晚，可我們沒錢呢。」他越講越激動，揮舞起拳頭，鄉勇知難而退，人群中時而爆出一陣掌聲，時而爆出一陣哄笑。</p>
@@ -109,7 +111,8 @@
 <p>環衛大爺收拾了一下噴水三輪車，一位老哥說「別噴了」，環衛大爺道：「收工回家。」今夜風大天冷，家裡暖和，可我們還會有家嗎？</p>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><div class="sponsor-custom"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2952783020327566" crossorigin="anonymous"></script><!-- sogola --><ins class="adsbygoogle" style="display:block; max-height: 90px;" data-ad-client="ca-pub-2952783020327566" data-ad-slot="2322972430" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -151,7 +154,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

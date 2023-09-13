@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -44,7 +46,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -85,7 +87,7 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">地瓜</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">地瓜</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://sogola.com/" title="Author" target="_blank" rel="noopener noreferrer author" class="author">王小嗨</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="../../categories/life/"><i class="far fa-folder fa-fw"></i>Life</a></span></div>
@@ -100,7 +102,7 @@
         srcset="../../images/potatoes/1.jpg, ../../images/potatoes/1.jpg 1.5x, ../../images/potatoes/1.jpg 2x"
         sizes="auto"
         alt="/images/potatoes/1.jpg"
-        title="/images/potatoes/1.jpg" height="auto" width="auto"></div><div class="content" id="content"><p>某猴在高中的时候经常念叨「来大家跟我读，地瓜，地瓜~~~」。高中那会我们班把无厘头搞到了极致，不得不感叹下人民群众的创造力真牛逼哇。其实恶搞出这一切的总是那几个别有用心的猴子，而历史的滚滚大车轮还是把猴子们归类到猴子里面，你们就不要再苦苦挣扎了，猴海无涯呀，来来来，给你枣吃。。。。</p>
+        title="/images/potatoes/1.jpg" height="auto"   width="auto" ></div><div class="content" id="content"><p>某猴在高中的时候经常念叨「来大家跟我读，地瓜，地瓜~~~」。高中那会我们班把无厘头搞到了极致，不得不感叹下人民群众的创造力真牛逼哇。其实恶搞出这一切的总是那几个别有用心的猴子，而历史的滚滚大车轮还是把猴子们归类到猴子里面，你们就不要再苦苦挣扎了，猴海无涯呀，来来来，给你枣吃。。。。</p>
 <p>猴子是一神奇的物种，地瓜也是一神奇的物种。小马哥彻底被我说烦了，打击我的时候还不忘我提醒我你是不是就光知道地瓜呀？整天就地瓜地瓜。。。我狡辩说可&hellip;可我讲是基本模型呀，你编程也不整天要调用现成的函数吗？马哥就很烦地说那不一样&hellip;还能整天调用一个函数吗？你没救了。。。好吧，我整天对马哥，哦不，是所有愿意听我叨叨的人讲这样一故事。「我们假设共有三猴子，一猴老板，两猴员工。猴老板很看好地瓜这一市场于是决定投资做地瓜高值化加工。每个地瓜的成本加设备耗损是3MD，加工出的地瓜2.0的价格是7MD，一猴一小时可加工一地瓜，每天两猴员工可以工作3小时。OK，这样每天可以生产6个地瓜，猴老板每天纯获利12MD，猴员工每天工资6MD。「一个地瓜经过猴化后增加了4MD，4MD是怎么出来？没有猴子会不会增加4MD？所以我们说这是猴子的力量。每天来6个地瓜猴化后就创造出24MD(老板12MD，员工6MD ），增加24MD的价值流通到猴子的世界是要被消费掉的，可是现在问题来了&hellip;两员工每人6MD，老板6MD一共18MD是消费不了24MD的价值！要是你问老板为什么不购买12MD？我告诉这才是问题的关键，老板另外的6MD是要来投资买地瓜扩大再猴化。本来24MD的价值就消费不了了你还要再添堵吗？猴子的危机是怎么的？答案就这个故事嘛。</p>
 <p>危机危机多么苍白无力的字眼呀，经济危机管我小市民p事呀，可是我要是说猴子要是整天搞地瓜的话肯定就是不猴子了。某些人整天叫嚣马克思主义是科学不要太意识形态化，没错以前俺也是这样子认为的，可是马克思要是没有强大无比的信念支持会写那么多那么多书吗？格拉大哥会打到死吗？你们这些小资玩马克思主义是永远玩不出阶级感情的，俺彻底彻底体验了一把劳动异化。到工厂里去。。。。俺没那么高尚俺去工厂不是为搞调研也不是为了投入无产阶级运动浪潮里，俺去打工完全是为还债呀，过年不容易呀。可是就在俺请假两天回校考试之际就被事卡在学校了，我丫真就是一事逼，可怜我干了二十天的苦力竟然白干了我回不去了。。。。</p>
 <p>异化是什么？我以前不懂问昆华哥，操，现在我是真懂还体验了一把，每天重复12个小时一个单调动作。可是就算异化的力量再大我看工友们还是很开爱很有视角。</p>
@@ -118,7 +120,8 @@
 <p>哦，对了去考试的路遇到老大，隔老远就哇哇大叫，丫不知道的还以为她煞笔呢。然后走近了老大就用她特有的青普说「哎吆来，日照，你胖了”。是喔，我也感觉我胖了胖子，越来越地瓜不管是体形还心理上，但是俺已决心做一个战斗着革命地瓜了~！</p>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><div class="sponsor-custom"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2952783020327566" crossorigin="anonymous"></script><!-- sogola --><ins class="adsbygoogle" style="display:block; max-height: 90px;" data-ad-client="ca-pub-2952783020327566" data-ad-slot="2322972430" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -160,7 +163,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="../../lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../lib/sharer/sharer.min.js"></script><script type="text/javascript" src="../../js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>

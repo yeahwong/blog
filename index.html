@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -36,7 +38,7 @@
 </head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -84,7 +86,7 @@
         srcset="./images/avatar.jpg, ./images/avatar.jpg 1.5x, ./images/avatar.jpg 2x"
         sizes="auto"
         alt="/images/avatar.jpg"
-        title="/images/avatar.jpg" height="100" width="100"></a></div><h1 class="home-title">A marxist inside.</h1><div class="links"><a href="https://twitter.com/yeahwong" title="Twitter" target="_blank" rel="noopener noreferrer me"><i class="fab fa-twitter fa-fw"></i></a><a href="https://www.instagram.com/yeahwong" title="Instagram" target="_blank" rel="noopener noreferrer me"><i class="fab fa-instagram fa-fw"></i></a><a href="https://t.me/hsiaohigh" title="Telegram" target="_blank" rel="noopener noreferrer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="https://weibo.com/yeahwong" title="微博" target="_blank" rel="noopener noreferrer me"><i class="fab fa-weibo fa-fw"></i></a><a href="https://www.zhihu.com/people/yeahwong" title="知乎" target="_blank" rel="noopener noreferrer me"><i data-svg-src="./lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://www.douban.com/people/yeahwong" title="豆瓣" target="_blank" rel="noopener noreferrer me"><i data-svg-src="./lib/simple-icons/icons/douban.min.svg"></i></a><a href="https://cryptodon.lol/@yeahwong" title="Mastodon" target="_blank" rel="noopener noreferrer me"><i class="fab fa-mastodon fa-fw"></i></a><a href="mailto:high@sogola.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="./index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+        title="/images/avatar.jpg" height="100"   width="100" ></a></div><h1 class="home-title">A marxist inside.</h1><div class="links"><a href="https://twitter.com/yeahwong" title="Twitter" target="_blank" rel="noopener noreferrer me"><i class="fab fa-twitter fa-fw"></i></a><a href="https://www.instagram.com/yeahwong" title="Instagram" target="_blank" rel="noopener noreferrer me"><i class="fab fa-instagram fa-fw"></i></a><a href="https://t.me/hsiaohigh" title="Telegram" target="_blank" rel="noopener noreferrer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="https://weibo.com/yeahwong" title="微博" target="_blank" rel="noopener noreferrer me"><i class="fab fa-weibo fa-fw"></i></a><a href="https://www.zhihu.com/people/yeahwong" title="知乎" target="_blank" rel="noopener noreferrer me"><i data-svg-src="./lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://www.douban.com/people/yeahwong" title="豆瓣" target="_blank" rel="noopener noreferrer me"><i data-svg-src="./lib/simple-icons/icons/douban.min.svg"></i></a><a href="https://cryptodon.lol/@yeahwong" title="Mastodon" target="_blank" rel="noopener noreferrer me"><i class="fab fa-mastodon fa-fw"></i></a><a href="mailto:high@sogola.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="./index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="./posts/deploy-a-blog/" aria-label=我的博客方案：靜態網站與&#32;IPFS><img
         
@@ -93,7 +95,7 @@
         srcset="./images/deploy-a-blog/1.png, ./images/deploy-a-blog/1.png 1.5x, ./images/deploy-a-blog/1.png 2x"
         sizes="auto"
         alt="/images/deploy-a-blog/1.png"
-        title="/images/deploy-a-blog/1.png" height="auto" width="auto"></a>
+        title="/images/deploy-a-blog/1.png" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="./posts/deploy-a-blog/">我的博客方案：靜態網站與 IPFS</a>
     </h1><div class="post-meta">
@@ -109,7 +111,7 @@
         srcset="./images/the-three-body-problem/1.jpg, ./images/the-three-body-problem/1.jpg 1.5x, ./images/the-three-body-problem/1.jpg 2x"
         sizes="auto"
         alt="/images/the-three-body-problem/1.jpg"
-        title="/images/the-three-body-problem/1.jpg" height="auto" width="auto"></a>
+        title="/images/the-three-body-problem/1.jpg" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="./posts/the-three-body-problem/">《三體》與 iPhone 產線：國朝的工業與科幻的黃金時代</a>
     </h1><div class="post-meta">
@@ -125,7 +127,7 @@
         srcset="./images/simplified-chinese-internet/1.png, ./images/simplified-chinese-internet/1.png 1.5x, ./images/simplified-chinese-internet/1.png 2x"
         sizes="auto"
         alt="/images/simplified-chinese-internet/1.png"
-        title="/images/simplified-chinese-internet/1.png" height="auto" width="auto"></a>
+        title="/images/simplified-chinese-internet/1.png" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="./posts/simplified-chinese-internet/">「簡中互聯網」：長城內愛國者的鏡花水月</a>
     </h1><div class="post-meta">
@@ -141,7 +143,7 @@
         srcset="./images/lh-bus-station/1.jpg, ./images/lh-bus-station/1.jpg 1.5x, ./images/lh-bus-station/1.jpg 2x"
         sizes="auto"
         alt="/images/lh-bus-station/1.jpg"
-        title="/images/lh-bus-station/1.jpg" height="auto" width="auto"></a>
+        title="/images/lh-bus-station/1.jpg" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="./posts/lh-bus-station/">LH汽車站宛若疫情前的三和</a>
     </h1><div class="post-meta">
@@ -157,7 +159,7 @@
         srcset="./images/mattersnews/1.png, ./images/mattersnews/1.png 1.5x, ./images/mattersnews/1.png 2x"
         sizes="auto"
         alt="/images/mattersnews/1.png"
-        title="/images/mattersnews/1.png" height="auto" width="auto"></a>
+        title="/images/mattersnews/1.png" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="./posts/mattersnews/">matters.news：一个故弄玄虚的伪去中心化站点</a>
     </h1><div class="post-meta">
@@ -173,7 +175,7 @@
         srcset="./images/planet/1.png, ./images/planet/1.png 1.5x, ./images/planet/1.png 2x"
         sizes="auto"
         alt="/images/planet/1.png"
-        title="/images/planet/1.png" height="auto" width="auto"></a>
+        title="/images/planet/1.png" height="auto"   width="auto" ></a>
         </div><h1 class="single-title" itemprop="name headline">
         <a href="./posts/planet/">Planet：一款IPFS静态站点生成器</a>
     </h1><div class="post-meta">
@@ -214,7 +216,7 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><link rel="stylesheet" href="./lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"maxShownLines":10},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="./lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="./lib/sharer/sharer.min.js"></script><script type="text/javascript" src="./js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="./lib/lightgallery/lightgallery.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"sharerjs":true};</script><script type="text/javascript" src="./lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/sharer/sharer.min.js"></script><script type="text/javascript" src="./js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c61952ba787d4805a85853b9bdeeb2f6"}'></script></div>
 </body>
 
 </html>
