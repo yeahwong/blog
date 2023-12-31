@@ -1,0 +1,327 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>blog - Tag - 王小嗨的不老歌</title>
+        <link>https://sogola.com/tags/blog/</link>
+        <description>blog - Tag - 王小嗨的不老歌</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>high@sogola.com (王小嗨)</managingEditor>
+            <webMaster>high@sogola.com (王小嗨)</webMaster><lastBuildDate>Sun, 23 Apr 2023 13:10:00 &#43;0800</lastBuildDate><atom:link href="https://sogola.com/tags/blog/" rel="self" type="application/rss+xml" /><item>
+    <title>我的博客方案：靜態網站與 IPFS</title>
+    <link>https://sogola.com/posts/deploy-a-blog/</link>
+    <pubDate>Sun, 23 Apr 2023 13:10:00 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/deploy-a-blog/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/deploy-a-blog/1.png" referrerpolicy="no-referrer">
+            </div><h2 id="緣起" class="headerLink">
+    <a href="#%e7%b7%a3%e8%b5%b7" class="header-mark"></a>緣起</h2><p>隨著前幾年多個出名的博客服務商終止運營，或者不再提供更新與維護，國文博客開始文藝復興，重新歸復到獨立建站，個中滋味大概只有國朝網民知曉。縱然外國亦有不少博客服務商，但在互聯網開始被爭霸之中的主權國家裹挾之今日，又有哪個主權國家更高尚一些嗎？除了內容自託管，我們別無選擇。</p>
+<p>內容的完全控制和方便遷移，這是我託管博客的兩大目標。考慮到國朝網路運營商對 web 端口的屏蔽，如不映射到海外服務器，那麼在自家主機上開放 HTTP/HTTPS 服務，在可預見的未來都是不可能的。為了達成這樣的目標，我選擇靜態網站託管服務與分布式儲存兩種方案。</p>
+<p>選擇靜態網站的一個理由是不需要考慮數據庫的維護。相較於動態網站使用數據庫來存儲網站內容和用戶數據，靜態網站以靜態文件的形式存儲內容，進而減少了維護成本。個人使用 wordpress 的過程也有曾遭受過黑客攻擊的經歷，缺少安防經驗也促使我不再使用動態網站。除此之外，靜態網站也更易遷移，選擇靜態網站可方便地將數據從一個託管服務提供商遷移到另一個。</p>
+<p>而選擇分布式儲存是由於國內網路環境的限制而不得已的選擇，同時也能有效增強自己對數據的控制權。分布式網站有很多方案，其中比較知名的有 <a href="https://zeronet.io/" target="_blank" rel="noopener noreferrer">ZeroNet</a> 和 <a href="https://ipfs.tech/" target="_blank" rel="noopener noreferrer">IPFS</a>，但 zeronet 目前已停止更新，我們的選擇可能只有 IPFS
+了。</p>
+<p>IPFS 全稱為 InterPlanetary File System （星際文件系統），是一個基於內容尋址的分布式存儲方案，目前有 <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave瀏覽器</a> 支援使用 <a href="https://ens.domains/" target="_blank" rel="noopener noreferrer">ENS域名</a> 或者傳統域名進行訪問 IPFS 網站。</p>
+<p>我的網誌已經歷十幾年，雖然文章不多，但也歷經折騰，然而卻不曾介紹過我的部署方案。是時候將我的部署方案公之於眾了，以下供大家參考與批判。</p>
+<h2 id="靜態網站的部署" class="headerLink">
+    <a href="#%e9%9d%9c%e6%85%8b%e7%b6%b2%e7%ab%99%e7%9a%84%e9%83%a8%e7%bd%b2" class="header-mark"></a>靜態網站的部署</h2><h3 id="使用-hugo-生成靜態網站" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8-hugo-%e7%94%9f%e6%88%90%e9%9d%9c%e6%85%8b%e7%b6%b2%e7%ab%99" class="header-mark"></a>使用 hugo 生成靜態網站</h3><p>我的博客選擇是靜態網站生成器 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">hugo</a>  ，主題為 <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer">DoIt</a>， DoIT 的基本配置可參考其<a href="https://hugodoit.pages.dev/zh-cn/theme-documentation-basics/" target="_blank" rel="noopener noreferrer">官方網站</a>。</p>
+<ul>
+<li>網誌文章的 markdown 文件放入 <code>$PWD/yoursite/content/posts</code></li>
+<li>簡單頁面的 markdown 文件放入 <code>$PWD/yoursite/content/</code></li>
+</ul>
+<p>md 文件的名稱就是改頁面的連結，示例如下：</p>
+<ul>
+<li><a href="https://sogola.com/posts/godsofsanhe1111/" target="_blank" rel="noopener noreferrer">三和大神的双十一怎么过？</a>: <code>$PWD/yoursite/content/posts/godsofsanhe1111.md</code></li>
+<li><a href="https://sogola.com/about/" target="_blank" rel="noopener noreferrer">關於頁面</a>: <code>$PWD/yoursite/content/about.md</code></li>
+</ul>
+<p>對於使用 Hugo 創建博客文章，需要注意和普通 Markdown 文件的區別。在 Hugo 中，無法使用如同普通 markdown 文件般使用 # 來標記文章標題。相反，你需要在文件內使用前置參數進行標記。以下是一個示例前置參數：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">title: &#34;三和大神的双十一怎么过？&#34;
+</span></span><span class="line"><span class="cl">date: 2019-11-11T11:52:18+08:00
+</span></span><span class="line"><span class="cl">lastmod: 2020-06-16T15:58:26+08:00
+</span></span><span class="line"><span class="cl">draft: false
+</span></span><span class="line"><span class="cl">author: &#34;王小嗨&#34;
+</span></span><span class="line"><span class="cl">summary: &#34;双十一，我去三和做了一晚快递日结。&#34;
+</span></span><span class="line"><span class="cl">featuredImage: &#34;/images/godsofsanhe1111/20191111.1.jpg&#34;
+</span></span><span class="line"><span class="cl">images: [&#34;/images/godsofsanhe1111/20191111.1.jpg&#34;]
+</span></span><span class="line"><span class="cl">toc: false
+</span></span><span class="line"><span class="cl">keepStatic: false
+</span></span><span class="line"><span class="cl">auto: true
+</span></span><span class="line"><span class="cl">categories: [&#34;Capitalism&#34;,&#34;Life&#34;]
+</span></span><span class="line"><span class="cl">tags: [&#34;三和大神&#34;,&#34;日结&#34;,&#34;零工&#34;,&#34;快递&#34;]
+</span></span><span class="line"><span class="cl">license: &#39;&lt;a rel=&#34;license external nofollow noopener noreffer&#34; href=&#34;https://creativecommons.org/licenses/by-nc/3.0/&#34; target=&#34;_blank&#34;&gt;CC BY-NC 3.0&lt;/a&gt;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在這個示例中，<code>title</code> 屬性標示了文章的標題，<code>date</code> 標示了文章的發布日期和時間，<code>lastmod</code> 標示文章最後修改的時間，<code>draft</code> 屬性表示文章是否是草稿狀態。另外，還有一些其他的屬性，比如前面列舉的 <code>author</code>、<code>summary</code>、<code>featuredImage</code> 等等。在這個標題之後，可以使用正常的 Markdown 語法來編寫文章的內容。其中圖片文件在 <code>$PWD/yoursite/static/images</code> 目錄。</p>
+<p>在安装 hugo 程式，下載好 DoIt 主題， 完善 <code>config.toml</code> 配置文件，寫好妳的文章之後，cd 至 <code>$PWD/yoursite</code> ，運行 <code>hugo server -D</code> 可對博客網站預覽，若滿意，則運行 <code>hugo</code> 命令。在 <code>$PWD/yoursite/public</code> 目錄中，妳將會得到博客的所有靜態文件。</p>
+<h3 id="將靜態網站上載至託管服務商" class="headerLink">
+    <a href="#%e5%b0%87%e9%9d%9c%e6%85%8b%e7%b6%b2%e7%ab%99%e4%b8%8a%e8%bc%89%e8%87%b3%e8%a8%97%e7%ae%a1%e6%9c%8d%e5%8b%99%e5%95%86" class="header-mark"></a>將靜態網站上載至託管服務商</h3><p>有了整個網站的靜態文件，我們需將其上傳至託管服務商。目前，可供選擇服務商有好幾家，大部分服務商的免費方案都足夠個人博客使用。</p>
+<ul>
+<li><a href="https://vercel.com/" target="_blank" rel="noopener noreferrer">Vercel</a></li>
+<li><a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a></li>
+<li><a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare Pages</a></li>
+<li><a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li>
+<li><a href="https://fleek.co/" target="_blank" rel="noopener noreferrer">Fleek</a></li>
+</ul>
+<p>以上服務商，都支持綁定 GitHub 倉庫，它會自動拉取最新倉庫更新並保持同步。其中 Fleek ，不僅支持生成 http 頁面，還會將文件上傳至 IPFS 網路，給出 CID。</p>
+<p>先在 GitHub 新建一個 repository， 與本地的 <code>$PWD/yoursite/public</code> 目錄進行關聯，並將博客文件上載至倉庫。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd $PWD/your_site/public
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m &#34;deploy blog&#34;
+</span></span><span class="line"><span class="cl">git branch -M main
+</span></span><span class="line"><span class="cl">git remote add origin git@github.com:your_github_name/your_blog_repository.git
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之後，有新博文之後，再重新運行 <code>hugo server -D</code> 預覽博客，若滿意，則運行 <code>hugo</code> 命令更新博客的靜態文件，再將其更新至 GitHub 倉庫。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd $PWD/yoursite/public
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m &#34;blog update&#34;
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>git push</code> 完成後，託管服務商會自動讀取倉庫更新，將其部署至服務器。</p>
+<h3 id="綁定傳統域名" class="headerLink">
+    <a href="#%e7%b6%81%e5%ae%9a%e5%82%b3%e7%b5%b1%e5%9f%9f%e5%90%8d" class="header-mark"></a>綁定傳統域名</h3><p>在託管服務商創建我們的博客項目並綁定 GitHub 倉庫後，通常服務商會提示我們綁定域名。如若沒有相關提示，也可以在其管理界面中方便地找到綁定域名的選項，按照其要求添加相關 DNS 記錄，比如 A 記錄 或者 CNAME 記錄。</p>
+<p>為了更方便、更安全地管理域名的 DNS，建議使用 <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare</a> 服務。首先，在 Cloudflare 上添加域名，然後在域名服務商的管理界面中將 DNS 服務器變更為 Cloudflare 提供的 DNS 服務器，最後等待生效即可。</p>
+<p>當然，如果不想購買域名的話，也可使用服務商提供的二級域名。但是，若使用自有域名，我們將更方便地將網站從一個服務商遷移至另一個，僅需更改 DNS 記錄即可。</p>
+<h2 id="博客的ipfs部署方案" class="headerLink">
+    <a href="#%e5%8d%9a%e5%ae%a2%e7%9a%84ipfs%e9%83%a8%e7%bd%b2%e6%96%b9%e6%a1%88" class="header-mark"></a>博客的IPFS部署方案</h2><h3 id="docker-安裝-ipfs" class="headerLink">
+    <a href="#docker-%e5%ae%89%e8%a3%9d-ipfs" class="header-mark"></a>docker 安裝 IPFS</h3><p>將網誌託管給服務商固然很方便，這也增加了被審查與阻斷的風險。作為國朝臣民，我們天然地對任何服務商沒有信任。如果選擇 IPFS 方案託管網誌，這無疑將大大地治癒我們的書報檢查PTSD。但要特別注意：IPNS 並不匿蹤，書寫與言說就要承受利維坦之重，請審慎考量再使用鍵鼠。</p>
+<p>IPFS 擁有一個域名系統 IPNS (InterPlanetary File System)，可讓我們更方便地配合域名使用 IPFS ， IPFS 託管網站的要義是用戶自己控制 IPNS 的 private key (私鑰)。儘管已有提供 IPNS 託管服務的選項，但這要付出信任成本。如若選擇自行生成與託管 IPNS Key ，這是一個 trustless 的抉擇，只要自己做好安全風險的管控。</p>
+<p>要進行 IPFS 網站的自託管，首先要 安裝 IPFS 程式。因為需要 7*24 的不間斷服務，將 IPFS 安裝在功耗較低的小主機是一個好的選擇，所有選擇 docker 安裝 IPFS 是一個好的選項。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">ipfs</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">v</span> <span class="o">$</span><span class="n">PWD</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">ipfs</span><span class="o">/</span><span class="n">ipfs</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">ipfs</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">v</span> <span class="o">$</span><span class="n">PWD</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">ipfs</span><span class="o">/</span><span class="k">export</span><span class="p">:</span><span class="o">/</span><span class="k">export</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">u</span> <span class="mi">1000</span><span class="p">:</span><span class="mi">1000</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">p</span> <span class="mi">4001</span><span class="p">:</span><span class="mi">4001</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> \
+</span></span><span class="line"><span class="cl">  <span class="n">ipfs</span><span class="o">/</span><span class="n">go</span><span class="o">-</span><span class="n">ipfs</span><span class="p">:</span><span class="n">latest</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="生成-ipns-key-並綁定域名" class="headerLink">
+    <a href="#%e7%94%9f%e6%88%90-ipns-key-%e4%b8%a6%e7%b6%81%e5%ae%9a%e5%9f%9f%e5%90%8d" class="header-mark"></a>生成 IPNS Key ，並綁定域名</h3><p>安裝完成後，進入 IPFS 容器的 Shell ，運行以下命令，將服務应用 lowpower 配置，這會優化 IPFS 資源的佔用情況。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipfs config profile apply lowpower
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接著在 Shell 中， cd 至 <code>export</code> 目錄，運行以下命令，生成一個 IPNS key pair。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipfs key gen your_key_name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>記錄給出的 IPNS 的 public key (公鑰)，並使用以下命令將其導出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="k">export</span> <span class="n">your_key_name</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在文件管理中，進入至 <code>$PWD/docker/ipfs/export</code> ，將目錄中的 Key 文件妥善保管，以下是 IPFS KEY 管理的命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="k">export</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span>           <span class="o">-</span> <span class="n">Export</span> <span class="n">a</span> <span class="n">keypair</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">gen</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span>              <span class="o">-</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">keypair</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">import</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span>     <span class="o">-</span> <span class="n">Import</span> <span class="n">a</span> <span class="n">key</span> <span class="ow">and</span> <span class="nb">prints</span> <span class="n">imported</span> <span class="n">key</span> <span class="n">id</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">list</span>                    <span class="o">-</span> <span class="n">List</span> <span class="n">all</span> <span class="n">local</span> <span class="n">keypairs</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rename</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">newName</span><span class="o">&gt;</span> <span class="o">-</span> <span class="n">Rename</span> <span class="n">a</span> <span class="n">keypair</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;...</span>            <span class="o">-</span> <span class="n">Remove</span> <span class="n">a</span> <span class="n">keypair</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rotate</span>                  <span class="o">-</span> <span class="n">Rotates</span> <span class="n">the</span> <span class="n">IPFS</span> <span class="n">identity</span><span class="o">.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有了 IPNS Key 之後，就可將內容的 CID 發布到 IPNS 。如果直接訪問 IPFS 公鑰，當然也可以，但也這讓訪問者望而卻步，一大串字符讓人望而卻步。為了方便記憶，我們需要將 IPNS 與域名綁定，綁定方法可參考我的文章<a href="https://sogola.com/posts/planet/" target="_blank" rel="noopener noreferrer">Planet：一款IPFS静态站点生成器</a>中的域名绑定綁定部分。</p>
+<h3 id="自動更新-ipns" class="headerLink">
+    <a href="#%e8%87%aa%e5%8b%95%e6%9b%b4%e6%96%b0-ipns" class="header-mark"></a>自動更新 IPNS</h3><p>使用 IPFS 自託管靜態網站，主要是因為其分布式特性，它讓我們重拾萬維網之互聯真義。然而，由於個人博客的讀者不多，使用 IPFS 的用戶更是寥寥無幾，因此在 IPFS 自託管的同時，使用 remote pinning services 來提高網站的可用性是個不錯的選擇。</p>
+<p>在介紹靜態網站託管服務商的時候，有提到 <a href="https://fleek.co/" target="_blank" rel="noopener noreferrer">Fleek</a> ，它就有提供 remote pinning services ，在生成動態網站的同時，可生成一個網站的 CID。</p>
+<p>如果我們在每次更新網站後，從 Fleek 生成的域名讀取出它綁定的 CID，並在本地 pin 這個 CID，然後再將其發布至我們自己的 IPNS ，那麼我們就可以實現同時更新靜態網站服務商和 IPNS 託管。所以，我請 ChatGPT 寫了可自動這一系列操作的腳本，如下所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Script: update-ipns.sh</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Description: Check if IPNS record needs to be updated and update it if necessary.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -euo pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Function: get IPNS CID</span>
+</span></span><span class="line"><span class="cl">get_ipns_cid<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">local</span> <span class="nv">ipns_name</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">local</span> <span class="nv">ipfs_container</span><span class="o">=</span><span class="nv">$2</span>
+</span></span><span class="line"><span class="cl">  docker <span class="nb">exec</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">ipfs_container</span><span class="si">}</span><span class="s2">&#34;</span> ipfs resolve -r <span class="s2">&#34;/ipns/</span><span class="si">${</span><span class="nv">ipns_name</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="p">|</span> tail -n1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="p">|</span> awk <span class="s1">&#39;{ print $NF }&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Variables: define container name, IPNS names and options</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IPFS_CONTAINER</span><span class="o">=</span><span class="s2">&#34;ipfs&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SOGOLA_IPNS</span><span class="o">=</span><span class="s2">&#34;your_domain_name&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FLEEK_IPNS</span><span class="o">=</span><span class="s2">&#34;your_fleek_site_name.on.fleek.co&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PIN_OPTS</span><span class="o">=</span><span class="s2">&#34;--progress&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PUBLISH_OPTS</span><span class="o">=</span><span class="s2">&#34;--key=your_ipns_public_key&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check if the IPFS container is running</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> ! <span class="s2">&#34;</span><span class="k">$(</span>docker ps -q -f <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="k">)</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2"> container is not running. Please start the container and try again.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Get IPNS CID</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SOGOLA_CID</span><span class="o">=</span><span class="k">$(</span>get_ipns_cid <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SOGOLA_IPNS</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FLEEK_CID</span><span class="o">=</span><span class="k">$(</span>get_ipns_cid <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FLEEK_IPNS</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check if IPNS record needs update</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SOGOLA_CID</span><span class="si">}</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FLEEK_CID</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Publish new IPNS record</span>
+</span></span><span class="line"><span class="cl">  docker <span class="nb">exec</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span> ipfs name publish <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PUBLISH_OPTS</span><span class="si">}</span><span class="s2">&#34;</span> --lifetime<span class="o">=</span>8766h -- <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FLEEK_CID</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Unpin the previous IPNS record</span>
+</span></span><span class="line"><span class="cl">  docker <span class="nb">exec</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span> ipfs pin rm <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SOGOLA_CID</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Pin the updated IPNS record</span>
+</span></span><span class="line"><span class="cl">  docker <span class="nb">exec</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span> ipfs pin add <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PIN_OPTS</span><span class="si">}</span><span class="s2">&#34;</span> -- <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FLEEK_CID</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;IPNS record updated successfully.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;IPNS record is already up-to-date, no need to update.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add error handling</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Update completed.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Error occurred while updating IPNS record. Please check.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將上述腳本中的 SOGOLA_IPNS,FLEEK_IPNS,PUBLISH_OPTS 分別替換並保存為 <code>update-ipns.sh</code> ，使用自動化工具定時執行，即可使用 Git 更新博客後，實現靜態網站的 HTTP 與 IPFS 同時更新的功能。</p>
+<p>如果覺得只有一個 remote pinning service 不保險的話，還可以使用 <a href="https://dashboard.4everland.org?invite=BB0BLBGV" target="_blank" rel="noopener noreferrer">4EVERLAND</a> ，這個服務商支持使用 IPNS 進行 PIN。</p>
+<h2 id="總結" class="headerLink">
+    <a href="#%e7%b8%bd%e7%b5%90" class="header-mark"></a>總結</h2><p>透過個間網站託管服務商，我們可以通過控制域名來遊走之間，輕鬆實現切換服務商。而通過自託管 IPFS ，拜分布式託管之幸，我們終可回歸到萬維網之本心，重新掌握我們自己的數據。</p>
+<p>就撰寫這篇博文期間，我留意到<a href="https://www.solidot.org/story?sid=74728" target="_blank" rel="noopener noreferrer">一則新聞</a>，ICANN 和 Verisign 提议允许任何政府扣押域名。是時候，我們該嘗試無許可與去信任的 crypto 了。</p>
+<blockquote>
+<p>整治書報檢查制度的真正而根本的辦法，就是廢除書報檢查制度，因為這種制度本身是惡劣的，可是各種制度卻比人更有力量。我們的意見可能是正確的，也可能是不正確的，不過無論如何，新的檢查令終究會使普魯士的作者要么獲得更多的現實的自由，要么獲得更多的觀念的自由，也就是獲得更多的意識。</p>
+<p>Rara temporum felicitas, ubi quae velis sentire et quae sentias dicere licet［當你能夠想你願意想的東西，並且能夠把你所想的東西說出來的時候，這是非常幸福的時候］。</p>
+<p>————馬克思《評普魯士最近的書報檢查令》</p>
+</blockquote>
+<p>「清風不識字」，主權國家宰制一切。當言說成為禁忌，開設一個部落格已然成為罪證，我只祝福妳們成為幸福的人。那些獨立博客的作者有福了，因為妳們必然承受大地之重。</p>
+]]></description>
+</item></channel>
+</rss>

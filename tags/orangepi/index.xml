@@ -1,0 +1,617 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>orangepi - Tag - 王小嗨的不老歌</title>
+        <link>https://sogola.com/tags/orangepi/</link>
+        <description>orangepi - Tag - 王小嗨的不老歌</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>high@sogola.com (王小嗨)</managingEditor>
+            <webMaster>high@sogola.com (王小嗨)</webMaster><lastBuildDate>Sun, 31 Dec 2023 19:35:00 &#43;0800</lastBuildDate><atom:link href="https://sogola.com/tags/orangepi/" rel="self" type="application/rss+xml" /><item>
+    <title>香橙派3B：丐版HomeLab之良品</title>
+    <link>https://sogola.com/posts/orangepi-3b-as-homelab/</link>
+    <pubDate>Sun, 31 Dec 2023 19:35:00 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/orangepi-3b-as-homelab/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/orangepi-3b-as-homelab/1.png" referrerpolicy="no-referrer">
+            </div><h2 id="開始" class="headerLink">
+    <a href="#%e9%96%8b%e5%a7%8b" class="header-mark"></a>開始</h2><p>互聯網資本寡頭所提供的各類雲服務，從社交媒體再到同步服務，人們愈發不再信任。「從來就沒有什麼救世主，也不靠神仙皇帝」，那些沒有受虐傾向的人們，那些沒有露體癖的人們，那些不甘被資本與權力宰制的人們，紛紛拿起開源武器，開始了數據的自我賦權，啟動了本地優先之策略。</p>
+<p>歲月催人老，泰西2023年已然離去。9月底，本呆採購了一台香橙派作為HomeLab，它在我的出租屋已成功運行了兩個月。現給大家做一個報告，亦作為學習的記錄。</p>
+<p>相較各類昂貴和功耗高的x86服務器， 功耗降低的arm架構的單板機是HomeLab之廉價選擇。樹莓派，大名鼎鼎，但它已成為理財產品，為大家所詬病，當然不在我的選擇範圍。思來想去，左等右等，我選購了國產廠商推出的香橙派3B的最高配8G版，它採用RK3566，性能足夠使用。後面，我又採購了電源適配器、SSD硬碟、U盤、散熱片、外殼等。</p>
+<table>
+<thead>
+<tr>
+<th>物件</th>
+<th>採購平台</th>
+<th>價格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orange Pi 3B 8G版</td>
+<td>淘寶OrangePi官方店</td>
+<td>305.72元</td>
+</tr>
+<tr>
+<td>電源與電源線</td>
+<td>淘寶某店鋪</td>
+<td>16.32元</td>
+</tr>
+<tr>
+<td>金屬外殼</td>
+<td>淘寶某店鋪</td>
+<td>62元</td>
+</tr>
+<tr>
+<td>128G 2230 SSD硬碟 （二手）</td>
+<td>拼多多某店鋪</td>
+<td>36元</td>
+</tr>
+<tr>
+<td>硬碟散熱銅片</td>
+<td>淘寶某店鋪</td>
+<td>11.64元</td>
+</tr>
+<tr>
+<td>128G 金屬外殼U盤</td>
+<td>京東京造自營店</td>
+<td>45.9元</td>
+</tr>
+<tr>
+<td>U盤散熱銅柱</td>
+<td>淘寶某店鋪</td>
+<td>33.16元</td>
+</tr>
+</tbody>
+</table>
+<p>以上，列舉了HomeLab實際運行的配件，並沒有包括螺絲刀、鉗子、串口線、採集卡、HDMI線、美工刀等，還有一個被折騰壞的壓克力外殼，好在很多器物都是可以重複再利用的。顯然，與各類二手礦難盒子相比，這並不便宜，但好在接口豐富，我看中了它可以直接插2230SSD硬碟，而且在拼多多購買的SSD硬碟好像也沒有通電多少次，感覺超值。</p>
+<figure>
+</figure>
+
+<p>於此HomeLab之中，本地安裝<a href="https://www.armbian.com/" target="_blank" rel="noopener noreferrer">armbian</a>系統，部署了docker，運行了<a href="https://gotosocial.org/" target="_blank" rel="noopener noreferrer">gotosocial</a>、<a href="https://ipfs.tech/" target="_blank" rel="noopener noreferrer">IPFS</a>、clash、<a href="https://www.cloudflare.com/products/tunnel/" target="_blank" rel="noopener noreferrer">Cloudflare Tunnel</a>、<a href="https://github.com/whyour/qinglong" target="_blank" rel="noopener noreferrer">青龍面板</a>等容器，還在持續探索之中。</p>
+<p>組裝完畢，我們開始吧。</p>
+<h2 id="安裝操作系統" class="headerLink">
+    <a href="#%e5%ae%89%e8%a3%9d%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%b5%b1" class="header-mark"></a>安裝操作系統</h2><p>根據的OrangePI<a href="http://www.orangepi.cn/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-3B.html" target="_blank" rel="noopener noreferrer">官方用戶手冊</a>的指引，要將系統燒錄到NVMeSSD硬碟，首先需將bootloader燒錄至SPIFlash，才能確保系統從NVMeSSD硬碟啟動。那麼整個流程就簡單明確了，先將系統燒錄至SD卡，通電開機後；再將bootloader和系統分別燒錄至SPIFlash和NVMeSSD硬碟；最後，關機拔掉SD卡，再通電開機即可。</p>
+<p>這裡，我採用armbian提供3B的社區維護版系統，SD卡的燒錄工具為<a href="https://github.com/balena-io/etcher" target="_blank" rel="noopener noreferrer">balenaEtcher</a>。下載好系統，安裝好燒錄工具即可開始作業。</p>
+<figure>
+</figure>
+
+<p>SD卡連接至電腦後，打開balenaEtcher，在交互介面中選擇下載好鏡像文件和SD卡。</p>
+<figure>
+</figure>
+
+<p>點擊Flash按鈕，等待燒錄完成。將SD從電腦彈出後，插入香橙派的SD卡卡槽，通電啟動。在路由器的後台，找到香橙派的本地IP。有了IP後，打開終端。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh root@your_ip_address
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>armbian的root默認密碼為1234，根據提示選擇終端類型與語言、地區等，修改默認root密碼以及創建新用戶。完成初始化設置之後，在終端鍵入命令，進入armbian的設置介面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo armbian-config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><figure>
+</figure>
+
+<p>選擇<code>System</code>選項。</p>
+<figure>
+</figure>
+
+<p>選擇<code>Install</code>選項。</p>
+<figure>
+</figure>
+
+<p>選擇<code>4</code>選項。</p>
+<figure>
+</figure>
+
+<p>因為我們沒有插入U盤或者其它設置，故選擇選擇<code>1</code>選項。</p>
+<figure>
+</figure>
+
+<p>選擇<code>Yes</code>選項，將NVMeSSD硬碟清除數據格式化。</p>
+<figure>
+</figure>
+
+<p>待進度格式化進度跑完後，選擇<code>1</code>選項。<strong>注意</strong>：香橙派的bootloader不支援btrfs格式的系統從NVMeSSD硬碟啟動，只能選擇ext4格式。</p>
+<figure>
+</figure>
+
+<p>耐心等待進度跑完，期間香橙派的藍色信號燈會快速閃爍。</p>
+<figure>
+</figure>
+
+<p>NVMeSSD硬碟的寫出完成後，選擇<code>7</code>選項，將bootloader燒錄至SPIFlash。</p>
+<figure>
+</figure>
+
+<p>選擇<code>Yes</code>選項，開始燒錄。</p>
+<figure>
+</figure>
+
+<p>選擇<code>Power off</code>選項，關機。等到電源指示燈熄滅後，拔出SD卡，再次通電。這次，armbian將會從NVMeSSD硬碟啟動，啟動期間藍色指示燈會快速閃爍。待啟動完成，進入路由器後台，找到新的IP。</p>
+<h2 id="一些基本設置" class="headerLink">
+    <a href="#%e4%b8%80%e4%ba%9b%e5%9f%ba%e6%9c%ac%e8%a8%ad%e7%bd%ae" class="header-mark"></a>一些基本設置</h2><h3 id="修改軟件源" class="headerLink">
+    <a href="#%e4%bf%ae%e6%94%b9%e8%bb%9f%e4%bb%b6%e6%ba%90" class="header-mark"></a>修改軟件源</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh root@your_new_ip_address
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>受限於國朝網路，需要將軟件源切換至<a href="https://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener noreferrer">北平清華大學的鏡像</a>，才能獲得良好的速度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/apt/sources.list.d/armbian.list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將<code>http://apt.armbian.com</code>替換為<code>https://mirrors.tuna.tsinghua.edu.cn/armbian</code>。</p>
+<p>編輯sources.list。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nano /etc/apt/sources.list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>先講原有內容註釋掉，然後至北平清華大學的<a href="https://mirrors.tuna.tsinghua.edu.cn/help/debian/" target="_blank" rel="noopener noreferrer">Debian軟件源</a>，選擇相應的版本，粘貼至sources.list後，保存退出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt update &amp;&amp; sudo apt upgrade
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，更新軟體列表，根據提示鍵入<code>y</code>，更新軟體。</p>
+<h3 id="ssh設置" class="headerLink">
+    <a href="#ssh%e8%a8%ad%e7%bd%ae" class="header-mark"></a>SSH設置</h3><p>為安全起見，這裡我們修改SSH的默認端口，取消root登錄，並取消密碼登錄，改為密鑰登錄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir -p ~/.ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，創建文件夾<code>.ssh</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">touch ~/.ssh/authorized_keys
+</span></span><span class="line"><span class="cl">nano ~/.ssh/authorized_keys
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，創建authorized_keys文件，並將公鑰粘貼至此。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">chmod 700 ~/.ssh
+</span></span><span class="line"><span class="cl">chmod 600 ~/.ssh/authorized_keys
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，修改文件夾及文件的權限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/ssh/sshd_config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，編輯SSH的配置文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">port your_ssh_port_number #SSH端口號
+</span></span><span class="line"><span class="cl">PermitRootLogin no #拒絕root登錄
+</span></span><span class="line"><span class="cl">PubkeyAuthentication yes #允許密鑰登錄
+</span></span><span class="line"><span class="cl">PasswordAuthentication no #拒絕密鑰登錄
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改以上內容，保存並退出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo systemctl restart ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，重啟SSH服務後，就可以使用密鑰登錄了。</p>
+<h3 id="開啟smaba服務" class="headerLink">
+    <a href="#%e9%96%8b%e5%95%9fsmaba%e6%9c%8d%e5%8b%99" class="header-mark"></a>開啟smaba服務</h3><p>為方便在電腦中管理香橙派的文件，我們需部署smaba服務，以獲得遠端管理香橙派的文件有管理本地文件的同等體驗。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt install samba
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，安裝samba軟體。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo smbpasswd -a $USER
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，為當前用戶創建samba登錄密碼。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/samba/smb.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，編輯samba的配置文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">global</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="n">workgroup</span> <span class="o">=</span> <span class="n">WORKGROUP</span>
+</span></span><span class="line"><span class="cl">   <span class="n">server</span> <span class="n">string</span> <span class="o">=</span> <span class="n">orange</span> <span class="n">pi</span> <span class="mi">3</span><span class="n">b</span>
+</span></span><span class="line"><span class="cl">   <span class="n">security</span> <span class="o">=</span> <span class="n">user</span>
+</span></span><span class="line"><span class="cl">   <span class="n">map</span> <span class="n">to</span> <span class="n">guest</span> <span class="o">=</span> <span class="n">Bad</span> <span class="n">User</span>
+</span></span><span class="line"><span class="cl">   <span class="n">encrypt</span> <span class="n">passwords</span> <span class="o">=</span> <span class="n">yes</span>
+</span></span><span class="line"><span class="cl">   <span class="n">passdb</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">tdbsam</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nb">min</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">SMB2</span>
+</span></span><span class="line"><span class="cl">   <span class="n">client</span> <span class="nb">min</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">SMB2</span>
+</span></span><span class="line"><span class="cl">   <span class="n">client</span> <span class="nb">max</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">SMB3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1"># local master = no</span>
+</span></span><span class="line"><span class="cl">   <span class="c1"># preferred master = no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nb">log</span> <span class="n">file</span> <span class="o">=</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">samba</span><span class="o">/</span><span class="nb">log</span><span class="o">.%</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">max</span> <span class="nb">log</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">50</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">orangepi</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="n">comment</span> <span class="o">=</span> <span class="n">User</span> <span class="n">Files</span>
+</span></span><span class="line"><span class="cl">   <span class="n">path</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your_username</span>
+</span></span><span class="line"><span class="cl">   <span class="n">browseable</span> <span class="o">=</span> <span class="n">yes</span>
+</span></span><span class="line"><span class="cl">   <span class="n">writeable</span> <span class="o">=</span> <span class="n">yes</span>
+</span></span><span class="line"><span class="cl">   <span class="n">guest</span> <span class="n">ok</span> <span class="o">=</span> <span class="n">no</span>
+</span></span><span class="line"><span class="cl">   <span class="n">create</span> <span class="n">mask</span> <span class="o">=</span> <span class="mi">0664</span>
+</span></span><span class="line"><span class="cl">   <span class="n">directory</span> <span class="n">mask</span> <span class="o">=</span> <span class="mi">0775</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改`your_username&quot;為正確的用戶名，以上內容替換至配置文件中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo systemctl start smbd
+</span></span><span class="line"><span class="cl">sudo systemctl enable smbd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，啟動samba，並設置為開機啟動。</p>
+<h3 id="防火牆" class="headerLink">
+    <a href="#%e9%98%b2%e7%81%ab%e7%89%86" class="header-mark"></a>防火牆</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt install ufw
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，安裝防火牆軟體ufw。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo ufw allow 139/tcp
+</span></span><span class="line"><span class="cl">sudo ufw allow 445/tcp
+</span></span><span class="line"><span class="cl">#以上，允許samba服務通過防火牆
+</span></span><span class="line"><span class="cl">sudo ufw allow your_ssh_port_number/tcp
+</span></span><span class="line"><span class="cl">#以上，允許SSH服務通過防火牆
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，將SSH和samba允許通過防火牆。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo ufw enable
+</span></span><span class="line"><span class="cl">sudo systemctl enable ufw
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，啟動ufw防火牆，並設置為開機啟動。</p>
+<h3 id="必要之設定" class="headerLink">
+    <a href="#%e5%bf%85%e8%a6%81%e4%b9%8b%e8%a8%ad%e5%ae%9a" class="header-mark"></a>必要之設定</h3><h4 id="網路的吞吐參數" class="headerLink">
+    <a href="#%e7%b6%b2%e8%b7%af%e7%9a%84%e5%90%9e%e5%90%90%e5%8f%83%e6%95%b8" class="header-mark"></a>網路的吞吐參數</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">net.core.rmem_max=2500000
+</span></span><span class="line"><span class="cl">net.core.wmem_max=2500000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，修改網路吞吐參數，以便IPFS更好地運行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/sysctl.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，講前述修改網路參數的命令添加至sysctl.conf，以便重啟後繼續生效。</p>
+<h4 id="網卡的混合模式" class="headerLink">
+    <a href="#%e7%b6%b2%e5%8d%a1%e7%9a%84%e6%b7%b7%e5%90%88%e6%a8%a1%e5%bc%8f" class="header-mark"></a>網卡的混合模式</h4><p>運行<code>ip link</code>，找到設備的乙太網接口名稱。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo ip link set your_eth_name promisc on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，開啟網卡混合模式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/rc.local
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，編輯<code>rc.local</code>文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo ip link set your_eth_name promisc on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<code>exit 0</code>行之前，添加以上內容，保存並關閉文件。</p>
+<h4 id="刪除無線網卡" class="headerLink">
+    <a href="#%e5%88%aa%e9%99%a4%e7%84%a1%e7%b7%9a%e7%b6%b2%e5%8d%a1" class="header-mark"></a>刪除無線網卡</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo systemctl disable wpa_supplicant
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，禁用WiFi，節約用電和資源佔用。</p>
+<h2 id="數據備份" class="headerLink">
+    <a href="#%e6%95%b8%e6%93%9a%e5%82%99%e4%bb%bd" class="header-mark"></a>數據備份</h2><p>數據容災是必修課，良好的數據備份體驗是許多人使用各類雲服務的理由，那打造一個好的HomeLab，就需確保數據有容災能力。這裡，我們使用rsync軟體，採用阮一峰的提供的<a href="https://www.ruanyifeng.com/blog/2020/08/rsync.html" target="_blank" rel="noopener noreferrer">增量備份腳本</a>，將數據備份至U盤。</p>
+<p>考慮U盤的發熱問題，這裡建議選購金屬外殼的U盤，並加裝散熱銅柱，可較好地散熱，以增加U盤的使用時間。</p>
+<h3 id="掛載u盤" class="headerLink">
+    <a href="#%e6%8e%9b%e8%bc%89u%e7%9b%a4" class="header-mark"></a>掛載U盤</h3><p>首先，將U盤插入香橙派的USB3.0接口，該接口顏色為藍色。</p>
+<p>運行<code>lsblk</code>。</p>
+<p>找到U盤的名字。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo mkfs.btrfs /dev/sda1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，將U盤格式化btrfs文件系統。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo mkdir /mnt/backup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，創建一個目錄，以便掛載U盤。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo mount /dev/sda1 /mnt/backups
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，挂载U盤至新創建的目錄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo blkid /dev/sdb1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，獲取<code>sdb1</code>的UUID。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/fstab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>編輯<code>/etc/fstab</code>文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">UUID=your_UUID /mnt/myusb btrfs defaults 0 0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<code>/etc/fstab</code>文件中添加以上內容為行。</p>
+<h3 id="自動備份腳本" class="headerLink">
+    <a href="#%e8%87%aa%e5%8b%95%e5%82%99%e4%bb%bd%e8%85%b3%e6%9c%ac" class="header-mark"></a>自動備份腳本</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt install rsync
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，安裝rsync至armbian。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nano ~/script/backup_script_usb.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，創建腳本文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># A script to perform incremental backups using rsync and retain only the last 28 backups</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -o errexit
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -o nounset
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -o pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">SOURCE_DIR</span><span class="o">=</span><span class="s2">&#34;/home/your_username/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&#34;/mnt/backup&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">DATETIME</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>date <span class="s1">&#39;+%Y-%m-%d_%H:%M:%S&#39;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">BACKUP_PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">DATETIME</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">LATEST_LINK</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/latest&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Perform the backup</span>
+</span></span><span class="line"><span class="cl">rsync -av --delete --exclude<span class="o">=</span><span class="s2">&#34;.cache&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SOURCE_DIR</span><span class="si">}</span><span class="s2">/&#34;</span> --link-dest <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LATEST_LINK</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_PATH</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove old backups, keeping only the last 28</span>
+</span></span><span class="line"><span class="cl">find <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">&#34;</span> -mindepth <span class="m">1</span> -maxdepth <span class="m">1</span> -type d <span class="p">|</span> sort <span class="p">|</span> head -n -28 <span class="p">|</span> xargs rm -rf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove the existing &#34;latest&#34; link and create a new one</span>
+</span></span><span class="line"><span class="cl">rm -f <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LATEST_LINK</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">ln -s <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_PATH</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LATEST_LINK</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>講以上內容粘貼至腳本文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">chmod +x ~/script/backup_script_usb.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，為腳本賦予執行權限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo crontab -e
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，編輯crontab。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">30 */6 * * * ~/script/backup_script_usb.sh  &gt;&gt; ~/script/log/backup_script_usb.log 2&gt;&amp;1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將以上內容寫入crontab文件為行。</p>
+<p>通過掛載U盤，並通過自動備份腳本，我們可以實現每日備份4次的增量備份，並將備份數據保持一週的時間。之後，本呆會將數據也備份至Nas，以增加容災能力。</p>
+<h2 id="結束" class="headerLink">
+    <a href="#%e7%b5%90%e6%9d%9f" class="header-mark"></a>結束</h2><figure>
+</figure>
+
+<p>以上，我們通過初步設置將丐版HomeLab配置完成。要實現本地優先之策略，我們需要將諸多服務部署至HomeLab，以造抵抗之器。後續，本呆會發文介紹目前所使用一些docker容器。</p>
+<p>丐版HomeLab，夠用就好。這顆28nm的RK3566性能足以覆蓋基本的需求，倘若追求更強更好的配置，恐怕會陷入至消費主義的陷阱。也許每一互聯網移民都應有一個屬於自己的HomeLab，這也是初民之要義。反動學人福山都在用單板機，妳還在等什麼？</p>
+]]></description>
+</item></channel>
+</rss>

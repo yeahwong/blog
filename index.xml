@@ -3,10 +3,619 @@
         <title>王小嗨的不老歌</title>
         <link>https://sogola.com/</link>
         <description>王小嗨的不老歌</description>
-        <generator>Hugo -- gohugo.io</generator><managingEditor>high@sogola.com (王小嗨)</managingEditor>
-            <webMaster>high@sogola.com (王小嗨)</webMaster><lastBuildDate>Sun, 23 Apr 2023 13:10:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>high@sogola.com (王小嗨)</managingEditor>
+            <webMaster>high@sogola.com (王小嗨)</webMaster><lastBuildDate>Sun, 31 Dec 2023 19:35:00 &#43;0800</lastBuildDate>
             <atom:link href="https://sogola.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>香橙派3B：丐版HomeLab之良品</title>
+    <link>https://sogola.com/posts/orangepi-3b-as-homelab/</link>
+    <pubDate>Sun, 31 Dec 2023 19:35:00 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/orangepi-3b-as-homelab/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/orangepi-3b-as-homelab/1.png" referrerpolicy="no-referrer">
+            </div><h2 id="開始" class="headerLink">
+    <a href="#%e9%96%8b%e5%a7%8b" class="header-mark"></a>開始</h2><p>互聯網資本寡頭所提供的各類雲服務，從社交媒體再到同步服務，人們愈發不再信任。「從來就沒有什麼救世主，也不靠神仙皇帝」，那些沒有受虐傾向的人們，那些沒有露體癖的人們，那些不甘被資本與權力宰制的人們，紛紛拿起開源武器，開始了數據的自我賦權，啟動了本地優先之策略。</p>
+<p>歲月催人老，泰西2023年已然離去。9月底，本呆採購了一台香橙派作為HomeLab，它在我的出租屋已成功運行了兩個月。現給大家做一個報告，亦作為學習的記錄。</p>
+<p>相較各類昂貴和功耗高的x86服務器， 功耗降低的arm架構的單板機是HomeLab之廉價選擇。樹莓派，大名鼎鼎，但它已成為理財產品，為大家所詬病，當然不在我的選擇範圍。思來想去，左等右等，我選購了國產廠商推出的香橙派3B的最高配8G版，它採用RK3566，性能足夠使用。後面，我又採購了電源適配器、SSD硬碟、U盤、散熱片、外殼等。</p>
+<table>
+<thead>
+<tr>
+<th>物件</th>
+<th>採購平台</th>
+<th>價格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orange Pi 3B 8G版</td>
+<td>淘寶OrangePi官方店</td>
+<td>305.72元</td>
+</tr>
+<tr>
+<td>電源與電源線</td>
+<td>淘寶某店鋪</td>
+<td>16.32元</td>
+</tr>
+<tr>
+<td>金屬外殼</td>
+<td>淘寶某店鋪</td>
+<td>62元</td>
+</tr>
+<tr>
+<td>128G 2230 SSD硬碟 （二手）</td>
+<td>拼多多某店鋪</td>
+<td>36元</td>
+</tr>
+<tr>
+<td>硬碟散熱銅片</td>
+<td>淘寶某店鋪</td>
+<td>11.64元</td>
+</tr>
+<tr>
+<td>128G 金屬外殼U盤</td>
+<td>京東京造自營店</td>
+<td>45.9元</td>
+</tr>
+<tr>
+<td>U盤散熱銅柱</td>
+<td>淘寶某店鋪</td>
+<td>33.16元</td>
+</tr>
+</tbody>
+</table>
+<p>以上，列舉了HomeLab實際運行的配件，並沒有包括螺絲刀、鉗子、串口線、採集卡、HDMI線、美工刀等，還有一個被折騰壞的壓克力外殼，好在很多器物都是可以重複再利用的。顯然，與各類二手礦難盒子相比，這並不便宜，但好在接口豐富，我看中了它可以直接插2230SSD硬碟，而且在拼多多購買的SSD硬碟好像也沒有通電多少次，感覺超值。</p>
+<figure>
+</figure>
+
+<p>於此HomeLab之中，本地安裝<a href="https://www.armbian.com/" target="_blank" rel="noopener noreferrer">armbian</a>系統，部署了docker，運行了<a href="https://gotosocial.org/" target="_blank" rel="noopener noreferrer">gotosocial</a>、<a href="https://ipfs.tech/" target="_blank" rel="noopener noreferrer">IPFS</a>、clash、<a href="https://www.cloudflare.com/products/tunnel/" target="_blank" rel="noopener noreferrer">Cloudflare Tunnel</a>、<a href="https://github.com/whyour/qinglong" target="_blank" rel="noopener noreferrer">青龍面板</a>等容器，還在持續探索之中。</p>
+<p>組裝完畢，我們開始吧。</p>
+<h2 id="安裝操作系統" class="headerLink">
+    <a href="#%e5%ae%89%e8%a3%9d%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%b5%b1" class="header-mark"></a>安裝操作系統</h2><p>根據的OrangePI<a href="http://www.orangepi.cn/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-3B.html" target="_blank" rel="noopener noreferrer">官方用戶手冊</a>的指引，要將系統燒錄到NVMeSSD硬碟，首先需將bootloader燒錄至SPIFlash，才能確保系統從NVMeSSD硬碟啟動。那麼整個流程就簡單明確了，先將系統燒錄至SD卡，通電開機後；再將bootloader和系統分別燒錄至SPIFlash和NVMeSSD硬碟；最後，關機拔掉SD卡，再通電開機即可。</p>
+<p>這裡，我採用armbian提供3B的社區維護版系統，SD卡的燒錄工具為<a href="https://github.com/balena-io/etcher" target="_blank" rel="noopener noreferrer">balenaEtcher</a>。下載好系統，安裝好燒錄工具即可開始作業。</p>
+<figure>
+</figure>
+
+<p>SD卡連接至電腦後，打開balenaEtcher，在交互介面中選擇下載好鏡像文件和SD卡。</p>
+<figure>
+</figure>
+
+<p>點擊Flash按鈕，等待燒錄完成。將SD從電腦彈出後，插入香橙派的SD卡卡槽，通電啟動。在路由器的後台，找到香橙派的本地IP。有了IP後，打開終端。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh root@your_ip_address
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>armbian的root默認密碼為1234，根據提示選擇終端類型與語言、地區等，修改默認root密碼以及創建新用戶。完成初始化設置之後，在終端鍵入命令，進入armbian的設置介面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo armbian-config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><figure>
+</figure>
+
+<p>選擇<code>System</code>選項。</p>
+<figure>
+</figure>
+
+<p>選擇<code>Install</code>選項。</p>
+<figure>
+</figure>
+
+<p>選擇<code>4</code>選項。</p>
+<figure>
+</figure>
+
+<p>因為我們沒有插入U盤或者其它設置，故選擇選擇<code>1</code>選項。</p>
+<figure>
+</figure>
+
+<p>選擇<code>Yes</code>選項，將NVMeSSD硬碟清除數據格式化。</p>
+<figure>
+</figure>
+
+<p>待進度格式化進度跑完後，選擇<code>1</code>選項。<strong>注意</strong>：香橙派的bootloader不支援btrfs格式的系統從NVMeSSD硬碟啟動，只能選擇ext4格式。</p>
+<figure>
+</figure>
+
+<p>耐心等待進度跑完，期間香橙派的藍色信號燈會快速閃爍。</p>
+<figure>
+</figure>
+
+<p>NVMeSSD硬碟的寫出完成後，選擇<code>7</code>選項，將bootloader燒錄至SPIFlash。</p>
+<figure>
+</figure>
+
+<p>選擇<code>Yes</code>選項，開始燒錄。</p>
+<figure>
+</figure>
+
+<p>選擇<code>Power off</code>選項，關機。等到電源指示燈熄滅後，拔出SD卡，再次通電。這次，armbian將會從NVMeSSD硬碟啟動，啟動期間藍色指示燈會快速閃爍。待啟動完成，進入路由器後台，找到新的IP。</p>
+<h2 id="一些基本設置" class="headerLink">
+    <a href="#%e4%b8%80%e4%ba%9b%e5%9f%ba%e6%9c%ac%e8%a8%ad%e7%bd%ae" class="header-mark"></a>一些基本設置</h2><h3 id="修改軟件源" class="headerLink">
+    <a href="#%e4%bf%ae%e6%94%b9%e8%bb%9f%e4%bb%b6%e6%ba%90" class="header-mark"></a>修改軟件源</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh root@your_new_ip_address
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>受限於國朝網路，需要將軟件源切換至<a href="https://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener noreferrer">北平清華大學的鏡像</a>，才能獲得良好的速度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/apt/sources.list.d/armbian.list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將<code>http://apt.armbian.com</code>替換為<code>https://mirrors.tuna.tsinghua.edu.cn/armbian</code>。</p>
+<p>編輯sources.list。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nano /etc/apt/sources.list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>先講原有內容註釋掉，然後至北平清華大學的<a href="https://mirrors.tuna.tsinghua.edu.cn/help/debian/" target="_blank" rel="noopener noreferrer">Debian軟件源</a>，選擇相應的版本，粘貼至sources.list後，保存退出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt update &amp;&amp; sudo apt upgrade
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，更新軟體列表，根據提示鍵入<code>y</code>，更新軟體。</p>
+<h3 id="ssh設置" class="headerLink">
+    <a href="#ssh%e8%a8%ad%e7%bd%ae" class="header-mark"></a>SSH設置</h3><p>為安全起見，這裡我們修改SSH的默認端口，取消root登錄，並取消密碼登錄，改為密鑰登錄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir -p ~/.ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，創建文件夾<code>.ssh</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">touch ~/.ssh/authorized_keys
+</span></span><span class="line"><span class="cl">nano ~/.ssh/authorized_keys
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，創建authorized_keys文件，並將公鑰粘貼至此。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">chmod 700 ~/.ssh
+</span></span><span class="line"><span class="cl">chmod 600 ~/.ssh/authorized_keys
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，修改文件夾及文件的權限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/ssh/sshd_config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，編輯SSH的配置文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">port your_ssh_port_number #SSH端口號
+</span></span><span class="line"><span class="cl">PermitRootLogin no #拒絕root登錄
+</span></span><span class="line"><span class="cl">PubkeyAuthentication yes #允許密鑰登錄
+</span></span><span class="line"><span class="cl">PasswordAuthentication no #拒絕密鑰登錄
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改以上內容，保存並退出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo systemctl restart ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，重啟SSH服務後，就可以使用密鑰登錄了。</p>
+<h3 id="開啟smaba服務" class="headerLink">
+    <a href="#%e9%96%8b%e5%95%9fsmaba%e6%9c%8d%e5%8b%99" class="header-mark"></a>開啟smaba服務</h3><p>為方便在電腦中管理香橙派的文件，我們需部署smaba服務，以獲得遠端管理香橙派的文件有管理本地文件的同等體驗。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt install samba
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，安裝samba軟體。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo smbpasswd -a $USER
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，為當前用戶創建samba登錄密碼。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/samba/smb.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，編輯samba的配置文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">global</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="n">workgroup</span> <span class="o">=</span> <span class="n">WORKGROUP</span>
+</span></span><span class="line"><span class="cl">   <span class="n">server</span> <span class="n">string</span> <span class="o">=</span> <span class="n">orange</span> <span class="n">pi</span> <span class="mi">3</span><span class="n">b</span>
+</span></span><span class="line"><span class="cl">   <span class="n">security</span> <span class="o">=</span> <span class="n">user</span>
+</span></span><span class="line"><span class="cl">   <span class="n">map</span> <span class="n">to</span> <span class="n">guest</span> <span class="o">=</span> <span class="n">Bad</span> <span class="n">User</span>
+</span></span><span class="line"><span class="cl">   <span class="n">encrypt</span> <span class="n">passwords</span> <span class="o">=</span> <span class="n">yes</span>
+</span></span><span class="line"><span class="cl">   <span class="n">passdb</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">tdbsam</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nb">min</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">SMB2</span>
+</span></span><span class="line"><span class="cl">   <span class="n">client</span> <span class="nb">min</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">SMB2</span>
+</span></span><span class="line"><span class="cl">   <span class="n">client</span> <span class="nb">max</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">SMB3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1"># local master = no</span>
+</span></span><span class="line"><span class="cl">   <span class="c1"># preferred master = no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nb">log</span> <span class="n">file</span> <span class="o">=</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">samba</span><span class="o">/</span><span class="nb">log</span><span class="o">.%</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">max</span> <span class="nb">log</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">50</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">orangepi</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="n">comment</span> <span class="o">=</span> <span class="n">User</span> <span class="n">Files</span>
+</span></span><span class="line"><span class="cl">   <span class="n">path</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your_username</span>
+</span></span><span class="line"><span class="cl">   <span class="n">browseable</span> <span class="o">=</span> <span class="n">yes</span>
+</span></span><span class="line"><span class="cl">   <span class="n">writeable</span> <span class="o">=</span> <span class="n">yes</span>
+</span></span><span class="line"><span class="cl">   <span class="n">guest</span> <span class="n">ok</span> <span class="o">=</span> <span class="n">no</span>
+</span></span><span class="line"><span class="cl">   <span class="n">create</span> <span class="n">mask</span> <span class="o">=</span> <span class="mi">0664</span>
+</span></span><span class="line"><span class="cl">   <span class="n">directory</span> <span class="n">mask</span> <span class="o">=</span> <span class="mi">0775</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改`your_username&quot;為正確的用戶名，以上內容替換至配置文件中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo systemctl start smbd
+</span></span><span class="line"><span class="cl">sudo systemctl enable smbd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，啟動samba，並設置為開機啟動。</p>
+<h3 id="防火牆" class="headerLink">
+    <a href="#%e9%98%b2%e7%81%ab%e7%89%86" class="header-mark"></a>防火牆</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt install ufw
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，安裝防火牆軟體ufw。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo ufw allow 139/tcp
+</span></span><span class="line"><span class="cl">sudo ufw allow 445/tcp
+</span></span><span class="line"><span class="cl">#以上，允許samba服務通過防火牆
+</span></span><span class="line"><span class="cl">sudo ufw allow your_ssh_port_number/tcp
+</span></span><span class="line"><span class="cl">#以上，允許SSH服務通過防火牆
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，將SSH和samba允許通過防火牆。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo ufw enable
+</span></span><span class="line"><span class="cl">sudo systemctl enable ufw
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，啟動ufw防火牆，並設置為開機啟動。</p>
+<h3 id="必要之設定" class="headerLink">
+    <a href="#%e5%bf%85%e8%a6%81%e4%b9%8b%e8%a8%ad%e5%ae%9a" class="header-mark"></a>必要之設定</h3><h4 id="網路的吞吐參數" class="headerLink">
+    <a href="#%e7%b6%b2%e8%b7%af%e7%9a%84%e5%90%9e%e5%90%90%e5%8f%83%e6%95%b8" class="header-mark"></a>網路的吞吐參數</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">net.core.rmem_max=2500000
+</span></span><span class="line"><span class="cl">net.core.wmem_max=2500000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，修改網路吞吐參數，以便IPFS更好地運行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/sysctl.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，講前述修改網路參數的命令添加至sysctl.conf，以便重啟後繼續生效。</p>
+<h4 id="網卡的混合模式" class="headerLink">
+    <a href="#%e7%b6%b2%e5%8d%a1%e7%9a%84%e6%b7%b7%e5%90%88%e6%a8%a1%e5%bc%8f" class="header-mark"></a>網卡的混合模式</h4><p>運行<code>ip link</code>，找到設備的乙太網接口名稱。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo ip link set your_eth_name promisc on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，開啟網卡混合模式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/rc.local
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，編輯<code>rc.local</code>文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo ip link set your_eth_name promisc on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<code>exit 0</code>行之前，添加以上內容，保存並關閉文件。</p>
+<h4 id="刪除無線網卡" class="headerLink">
+    <a href="#%e5%88%aa%e9%99%a4%e7%84%a1%e7%b7%9a%e7%b6%b2%e5%8d%a1" class="header-mark"></a>刪除無線網卡</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo systemctl disable wpa_supplicant
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，禁用WiFi，節約用電和資源佔用。</p>
+<h2 id="數據備份" class="headerLink">
+    <a href="#%e6%95%b8%e6%93%9a%e5%82%99%e4%bb%bd" class="header-mark"></a>數據備份</h2><p>數據容災是必修課，良好的數據備份體驗是許多人使用各類雲服務的理由，那打造一個好的HomeLab，就需確保數據有容災能力。這裡，我們使用rsync軟體，採用阮一峰的提供的<a href="https://www.ruanyifeng.com/blog/2020/08/rsync.html" target="_blank" rel="noopener noreferrer">增量備份腳本</a>，將數據備份至U盤。</p>
+<p>考慮U盤的發熱問題，這裡建議選購金屬外殼的U盤，並加裝散熱銅柱，可較好地散熱，以增加U盤的使用時間。</p>
+<h3 id="掛載u盤" class="headerLink">
+    <a href="#%e6%8e%9b%e8%bc%89u%e7%9b%a4" class="header-mark"></a>掛載U盤</h3><p>首先，將U盤插入香橙派的USB3.0接口，該接口顏色為藍色。</p>
+<p>運行<code>lsblk</code>。</p>
+<p>找到U盤的名字。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo mkfs.btrfs /dev/sda1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，將U盤格式化btrfs文件系統。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo mkdir /mnt/backup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，創建一個目錄，以便掛載U盤。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo mount /dev/sda1 /mnt/backups
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，挂载U盤至新創建的目錄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo blkid /dev/sdb1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，獲取<code>sdb1</code>的UUID。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo nano /etc/fstab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>編輯<code>/etc/fstab</code>文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">UUID=your_UUID /mnt/myusb btrfs defaults 0 0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<code>/etc/fstab</code>文件中添加以上內容為行。</p>
+<h3 id="自動備份腳本" class="headerLink">
+    <a href="#%e8%87%aa%e5%8b%95%e5%82%99%e4%bb%bd%e8%85%b3%e6%9c%ac" class="header-mark"></a>自動備份腳本</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt install rsync
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，安裝rsync至armbian。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nano ~/script/backup_script_usb.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，創建腳本文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># A script to perform incremental backups using rsync and retain only the last 28 backups</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -o errexit
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -o nounset
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -o pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">SOURCE_DIR</span><span class="o">=</span><span class="s2">&#34;/home/your_username/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&#34;/mnt/backup&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">DATETIME</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>date <span class="s1">&#39;+%Y-%m-%d_%H:%M:%S&#39;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">BACKUP_PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">DATETIME</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> <span class="nv">LATEST_LINK</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/latest&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Perform the backup</span>
+</span></span><span class="line"><span class="cl">rsync -av --delete --exclude<span class="o">=</span><span class="s2">&#34;.cache&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SOURCE_DIR</span><span class="si">}</span><span class="s2">/&#34;</span> --link-dest <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LATEST_LINK</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_PATH</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove old backups, keeping only the last 28</span>
+</span></span><span class="line"><span class="cl">find <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">&#34;</span> -mindepth <span class="m">1</span> -maxdepth <span class="m">1</span> -type d <span class="p">|</span> sort <span class="p">|</span> head -n -28 <span class="p">|</span> xargs rm -rf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove the existing &#34;latest&#34; link and create a new one</span>
+</span></span><span class="line"><span class="cl">rm -f <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LATEST_LINK</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">ln -s <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BACKUP_PATH</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LATEST_LINK</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>講以上內容粘貼至腳本文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">chmod +x ~/script/backup_script_usb.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，為腳本賦予執行權限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo crontab -e
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，編輯crontab。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">30 */6 * * * ~/script/backup_script_usb.sh  &gt;&gt; ~/script/log/backup_script_usb.log 2&gt;&amp;1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將以上內容寫入crontab文件為行。</p>
+<p>通過掛載U盤，並通過自動備份腳本，我們可以實現每日備份4次的增量備份，並將備份數據保持一週的時間。之後，本呆會將數據也備份至Nas，以增加容災能力。</p>
+<h2 id="結束" class="headerLink">
+    <a href="#%e7%b5%90%e6%9d%9f" class="header-mark"></a>結束</h2><figure>
+</figure>
+
+<p>以上，我們通過初步設置將丐版HomeLab配置完成。要實現本地優先之策略，我們需要將諸多服務部署至HomeLab，以造抵抗之器。後續，本呆會發文介紹目前所使用一些docker容器。</p>
+<p>丐版HomeLab，夠用就好。這顆28nm的RK3566性能足以覆蓋基本的需求，倘若追求更強更好的配置，恐怕會陷入至消費主義的陷阱。也許每一互聯網移民都應有一個屬於自己的HomeLab，這也是初民之要義。反動學人福山都在用單板機，妳還在等什麼？</p>
+]]></description>
+</item><item>
     <title>我的博客方案：靜態網站與 IPFS</title>
     <link>https://sogola.com/posts/deploy-a-blog/</link>
     <pubDate>Sun, 23 Apr 2023 13:10:00 &#43;0800</pubDate><author>
@@ -138,13 +747,13 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run -d --name ipfs \
-</span></span><span class="line"><span class="cl">  -v $PWD/docker/ipfs/ipfs:/data/ipfs \
-</span></span><span class="line"><span class="cl">  -v $PWD/docker/ipfs/export:/export \
-</span></span><span class="line"><span class="cl">  -u 1000:1000 \
-</span></span><span class="line"><span class="cl">  -p 4001:4001 \
-</span></span><span class="line"><span class="cl">  -p 8080:8080 \
-</span></span><span class="line"><span class="cl">  ipfs/go-ipfs:latest  
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">ipfs</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">v</span> <span class="o">$</span><span class="n">PWD</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">ipfs</span><span class="o">/</span><span class="n">ipfs</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">ipfs</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">v</span> <span class="o">$</span><span class="n">PWD</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">ipfs</span><span class="o">/</span><span class="k">export</span><span class="p">:</span><span class="o">/</span><span class="k">export</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">u</span> <span class="mi">1000</span><span class="p">:</span><span class="mi">1000</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">p</span> <span class="mi">4001</span><span class="p">:</span><span class="mi">4001</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> \
+</span></span><span class="line"><span class="cl">  <span class="n">ipfs</span><span class="o">/</span><span class="n">go</span><span class="o">-</span><span class="n">ipfs</span><span class="p">:</span><span class="n">latest</span>  
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="生成-ipns-key-並綁定域名" class="headerLink">
@@ -172,7 +781,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipfs key export your_key_name
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="k">export</span> <span class="n">your_key_name</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在文件管理中，進入至 <code>$PWD/docker/ipfs/export</code> ，將目錄中的 Key 文件妥善保管，以下是 IPFS KEY 管理的命令。</p>
@@ -187,13 +796,13 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipfs key export &lt;name&gt;           - Export a keypair
-</span></span><span class="line"><span class="cl">ipfs key gen &lt;name&gt;              - Create a new keypair
-</span></span><span class="line"><span class="cl">ipfs key import &lt;name&gt; &lt;key&gt;     - Import a key and prints imported key id
-</span></span><span class="line"><span class="cl">ipfs key list                    - List all local keypairs.
-</span></span><span class="line"><span class="cl">ipfs key rename &lt;name&gt; &lt;newName&gt; - Rename a keypair.
-</span></span><span class="line"><span class="cl">ipfs key rm &lt;name&gt;...            - Remove a keypair.
-</span></span><span class="line"><span class="cl">ipfs key rotate                  - Rotates the IPFS identity.
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="k">export</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span>           <span class="o">-</span> <span class="n">Export</span> <span class="n">a</span> <span class="n">keypair</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">gen</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span>              <span class="o">-</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">keypair</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">import</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span>     <span class="o">-</span> <span class="n">Import</span> <span class="n">a</span> <span class="n">key</span> <span class="ow">and</span> <span class="nb">prints</span> <span class="n">imported</span> <span class="n">key</span> <span class="n">id</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">list</span>                    <span class="o">-</span> <span class="n">List</span> <span class="n">all</span> <span class="n">local</span> <span class="n">keypairs</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rename</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">newName</span><span class="o">&gt;</span> <span class="o">-</span> <span class="n">Rename</span> <span class="n">a</span> <span class="n">keypair</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;...</span>            <span class="o">-</span> <span class="n">Remove</span> <span class="n">a</span> <span class="n">keypair</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rotate</span>                  <span class="o">-</span> <span class="n">Rotates</span> <span class="n">the</span> <span class="n">IPFS</span> <span class="n">identity</span><span class="o">.</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>有了 IPNS Key 之後，就可將內容的 CID 發布到 IPNS 。如果直接訪問 IPFS 公鑰，當然也可以，但也這讓訪問者望而卻步，一大串字符讓人望而卻步。為了方便記憶，我們需要將 IPNS 與域名綁定，綁定方法可參考我的文章<a href="https://sogola.com/posts/planet/" target="_blank" rel="noopener noreferrer">Planet：一款IPFS静态站点生成器</a>中的域名绑定綁定部分。</p>
@@ -712,290 +1321,6 @@
 <p>找中介的途径不一样，工价也不一样。我就比较惨了，我的工价只有18+2，这意味着我每小时只有18元，要拿到2块的差价，就必须做到下个月7日的发薪日。</p>
 <p>我对F厂的劳动力市场一无所知，在找工之前，我本来打算找三和。朋友告诉我，她认识一个F厂的人事，把微信推给我。怎会想到，这位人事直接把我卖给了一个小中介。「哪有什么朋友，都是利益。」</p>
 <p>「合同」签好了，「小时工」协议签好了，这时已经中午十二点多了。中介将我们带F厂北门，下午带我们进厂培训。</p>
-]]></description>
-</item><item>
-    <title>2020年，我的「守护劳动法」51天打卡</title>
-    <link>https://sogola.com/posts/guarding-the-labor-law/</link>
-    <pubDate>Thu, 31 Dec 2020 11:52:18 &#43;0800</pubDate><author>
-        <name>王小嗨</name>
-    </author><guid>https://sogola.com/posts/guarding-the-labor-law/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/images/guarding-the-labor-law/0.png" referrerpolicy="no-referrer">
-            </div><p>西元2020年01月22日，我收到尖椒部落将我非法开除的电子邮件。</p>
-<p>西元2020年01月23日，武汉封城。</p>
-<p>关于2020年，与许多劳工一样，我的记忆被非法开除与疫情所缠绕，它们覆盖了我的生活。</p>
-<p>自尖椒部落非法开除我起，到仲裁委裁决系非法解雇，直至今日，尖椒部落都始终拒绝承认其违反「劳动法」，并拒绝道歉。</p>
-<p>如果连道歉都没有，谅解也无从谈起。</p>
-<p>一边是「大国」叙事，一边是「机构」名誉，人们都说「互联网有记忆」，可被「被侮辱与被损害的」总要活在幽暗之中，无处可逃。</p>
-<p>我控诉，我诉说，因为「我不相信梦是假的」。</p>
-<p>在「守护劳动法」期间，那些絮叨的碎碎念，都是我弥足珍贵的记忆。</p>
-<p>2020年，我要谢谢那些陪我一起走过的朋友。</p>
-<p><figure>
-</figure>
-
-<figure>
-</figure>
-
-<figure>
-</figure>
-</p>
-<h2 id="第1天打卡" class="headerLink">
-    <a href="#%e7%ac%ac1%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第1天打卡</h2><p>西元2020年02月24日，本人正式提起劳动仲裁。提起仲裁可以通过「深圳人社」微信的e仲裁进行预申请。深圳疫情防控严格，劳动仲裁庭工作人员不仅每天要处理大量案件，还要支援社区防疫，真是辛苦。今日下午工作人员就打来电话说最近都没时间收快递，让我下周一去现场提交纸质材料。#尖椒部落非法解雇#</p>
-<figure>
-</figure>
-
-<h2 id="第2天打卡" class="headerLink">
-    <a href="#%e7%ac%ac2%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第2天打卡</h2><p>今天看到一些网友走过的道路，我深知我所选择的是一条漫长的道路。但我会一直走下去，直到人们不需要奔波，就可以拥有劳工尊严那一天。我真的怎么也弄不明白一间对「劳动法」一无所知的公司，有什么资格自称劳工机构。#尖椒部落非法解雇#</p>
-<figure>
-</figure>
-
-<h2 id="第3天打卡" class="headerLink">
-    <a href="#%e7%ac%ac3%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第3天打卡</h2><p>今天我打深圳人社的热线咨询一些问题，几个简单的问题，工作人员居然可以浪费我半个多小时，几乎一问三不知。因为担心仲裁耗时过长，我咨询《劳动争议调解仲裁法》第四十三条，仲裁庭裁决劳动争议案件，应当自劳动争议仲裁委员会受理仲裁申请之日起四十五日内结束。然后这个「结束」到底是什么意思&hellip;？</p>
-<figure>
-</figure>
-
-<h2 id="第4天打卡" class="headerLink">
-    <a href="#%e7%ac%ac4%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第4天打卡</h2><p>今天煮了荞麦面，加了两个煎蛋。第一次使用电饭煲煎蛋，油脂带来丰沛的满足感，煎蛋太好吃。今天有人告诉我，不少仲裁都要排期到几个月之后，看来违法企业太多，仲裁员都不够用了。#尖椒部落非法解雇#</p>
-<figure>
-</figure>
-
-<h2 id="第5天打卡" class="headerLink">
-    <a href="#%e7%ac%ac5%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第5天打卡</h2><p>今天整理仲裁资料，其实我和大部分被损害的劳工一样，诉求很简单，但很大一部分受薪者都被卡在不能证明与公司的劳动关系上，而不能申请仲裁。和之前在三和认识的老哥聊起，只要越来越多人拿起法律的武器，那么这些个黑厂在违法之前也会有所忌惮。#尖椒部落非法解雇#</p>
-<figure>
-</figure>
-
-<h2 id="第6天打卡" class="headerLink">
-    <a href="#%e7%ac%ac6%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第6天打卡</h2><p>今天下午我戴上口罩，去了劳动服务部门递交纸质材料。交完材料，现场就给受理成功了。疫情期间，服务大厅不开门，只受理预约的。在服务大厅门外，我认识了几位没有预约的工友，她们已经被拖欠几个月工资了，真不知这段时间怎么熬过来的。</p>
-<figure>
-</figure>
-
-<h2 id="第7天打卡" class="headerLink">
-    <a href="#%e7%ac%ac7%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第7天打卡</h2><p>昨天我拿到了受理通知，等待开庭是漫长的。昨晚和朋友聊天到今日凌晨，谈工作聊理想。她说明明已经做了很多工，但上班期间小憩一下，又或者哪天没有加班，都会有很强烈的负罪感。公益人不仅要做营销官，按照经济规律办事；还要做牛做马，这所谓公益机构就差变血汗工厂了。</p>
-<figure>
-</figure>
-
-<h2 id="第8天打卡" class="headerLink">
-    <a href="#%e7%ac%ac8%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第8天打卡</h2><p>昨天我拿到了受理通知，等待开庭是漫长的。昨晚和朋友聊天到今日凌晨，谈工作聊理想。她说明明已经做了很多工，但上班期间小憩一下，又或者哪天没有加班，都会有很强烈的负罪感。公益人不仅要做营销官，按照经济规律办事；还要做牛做马，这所谓公益机构就差变血汗工厂了。</p>
-<figure>
-</figure>
-
-<h2 id="第9天打卡" class="headerLink">
-    <a href="#%e7%ac%ac9%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第9天打卡</h2><p>大概因为人力市场的原因，不仅这边的城中村设有检查点，这段三联路两端也设检查点，人员与车辆进出需出示通行证，没几个店家开张，格外冷清。一个环卫工大爷戴着脏脏的口罩坐在路边，功能机放出的音乐环绕四周，喧闹的音乐掩盖不了冷清。一问吓一跳，这环卫公司发的一次性口罩，五天才能供应一个。</p>
-<figure>
-</figure>
-
-<h2 id="第10天打卡" class="headerLink">
-    <a href="#%e7%ac%ac10%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第10天打卡</h2><p>今日我写了篇如何劳动仲裁线上预申请的步骤，提供给大家参考。上次我去劳动部门交材料，刚好遇到几个被拖欠工资的工友。她们没有闹清现在疫情时期必须要提前线上预申请，而且很多相关法律问题也没有弄明白。唉，劳工荣光之路依旧漫长。</p>
-<figure>
-</figure>
-
-<h2 id="第11天打卡" class="headerLink">
-    <a href="#%e7%ac%ac11%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第11天打卡</h2><p>之前看了台湾公益圈对于社工劳权问题的争论，她们成立了「非营利组织产业工会」，为社工劳权发声。真羡慕对岸的公益人，还有工会给撑腰，我们也要努力追赶了。「最大的悲剧，不是坏人的嚣张跋扈，而是非营利组织的剥削劳工。」</p>
-<figure>
-</figure>
-
-<h2 id="第12天打卡" class="headerLink">
-    <a href="#%e7%ac%ac12%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第12天打卡</h2><p>今天我不关心人类，我只想过节，妇女节快乐。没有法定全民休假的节日等于没有，这完全是迫害广大劳动妇女前辈的抵抗。今天，我们必须消极怠各种工（虽然今天是周日，而且我已被非法开除，丢），就像此前意大利妇女罢做家务工那样，光荣归妇女。</p>
-<figure>
-</figure>
-
-<h2 id="第13天打卡" class="headerLink">
-    <a href="#%e7%ac%ac13%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第13天打卡</h2><p>今日下午，仲裁所工作人员打电话给我，问我的事情是不是疫情期间发生的，要做统计，我说算是吧。不知道她们统计这个数据，是要体谅企业，还是要体谅劳工。我陷入到不安之中，因为我完全不知什么时候疫情能解除，又不知接下来找什么工作。唉，就算这个世界不会好了，但生活还是要继续。</p>
-<figure>
-</figure>
-
-<h2 id="第14天打卡" class="headerLink">
-    <a href="#%e7%ac%ac14%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第14天打卡</h2><p>今日中午，仲裁所打电话喊我去领开庭通知书。下午吃午饭，我就过去领到了开庭通知书。4月7日开庭，欢迎大家到时现场围观，一起守护劳动法。还有大概一个月时间才开庭，还有这么长时间，我也想找点事情做，具体做啥还在想，囧。但不管怎样，尖椒部落的领导们，我们仲裁庭不见不散。</p>
-<figure>
-</figure>
-
-<h2 id="第15天打卡" class="headerLink">
-    <a href="#%e7%ac%ac15%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第15天打卡</h2><p>昨晚睡过了，今早补发一下…这几天出门，村口的检查点都不用体温枪枪毙妳了，路上的行人也越来越多，也就人力市场还未开门营业。我正常提起仲裁都快半个月了吧，尖椒部落领导始终未联系过我，看来并不打算「协商一致」，毕竟她们始终坚持这一开除不违法。那么就仲裁庭不见不散吧。</p>
-<figure>
-</figure>
-
-<h2 id="第16天打卡" class="headerLink">
-    <a href="#%e7%ac%ac16%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第16天打卡</h2><p>此前，我有查劳动仲裁所提供法律援助的条件，我并不满足。而自己呢又请不起专业律师，坦率地讲，我很担心自己的法律水平。今天一位热情朋友，给我介绍了一个法律援助律师，已经约好明天见面。我打算明天地铁过去，好激动，我及时会跟大家报告后续情况。</p>
-<figure>
-</figure>
-
-<h2 id="第17天打卡" class="headerLink">
-    <a href="#%e7%ac%ac17%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第17天打卡</h2><p>感谢广东盛唐律师事务所的罗律师和刘律师，给我提供法律援助。她们给我耐心讲解法律知识，获益匪浅，专业又耐心，太感谢了。10年余来，盛唐律所帮助3000多名移民工人维护合法权益，仅去年一年，盛唐律师就帮助两间大公司的1000多名工人拿回自己的工资。她们所做的事情，都是为工人做的实事，我很钦佩她们。</p>
-<figure>
-</figure>
-
-<h2 id="第18天打" class="headerLink">
-    <a href="#%e7%ac%ac18%e5%a4%a9%e6%89%93" class="header-mark"></a>第18天打</h2><p>此刻的深圳，依然不能随意进出城中村与各个小区，村口有检查点，路口有拦截。但生活总要继续，我路过公园，路过一些大型超市，门前的长椅上躺着各种休憩的人们。那些无处可去的人们，她们或者刷着手机，或者端着盒饭在吃。例外状态下，人们从日常生活的贫乏中被抽离出来，要直面赤贫的窘境。深圳转暖了，但「冬天」还未离去，我只愿龙华公园早点有广场舞的欢乐。</p>
-<figure>
-</figure>
-
-<h2 id="第19天打卡" class="headerLink">
-    <a href="#%e7%ac%ac19%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第19天打卡</h2><p>昨晚和好位老友视频，体验了一把云喝酒，一直聊到凌晨。啊，这一两个月来，心情低沉，都快抑郁了，喝起酒，总算放松下来。几瓶啤酒下肚，吹起牛，回忆过往，好不快活。年纪大了，喝点酒就说胡话，早上醒来，想来有点脸红。建议大家小酌怡情，喝酒后及时补水，我今天躺尸，一天狂喝水，不然会头痛。</p>
-<figure>
-</figure>
-
-<h2 id="第20天打卡" class="headerLink">
-    <a href="#%e7%ac%ac20%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第20天打卡</h2><p>美股熔断日常化，疫情全球扩散，事情正在起变化。世界经济繁荣几十年了，依据资本主义经济规律必然危机，泡沫也该破了，只是时间早晚问题。可是最后遭殃的还是升斗小民，我们可以做些什么？</p>
-<figure>
-</figure>
-
-<h2 id="第21天打卡" class="headerLink">
-    <a href="#%e7%ac%ac21%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第21天打卡</h2><p>我在渔村长大，小时候天天去海边玩。夏天时去海边，海风就像无数个空调，纷纷落下。太阳照耀到脸上、胳膊上、腿上，一个暑假下来，直接蜕一层皮。后来，离家去上学，假期回家，夏天的海边就黑压压了。小时候海边那种空旷感，我只有冬天深夜去海边溜达才有。来到深圳打工后，我就去过一次海边。嗯，山川异域，太平洋的风吹落帝国斑驳的旗帜。</p>
-<figure>
-</figure>
-
-<h2 id="第22天打卡" class="headerLink">
-    <a href="#%e7%ac%ac22%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第22天打卡</h2><p>最近网路热议一位外籍人士拒绝居家隔离，不配合社区工作人员工作，被网路曝光后，遭公司开除。在雇佣关系中，老板看雇员不顺眼，当然可以开除，但提前是必须做到依法赔偿。这是程序正义，也是劳工前辈给我们争取到的权利，老板不能肆无忌惮地开除。如果这位外籍人士被非法解雇，又没有拿到应有的赔偿，我旗帜鲜明地支持她维护合法权益。还有，大家遵守防疫规定，保护自己，保护她人。</p>
-<figure>
-</figure>
-
-<h2 id="第23天打卡" class="headerLink">
-    <a href="#%e7%ac%ac23%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第23天打卡</h2><p>今天终于把社保转为了个人缴纳，太难了。因为疫情，深圳人社2月份补贴企业，导致2月份社保缴纳至今都没有扣费，耽误了我转个人缴纳。值得注意的是，社保补贴只补贴企业，却不补贴劳动者。很多人可能不知失业后，可自行缴纳医保与养老，改天我写个教程。医保可不能断，断掉后报销权益会损失，我们出来打工，还是要对自己好一些。</p>
-<figure>
-</figure>
-
-<h2 id="第24天打卡" class="headerLink">
-    <a href="#%e7%ac%ac24%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第24天打卡</h2><p>这几天深圳天气不好，阴天下雨好烦啊。中午点了份外卖，外送员居然可以进入城中村送到楼下啦。因为我到村口还有一段时间，所以我就提前出来取，然后外送员电话说我已经到楼下…啊？我都到村口了，只好再急忙忙跑回去，囧rz…妈妈今天给我寄了排骨，周末就可以收到了吧，好期待。</p>
-<figure>
-</figure>
-
-<h2 id="第25天打卡" class="headerLink">
-    <a href="#%e7%ac%ac25%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第25天打卡</h2><p>这几天，三联路的路口拦截终于撤离了，路上的行人多起来，越来越多的店家也开始开门营业。我认识一位工友，上周回到深圳，去了一家东莞口罩厂，打算挑战黑厂。隔离几天后，马上就要开工了，他又准备跑路。他大概还未看清现在找工难的现实，祝福他一切都好。</p>
-<p><figure>
-</figure>
-
-<figure>
-</figure>
-</p>
-<h2 id="第26天打卡" class="headerLink">
-    <a href="#%e7%ac%ac26%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第26天打卡</h2><p>今天出門放風，也許是週末吧，路上行人好多啊，每個人都戴著口罩，對比之前空曠的街道，真是恍若隔世。路過書店，我忍不住進去只看不買，我知道這樣性質很惡劣。書店擺滿了三體系列，真是沒想到高中看的連載雜誌會成為大眾文學。其她要不是一些什麼《天才在左，瘋子在右》的偽科學書籍，要不就是雞湯或者庸俗小說，還不如全賣教輔呢。</p>
-<figure>
-</figure>
-
-<h2 id="第27天打卡" class="headerLink">
-    <a href="#%e7%ac%ac27%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第27天打卡</h2><p>下午我约了一位工友逛街，5点钟刚回家，就接到仲裁庭工作人员打来电话说来取公司提交的证据副本，我急忙忙戴上口罩，背上双肩包就狂奔而去。刚刚回到家，我打开那些所谓的证据，看到里面充满了谎言和对劳动法的无知。更可笑的是，雅清居然在「证据」里面承认自己是主编，而且是我的领导，那么先前造谣我是是主编，是她的领导，是一种怎样的谣棍行径？我感到恶心！</p>
-<figure>
-</figure>
-
-<h2 id="第28天打卡" class="headerLink">
-    <a href="#%e7%ac%ac28%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第28天打卡</h2><p>抑郁，无话可说，我想回矣六村玩。</p>
-<figure>
-</figure>
-
-<h2 id="第29天打卡" class="headerLink">
-    <a href="#%e7%ac%ac29%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第29天打卡</h2><p>听闻雷神山工人遭遇不公正对待，我想问这些工人的待遇符不符合「劳动法」，有没有签订劳动合同，如果没有，这是有关领导严重失职，并且应该按照「劳动法」加重赔偿。大家关注起来，毕竟 Labour Lives Matter！</p>
-<figure>
-</figure>
-
-<h2 id="第30天打卡" class="headerLink">
-    <a href="#%e7%ac%ac30%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第30天打卡</h2><p>春天，十个海子全都复活，今天是海子忌日。其实我对海子感情复杂，一方面喜欢他倾向毁灭自我的驱力，买过西川编的海子诗全集，另一方面比较讨厌他在诗里涌现出来的庸俗的时代精神。什么面朝大海什么春暖花开，不都是些三流的房地产广告吗？海子那么讨厌太阳，喜欢春天，不就是与那个画圈老人秉持一种意识形态吗？</p>
-<figure>
-</figure>
-
-<h2 id="第31天打卡" class="headerLink">
-    <a href="#%e7%ac%ac31%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第31天打卡</h2><p>自从我提交诉深圳市大辣文化传播有限公司的劳动仲裁请求之后，不少网友有看到我发布的文章，通过各种途径联系我，咨询劳动仲裁问题。（其实我也不是很懂，只能现查法律）可能疫情，劳动争议好像在增多，守护劳工权益不易，大家加油！</p>
-<figure>
-</figure>
-
-<h2 id="第32天打卡" class="headerLink">
-    <a href="#%e7%ac%ac32%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第32天打卡</h2><p>这两天深圳热，坐一会都会身上发粘。今天下午空调终于修好，太平洋的风从空调纷纷落下，啊，城中村的出租屋，生是妳的老百姓，死是妳的小精灵。冷风万岁。</p>
-<figure>
-</figure>
-
-<h2 id="第33天打卡" class="headerLink">
-    <a href="#%e7%ac%ac33%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第33天打卡</h2><p>我提起劳动仲裁申请也有一个多月，每天都处于痛苦之中，可尖椒部落的领导不仅拒绝沟通，还公然做伪证，令人错愕。最近随着疫情在外国的蔓延，许多产业面临着风险，而承受风险的则是劳工，劳动争议案件大概也会越来越多。面对越来越多的劳动争议，我真不确定劳动部门会站在哪一边。</p>
-<figure>
-</figure>
-
-<h2 id="第34天打卡" class="headerLink">
-    <a href="#%e7%ac%ac34%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第34天打卡</h2><p>信口开河还不脸红，尖椒部落有关领导也许可以算典范了。用人单位给劳工缴纳社保是法律的强制规定，到了尖椒部落有关领导这里，居然成了福利，成了她们给雇员的施舍。可她们给施舍的方法居然是违法的，因为社保由第三方公司代缴属于非法，令人哭笑不得。</p>
-<figure>
-</figure>
-
-<h2 id="第35天打卡" class="headerLink">
-    <a href="#%e7%ac%ac35%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第35天打卡</h2><p>在三和，一个大神掉下去并不会引起太多波澜，人们不在意生命的损耗与终结，就如同尖椒部落领导们压根看不到劳工权益一样。美国确诊人数逾16万，可川普的民调依旧上升，股票大涨。不知美国有多少大神倒下，而那些与尖椒部落领导秉持同样观点的美国权贵与官僚对此并不在意，太阳照常升起。</p>
-<figure>
-</figure>
-
-<h2 id="第36天打卡" class="headerLink">
-    <a href="#%e7%ac%ac36%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第36天打卡</h2><p>距离4月7日仲裁开庭已进入倒计时阶段。今天下午去理发，我有三个月未理发了，理发师傅给我的用品全是一次性的，厉害了。师傅说她们3月初才开工，我想今年收入应该少了很多吧。回家路上我买了口罩和酒精，等仲裁庭上用。春宵苦短，前进吧少女！</p>
-<figure>
-</figure>
-
-<h2 id="第37天打卡" class="headerLink">
-    <a href="#%e7%ac%ac37%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第37天打卡</h2><p>听说大家开始屯粮了，我也囤了一些，买了十几袋挂面、几罐红烧肉罐头、200包无糖速溶咖啡、一瓶玉米调和油。这个世界真的没有安全感，各种不预测的危机…资本主义还放大了这些危机，正如瘟疫时期，妳被公司非法解雇&hellip;</p>
-<figure>
-</figure>
-
-<h2 id="第38天打卡" class="headerLink">
-    <a href="#%e7%ac%ac38%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第38天打卡</h2><p>今天下午我去劳动仲裁所补交证据，按照规定，超过举证期限补交的可以收，也可以不收，但仲裁所工作人员选择了不收，说过了举证期限。最近被开除而发生劳动争议的情况变多，大家申请仲裁一定要注意举证期限，受理之后的10日内可以提交证据。</p>
-<figure>
-</figure>
-
-<h2 id="第39天打卡" class="headerLink">
-    <a href="#%e7%ac%ac39%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第39天打卡</h2><p>如果哀悼有用，那么为什么还需要警察。当然，让它们认错道歉是不可能的。尖椒部落号称劳工机构，但把持这个机构的领导们与它们一样坚持不认错不道歉，荒唐至极。</p>
-<figure>
-</figure>
-
-<h2 id="第40天打卡" class="headerLink">
-    <a href="#%e7%ac%ac40%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第40天打卡</h2><p>还有两天就要开庭了，今天又把案件疏理了一遍，尖椒部落既不培训又不调岗，那么以不胜任工作为由解雇肯定是违法，案情非常简单。如果这个案件判我输掉，那么我觉得这仲裁庭就是玩票的。</p>
-<figure>
-</figure>
-
-<h2 id="第41天打卡" class="headerLink">
-    <a href="#%e7%ac%ac41%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第41天打卡</h2><p>明天上午九点半开庭 ，我倒要看看尖椒部落领导们如何在劳动仲裁庭上对付劳工，如何谣诼迫害我。我会抗争到底，戳穿两面人的虚伪把戏。之后，我将公开庭审全记录，请大家关注。愿荣光归劳工。明天不见不散。</p>
-<figure>
-</figure>
-
-<h2 id="第42天打卡" class="headerLink">
-    <a href="#%e7%ac%ac42%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第42天打卡</h2><p>上午仲裁结束，心累。感谢盛唐律所的法律援助，谢谢刘喻律师和罗晓燕律师。尖椒部落的律师是唐伟峰，听说是个劳工圈人士，他在庭上对我大肆造谣污蔑，口口声声说有协商一致，我那么多确认没有协商一致的邮件和公开声明，他却假装看不到。雅清作为证人，在庭上终于承认自己是我的领导，作伪证造谣说提供了两次培训，居然可以把一次初步督导交流说成两次培训。</p>
-<figure>
-</figure>
-
-<h2 id="第43天打卡" class="headerLink">
-    <a href="#%e7%ac%ac43%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第43天打卡</h2><p>我今天回忆了一下昨天的仲裁现场，那个所谓的劳工律师唐伟锋各种手段对付劳工，还想甩我脸上几千块钱，息事宁人，真不敢相信他是一个著名劳工机构的创始人之一。</p>
-<figure>
-</figure>
-
-<h2 id="第44天打卡" class="headerLink">
-    <a href="#%e7%ac%ac44%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第44天打卡</h2><p>今天下午发生了一些很不愉快的事情。哎呀，好想提桶跑路，这个臭水沟太恶臭了，不想再看一眼。</p>
-<figure>
-</figure>
-
-<h2 id="第45天打卡" class="headerLink">
-    <a href="#%e7%ac%ac45%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第45天打卡</h2><p>仲裁庭已经开庭完毕，现在在等结果。昨晚两点夜起的时候，我拿起手机看到朋友圈里面有对我进行人身攻击，气到发抖。听闻有些人造谣说我会在出判决结果后，会拿一些东西要挟尖椒部落，去讹钱。事实上，我所做的事情，从来都是光明正大的，不晓得这些人选择这个时间点对我进行造谣出于什么目的。</p>
-<figure>
-</figure>
-
-<h2 id="打卡46天" class="headerLink">
-    <a href="#%e6%89%93%e5%8d%a146%e5%a4%a9" class="header-mark"></a>打卡46天</h2><p>昨天深夜和一位认识多年的朋友聊天，他所在公司最近有裁员。我们聊起劳工维权的艰辛与漫长，还有这个比烂的年代。他说：「你说我们谈了十年马列毛、马列托，人到中年，终于回到接地气但又有些心酸的话题了。」唉，这个世界还会好吗？</p>
-<figure>
-</figure>
-
-<h2 id="第47天打卡" class="headerLink">
-    <a href="#%e7%ac%ac47%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第47天打卡</h2><p>根据《中华人民共和国劳动争议调解仲裁法》第四十三条之规定，我与尖椒部落的劳动争议案件受理日期为03月02日，那么这个案件应当在04月17日之前结束，也就是说，在04月17日之前我应当可以收到裁决文书。最长可以延期15天，但需要书面通知当事人。如果有了仲裁结果，我会第一时间向大家报告。</p>
-<figure>
-</figure>
-
-<h2 id="第48天打卡" class="headerLink">
-    <a href="#%e7%ac%ac48%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第48天打卡</h2><p>有的人以我工资高、生活腐化为由，对我诉尖椒部落劳动争议仲裁一事进行迫害。我就想不明白了，就算我高工资、生活腐化，妳就可以公然违法劳动法了吗？就可以蔑视劳工的尊严了吗？这种流氓逻辑就好比强奸犯对受害者说，「我平时对妳很好啊，侵犯一下又能怎样？」太恶臭了，恶心！</p>
-<figure>
-</figure>
-
-<h2 id="第49天打卡" class="headerLink">
-    <a href="#%e7%ac%ac49%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第49天打卡</h2><p>我已经一年多没回渔村老家了，想念夜晚的海边。在深圳打工生活很累，我没什么朋友，公司的领导也沒什么人情味。现在又被开除，不知道我还能坚持到什么时候。有时候，我会想是否应该远离这个是非之地，但自己被欺负了，又不想忍气吞声。难道我们出来打工混口饭吃，就没有点尊严吗？</p>
-<figure>
-</figure>
-
-<h2 id="第50天打卡" class="headerLink">
-    <a href="#%e7%ac%ac50%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第50天打卡</h2><p>越来越多不好的消息传来，可既然环境再差，也不是自己首先变坏的理由。</p>
-<figure>
-</figure>
-
-<h2 id="第51天打卡" class="headerLink">
-    <a href="#%e7%ac%ac51%e5%a4%a9%e6%89%93%e5%8d%a1" class="header-mark"></a>第51天打卡</h2><p>守护劳动法成功，今天最后一次打卡。今天上午11:30左右，我电话至仲裁委询问裁决书什么时间可以出来，工作人员说不知，但会第一时间通知我，我说按照法律45天内必须出裁决书，今天是最后一天，延期需要书面通知，工作人员告知我，不给书面延期通知。下午18:10左右，仲裁委工作人员电话告知裁决书已出，我急忙忙坐摩的跑去拿裁决书。</p>
-<p>裁决结果是这样的：我的第一项诉求要求公司赔偿非法解雇经济赔偿金被支持，这意味着仲裁委裁定尖椒部落解雇我系非法解雇；我的第二项诉求要求公司赔偿失业保险待遇损失被驳回，因为是未能确认该代缴行为是否造成损失，刘喻律师之前也提醒过我需要社保部门开具的相关证明，但我打电话去问，她们说不提供这种证明。既然已经证明尖椒部落非法解雇，我也不打算针对第二项诉求进行上诉了，但第三方公司代缴肯定属于非法，而且不管是法理还是实际情况来看都造成了我的实际损失。</p>
-<p>最后，感谢广东盛唐律所的刘喻律师、罗晓燕律师所提供的法律援助。五一对于劳工来说是个吉祥数字，愿荣光归劳工。</p>
 ]]></description>
 </item></channel>
 </rss>

@@ -2,15 +2,20 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://sogola.com/tags/armnbian/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/categories/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/tags/homelab/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/tags/orangepi/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/posts/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/tags/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/categories/toys/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sogola.com/posts/orangepi-3b-as-homelab/</loc><lastmod>2023-12-31T19:35:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://sogola.com/tags/blog/</loc><lastmod>2023-04-23T13:10:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sogola.com/categories/</loc><lastmod>2023-07-23T22:11:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/tags/hugo/</loc><lastmod>2023-04-23T13:10:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/tags/ipfs/</loc><lastmod>2023-04-23T13:10:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sogola.com/posts/</loc><lastmod>2023-07-23T22:11:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sogola.com/tags/</loc><lastmod>2023-07-23T22:11:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/categories/technology/</loc><lastmod>2023-04-23T13:10:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/posts/deploy-a-blog/</loc><lastmod>2023-04-23T13:10:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sogola.com/</loc><lastmod>2023-07-23T22:11:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/posts/the-three-body-problem/</loc><lastmod>2023-04-11T20:05:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/categories/ideology/</loc><lastmod>2023-07-23T22:11:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sogola.com/tags/iphone/</loc><lastmod>2023-04-11T20:05:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

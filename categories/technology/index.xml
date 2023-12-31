@@ -1,0 +1,901 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Technology - Category - 王小嗨的不老歌</title>
+        <link>https://sogola.com/categories/technology/</link>
+        <description>Technology - Category - 王小嗨的不老歌</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>high@sogola.com (王小嗨)</managingEditor>
+            <webMaster>high@sogola.com (王小嗨)</webMaster><lastBuildDate>Sun, 23 Apr 2023 13:10:00 &#43;0800</lastBuildDate><atom:link href="https://sogola.com/categories/technology/" rel="self" type="application/rss+xml" /><item>
+    <title>我的博客方案：靜態網站與 IPFS</title>
+    <link>https://sogola.com/posts/deploy-a-blog/</link>
+    <pubDate>Sun, 23 Apr 2023 13:10:00 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/deploy-a-blog/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/deploy-a-blog/1.png" referrerpolicy="no-referrer">
+            </div><h2 id="緣起" class="headerLink">
+    <a href="#%e7%b7%a3%e8%b5%b7" class="header-mark"></a>緣起</h2><p>隨著前幾年多個出名的博客服務商終止運營，或者不再提供更新與維護，國文博客開始文藝復興，重新歸復到獨立建站，個中滋味大概只有國朝網民知曉。縱然外國亦有不少博客服務商，但在互聯網開始被爭霸之中的主權國家裹挾之今日，又有哪個主權國家更高尚一些嗎？除了內容自託管，我們別無選擇。</p>
+<p>內容的完全控制和方便遷移，這是我託管博客的兩大目標。考慮到國朝網路運營商對 web 端口的屏蔽，如不映射到海外服務器，那麼在自家主機上開放 HTTP/HTTPS 服務，在可預見的未來都是不可能的。為了達成這樣的目標，我選擇靜態網站託管服務與分布式儲存兩種方案。</p>
+<p>選擇靜態網站的一個理由是不需要考慮數據庫的維護。相較於動態網站使用數據庫來存儲網站內容和用戶數據，靜態網站以靜態文件的形式存儲內容，進而減少了維護成本。個人使用 wordpress 的過程也有曾遭受過黑客攻擊的經歷，缺少安防經驗也促使我不再使用動態網站。除此之外，靜態網站也更易遷移，選擇靜態網站可方便地將數據從一個託管服務提供商遷移到另一個。</p>
+<p>而選擇分布式儲存是由於國內網路環境的限制而不得已的選擇，同時也能有效增強自己對數據的控制權。分布式網站有很多方案，其中比較知名的有 <a href="https://zeronet.io/" target="_blank" rel="noopener noreferrer">ZeroNet</a> 和 <a href="https://ipfs.tech/" target="_blank" rel="noopener noreferrer">IPFS</a>，但 zeronet 目前已停止更新，我們的選擇可能只有 IPFS
+了。</p>
+<p>IPFS 全稱為 InterPlanetary File System （星際文件系統），是一個基於內容尋址的分布式存儲方案，目前有 <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave瀏覽器</a> 支援使用 <a href="https://ens.domains/" target="_blank" rel="noopener noreferrer">ENS域名</a> 或者傳統域名進行訪問 IPFS 網站。</p>
+<p>我的網誌已經歷十幾年，雖然文章不多，但也歷經折騰，然而卻不曾介紹過我的部署方案。是時候將我的部署方案公之於眾了，以下供大家參考與批判。</p>
+<h2 id="靜態網站的部署" class="headerLink">
+    <a href="#%e9%9d%9c%e6%85%8b%e7%b6%b2%e7%ab%99%e7%9a%84%e9%83%a8%e7%bd%b2" class="header-mark"></a>靜態網站的部署</h2><h3 id="使用-hugo-生成靜態網站" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8-hugo-%e7%94%9f%e6%88%90%e9%9d%9c%e6%85%8b%e7%b6%b2%e7%ab%99" class="header-mark"></a>使用 hugo 生成靜態網站</h3><p>我的博客選擇是靜態網站生成器 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">hugo</a>  ，主題為 <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer">DoIt</a>， DoIT 的基本配置可參考其<a href="https://hugodoit.pages.dev/zh-cn/theme-documentation-basics/" target="_blank" rel="noopener noreferrer">官方網站</a>。</p>
+<ul>
+<li>網誌文章的 markdown 文件放入 <code>$PWD/yoursite/content/posts</code></li>
+<li>簡單頁面的 markdown 文件放入 <code>$PWD/yoursite/content/</code></li>
+</ul>
+<p>md 文件的名稱就是改頁面的連結，示例如下：</p>
+<ul>
+<li><a href="https://sogola.com/posts/godsofsanhe1111/" target="_blank" rel="noopener noreferrer">三和大神的双十一怎么过？</a>: <code>$PWD/yoursite/content/posts/godsofsanhe1111.md</code></li>
+<li><a href="https://sogola.com/about/" target="_blank" rel="noopener noreferrer">關於頁面</a>: <code>$PWD/yoursite/content/about.md</code></li>
+</ul>
+<p>對於使用 Hugo 創建博客文章，需要注意和普通 Markdown 文件的區別。在 Hugo 中，無法使用如同普通 markdown 文件般使用 # 來標記文章標題。相反，你需要在文件內使用前置參數進行標記。以下是一個示例前置參數：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">title: &#34;三和大神的双十一怎么过？&#34;
+</span></span><span class="line"><span class="cl">date: 2019-11-11T11:52:18+08:00
+</span></span><span class="line"><span class="cl">lastmod: 2020-06-16T15:58:26+08:00
+</span></span><span class="line"><span class="cl">draft: false
+</span></span><span class="line"><span class="cl">author: &#34;王小嗨&#34;
+</span></span><span class="line"><span class="cl">summary: &#34;双十一，我去三和做了一晚快递日结。&#34;
+</span></span><span class="line"><span class="cl">featuredImage: &#34;/images/godsofsanhe1111/20191111.1.jpg&#34;
+</span></span><span class="line"><span class="cl">images: [&#34;/images/godsofsanhe1111/20191111.1.jpg&#34;]
+</span></span><span class="line"><span class="cl">toc: false
+</span></span><span class="line"><span class="cl">keepStatic: false
+</span></span><span class="line"><span class="cl">auto: true
+</span></span><span class="line"><span class="cl">categories: [&#34;Capitalism&#34;,&#34;Life&#34;]
+</span></span><span class="line"><span class="cl">tags: [&#34;三和大神&#34;,&#34;日结&#34;,&#34;零工&#34;,&#34;快递&#34;]
+</span></span><span class="line"><span class="cl">license: &#39;&lt;a rel=&#34;license external nofollow noopener noreffer&#34; href=&#34;https://creativecommons.org/licenses/by-nc/3.0/&#34; target=&#34;_blank&#34;&gt;CC BY-NC 3.0&lt;/a&gt;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在這個示例中，<code>title</code> 屬性標示了文章的標題，<code>date</code> 標示了文章的發布日期和時間，<code>lastmod</code> 標示文章最後修改的時間，<code>draft</code> 屬性表示文章是否是草稿狀態。另外，還有一些其他的屬性，比如前面列舉的 <code>author</code>、<code>summary</code>、<code>featuredImage</code> 等等。在這個標題之後，可以使用正常的 Markdown 語法來編寫文章的內容。其中圖片文件在 <code>$PWD/yoursite/static/images</code> 目錄。</p>
+<p>在安装 hugo 程式，下載好 DoIt 主題， 完善 <code>config.toml</code> 配置文件，寫好妳的文章之後，cd 至 <code>$PWD/yoursite</code> ，運行 <code>hugo server -D</code> 可對博客網站預覽，若滿意，則運行 <code>hugo</code> 命令。在 <code>$PWD/yoursite/public</code> 目錄中，妳將會得到博客的所有靜態文件。</p>
+<h3 id="將靜態網站上載至託管服務商" class="headerLink">
+    <a href="#%e5%b0%87%e9%9d%9c%e6%85%8b%e7%b6%b2%e7%ab%99%e4%b8%8a%e8%bc%89%e8%87%b3%e8%a8%97%e7%ae%a1%e6%9c%8d%e5%8b%99%e5%95%86" class="header-mark"></a>將靜態網站上載至託管服務商</h3><p>有了整個網站的靜態文件，我們需將其上傳至託管服務商。目前，可供選擇服務商有好幾家，大部分服務商的免費方案都足夠個人博客使用。</p>
+<ul>
+<li><a href="https://vercel.com/" target="_blank" rel="noopener noreferrer">Vercel</a></li>
+<li><a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a></li>
+<li><a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare Pages</a></li>
+<li><a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li>
+<li><a href="https://fleek.co/" target="_blank" rel="noopener noreferrer">Fleek</a></li>
+</ul>
+<p>以上服務商，都支持綁定 GitHub 倉庫，它會自動拉取最新倉庫更新並保持同步。其中 Fleek ，不僅支持生成 http 頁面，還會將文件上傳至 IPFS 網路，給出 CID。</p>
+<p>先在 GitHub 新建一個 repository， 與本地的 <code>$PWD/yoursite/public</code> 目錄進行關聯，並將博客文件上載至倉庫。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd $PWD/your_site/public
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m &#34;deploy blog&#34;
+</span></span><span class="line"><span class="cl">git branch -M main
+</span></span><span class="line"><span class="cl">git remote add origin git@github.com:your_github_name/your_blog_repository.git
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之後，有新博文之後，再重新運行 <code>hugo server -D</code> 預覽博客，若滿意，則運行 <code>hugo</code> 命令更新博客的靜態文件，再將其更新至 GitHub 倉庫。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd $PWD/yoursite/public
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m &#34;blog update&#34;
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>git push</code> 完成後，託管服務商會自動讀取倉庫更新，將其部署至服務器。</p>
+<h3 id="綁定傳統域名" class="headerLink">
+    <a href="#%e7%b6%81%e5%ae%9a%e5%82%b3%e7%b5%b1%e5%9f%9f%e5%90%8d" class="header-mark"></a>綁定傳統域名</h3><p>在託管服務商創建我們的博客項目並綁定 GitHub 倉庫後，通常服務商會提示我們綁定域名。如若沒有相關提示，也可以在其管理界面中方便地找到綁定域名的選項，按照其要求添加相關 DNS 記錄，比如 A 記錄 或者 CNAME 記錄。</p>
+<p>為了更方便、更安全地管理域名的 DNS，建議使用 <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare</a> 服務。首先，在 Cloudflare 上添加域名，然後在域名服務商的管理界面中將 DNS 服務器變更為 Cloudflare 提供的 DNS 服務器，最後等待生效即可。</p>
+<p>當然，如果不想購買域名的話，也可使用服務商提供的二級域名。但是，若使用自有域名，我們將更方便地將網站從一個服務商遷移至另一個，僅需更改 DNS 記錄即可。</p>
+<h2 id="博客的ipfs部署方案" class="headerLink">
+    <a href="#%e5%8d%9a%e5%ae%a2%e7%9a%84ipfs%e9%83%a8%e7%bd%b2%e6%96%b9%e6%a1%88" class="header-mark"></a>博客的IPFS部署方案</h2><h3 id="docker-安裝-ipfs" class="headerLink">
+    <a href="#docker-%e5%ae%89%e8%a3%9d-ipfs" class="header-mark"></a>docker 安裝 IPFS</h3><p>將網誌託管給服務商固然很方便，這也增加了被審查與阻斷的風險。作為國朝臣民，我們天然地對任何服務商沒有信任。如果選擇 IPFS 方案託管網誌，這無疑將大大地治癒我們的書報檢查PTSD。但要特別注意：IPNS 並不匿蹤，書寫與言說就要承受利維坦之重，請審慎考量再使用鍵鼠。</p>
+<p>IPFS 擁有一個域名系統 IPNS (InterPlanetary File System)，可讓我們更方便地配合域名使用 IPFS ， IPFS 託管網站的要義是用戶自己控制 IPNS 的 private key (私鑰)。儘管已有提供 IPNS 託管服務的選項，但這要付出信任成本。如若選擇自行生成與託管 IPNS Key ，這是一個 trustless 的抉擇，只要自己做好安全風險的管控。</p>
+<p>要進行 IPFS 網站的自託管，首先要 安裝 IPFS 程式。因為需要 7*24 的不間斷服務，將 IPFS 安裝在功耗較低的小主機是一個好的選擇，所有選擇 docker 安裝 IPFS 是一個好的選項。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">ipfs</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">v</span> <span class="o">$</span><span class="n">PWD</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">ipfs</span><span class="o">/</span><span class="n">ipfs</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">ipfs</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">v</span> <span class="o">$</span><span class="n">PWD</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">ipfs</span><span class="o">/</span><span class="k">export</span><span class="p">:</span><span class="o">/</span><span class="k">export</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">u</span> <span class="mi">1000</span><span class="p">:</span><span class="mi">1000</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">p</span> <span class="mi">4001</span><span class="p">:</span><span class="mi">4001</span> \
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> \
+</span></span><span class="line"><span class="cl">  <span class="n">ipfs</span><span class="o">/</span><span class="n">go</span><span class="o">-</span><span class="n">ipfs</span><span class="p">:</span><span class="n">latest</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="生成-ipns-key-並綁定域名" class="headerLink">
+    <a href="#%e7%94%9f%e6%88%90-ipns-key-%e4%b8%a6%e7%b6%81%e5%ae%9a%e5%9f%9f%e5%90%8d" class="header-mark"></a>生成 IPNS Key ，並綁定域名</h3><p>安裝完成後，進入 IPFS 容器的 Shell ，運行以下命令，將服務应用 lowpower 配置，這會優化 IPFS 資源的佔用情況。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipfs config profile apply lowpower
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接著在 Shell 中， cd 至 <code>export</code> 目錄，運行以下命令，生成一個 IPNS key pair。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipfs key gen your_key_name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>記錄給出的 IPNS 的 public key (公鑰)，並使用以下命令將其導出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="k">export</span> <span class="n">your_key_name</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在文件管理中，進入至 <code>$PWD/docker/ipfs/export</code> ，將目錄中的 Key 文件妥善保管，以下是 IPFS KEY 管理的命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="k">export</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span>           <span class="o">-</span> <span class="n">Export</span> <span class="n">a</span> <span class="n">keypair</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">gen</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span>              <span class="o">-</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">keypair</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">import</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span>     <span class="o">-</span> <span class="n">Import</span> <span class="n">a</span> <span class="n">key</span> <span class="ow">and</span> <span class="nb">prints</span> <span class="n">imported</span> <span class="n">key</span> <span class="n">id</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">list</span>                    <span class="o">-</span> <span class="n">List</span> <span class="n">all</span> <span class="n">local</span> <span class="n">keypairs</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rename</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">newName</span><span class="o">&gt;</span> <span class="o">-</span> <span class="n">Rename</span> <span class="n">a</span> <span class="n">keypair</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;...</span>            <span class="o">-</span> <span class="n">Remove</span> <span class="n">a</span> <span class="n">keypair</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ipfs</span> <span class="n">key</span> <span class="n">rotate</span>                  <span class="o">-</span> <span class="n">Rotates</span> <span class="n">the</span> <span class="n">IPFS</span> <span class="n">identity</span><span class="o">.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有了 IPNS Key 之後，就可將內容的 CID 發布到 IPNS 。如果直接訪問 IPFS 公鑰，當然也可以，但也這讓訪問者望而卻步，一大串字符讓人望而卻步。為了方便記憶，我們需要將 IPNS 與域名綁定，綁定方法可參考我的文章<a href="https://sogola.com/posts/planet/" target="_blank" rel="noopener noreferrer">Planet：一款IPFS静态站点生成器</a>中的域名绑定綁定部分。</p>
+<h3 id="自動更新-ipns" class="headerLink">
+    <a href="#%e8%87%aa%e5%8b%95%e6%9b%b4%e6%96%b0-ipns" class="header-mark"></a>自動更新 IPNS</h3><p>使用 IPFS 自託管靜態網站，主要是因為其分布式特性，它讓我們重拾萬維網之互聯真義。然而，由於個人博客的讀者不多，使用 IPFS 的用戶更是寥寥無幾，因此在 IPFS 自託管的同時，使用 remote pinning services 來提高網站的可用性是個不錯的選擇。</p>
+<p>在介紹靜態網站託管服務商的時候，有提到 <a href="https://fleek.co/" target="_blank" rel="noopener noreferrer">Fleek</a> ，它就有提供 remote pinning services ，在生成動態網站的同時，可生成一個網站的 CID。</p>
+<p>如果我們在每次更新網站後，從 Fleek 生成的域名讀取出它綁定的 CID，並在本地 pin 這個 CID，然後再將其發布至我們自己的 IPNS ，那麼我們就可以實現同時更新靜態網站服務商和 IPNS 託管。所以，我請 ChatGPT 寫了可自動這一系列操作的腳本，如下所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Script: update-ipns.sh</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Description: Check if IPNS record needs to be updated and update it if necessary.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -euo pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Function: get IPNS CID</span>
+</span></span><span class="line"><span class="cl">get_ipns_cid<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">local</span> <span class="nv">ipns_name</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">local</span> <span class="nv">ipfs_container</span><span class="o">=</span><span class="nv">$2</span>
+</span></span><span class="line"><span class="cl">  docker <span class="nb">exec</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">ipfs_container</span><span class="si">}</span><span class="s2">&#34;</span> ipfs resolve -r <span class="s2">&#34;/ipns/</span><span class="si">${</span><span class="nv">ipns_name</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="p">|</span> tail -n1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="p">|</span> awk <span class="s1">&#39;{ print $NF }&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Variables: define container name, IPNS names and options</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IPFS_CONTAINER</span><span class="o">=</span><span class="s2">&#34;ipfs&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SOGOLA_IPNS</span><span class="o">=</span><span class="s2">&#34;your_domain_name&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FLEEK_IPNS</span><span class="o">=</span><span class="s2">&#34;your_fleek_site_name.on.fleek.co&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PIN_OPTS</span><span class="o">=</span><span class="s2">&#34;--progress&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PUBLISH_OPTS</span><span class="o">=</span><span class="s2">&#34;--key=your_ipns_public_key&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check if the IPFS container is running</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> ! <span class="s2">&#34;</span><span class="k">$(</span>docker ps -q -f <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="k">)</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2"> container is not running. Please start the container and try again.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Get IPNS CID</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SOGOLA_CID</span><span class="o">=</span><span class="k">$(</span>get_ipns_cid <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SOGOLA_IPNS</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FLEEK_CID</span><span class="o">=</span><span class="k">$(</span>get_ipns_cid <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FLEEK_IPNS</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check if IPNS record needs update</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SOGOLA_CID</span><span class="si">}</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FLEEK_CID</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Publish new IPNS record</span>
+</span></span><span class="line"><span class="cl">  docker <span class="nb">exec</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span> ipfs name publish <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PUBLISH_OPTS</span><span class="si">}</span><span class="s2">&#34;</span> --lifetime<span class="o">=</span>8766h -- <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FLEEK_CID</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Unpin the previous IPNS record</span>
+</span></span><span class="line"><span class="cl">  docker <span class="nb">exec</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span> ipfs pin rm <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SOGOLA_CID</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Pin the updated IPNS record</span>
+</span></span><span class="line"><span class="cl">  docker <span class="nb">exec</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">IPFS_CONTAINER</span><span class="si">}</span><span class="s2">&#34;</span> ipfs pin add <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PIN_OPTS</span><span class="si">}</span><span class="s2">&#34;</span> -- <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FLEEK_CID</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;IPNS record updated successfully.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;IPNS record is already up-to-date, no need to update.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add error handling</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Update completed.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Error occurred while updating IPNS record. Please check.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將上述腳本中的 SOGOLA_IPNS,FLEEK_IPNS,PUBLISH_OPTS 分別替換並保存為 <code>update-ipns.sh</code> ，使用自動化工具定時執行，即可使用 Git 更新博客後，實現靜態網站的 HTTP 與 IPFS 同時更新的功能。</p>
+<p>如果覺得只有一個 remote pinning service 不保險的話，還可以使用 <a href="https://dashboard.4everland.org?invite=BB0BLBGV" target="_blank" rel="noopener noreferrer">4EVERLAND</a> ，這個服務商支持使用 IPNS 進行 PIN。</p>
+<h2 id="總結" class="headerLink">
+    <a href="#%e7%b8%bd%e7%b5%90" class="header-mark"></a>總結</h2><p>透過個間網站託管服務商，我們可以通過控制域名來遊走之間，輕鬆實現切換服務商。而通過自託管 IPFS ，拜分布式託管之幸，我們終可回歸到萬維網之本心，重新掌握我們自己的數據。</p>
+<p>就撰寫這篇博文期間，我留意到<a href="https://www.solidot.org/story?sid=74728" target="_blank" rel="noopener noreferrer">一則新聞</a>，ICANN 和 Verisign 提议允许任何政府扣押域名。是時候，我們該嘗試無許可與去信任的 crypto 了。</p>
+<blockquote>
+<p>整治書報檢查制度的真正而根本的辦法，就是廢除書報檢查制度，因為這種制度本身是惡劣的，可是各種制度卻比人更有力量。我們的意見可能是正確的，也可能是不正確的，不過無論如何，新的檢查令終究會使普魯士的作者要么獲得更多的現實的自由，要么獲得更多的觀念的自由，也就是獲得更多的意識。</p>
+<p>Rara temporum felicitas, ubi quae velis sentire et quae sentias dicere licet［當你能夠想你願意想的東西，並且能夠把你所想的東西說出來的時候，這是非常幸福的時候］。</p>
+<p>————馬克思《評普魯士最近的書報檢查令》</p>
+</blockquote>
+<p>「清風不識字」，主權國家宰制一切。當言說成為禁忌，開設一個部落格已然成為罪證，我只祝福妳們成為幸福的人。那些獨立博客的作者有福了，因為妳們必然承受大地之重。</p>
+]]></description>
+</item><item>
+    <title>如果不知道这些，我可能就上了个「假网」</title>
+    <link>https://sogola.com/posts/learn-how-to-surf-the-internet/</link>
+    <pubDate>Mon, 25 Feb 2019 11:52:18 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/learn-how-to-surf-the-internet/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/learn-how-to-surf-the-internet/1.jpg" referrerpolicy="no-referrer">
+            </div><p>2016年4月12日，魏则西不治身亡，他的死激起全网愤怒。</p>
+<p>2014年4月，魏则西检查出滑膜肉瘤，这种病目前并没有有效疗法，没有治愈的希望。</p>
+<p>2014年下半年，魏则西通过百度搜索找到排名领先的北京武警二院，曾4次前往那里进行治疗，花光了家中所有积蓄，还跟亲戚朋友借了不少钱。</p>
+<p>前后花了20多万，钱花了，却没能阻止肿瘤扩散。</p>
+<p>一个青年的死亡，让许多原本隐藏在阴暗处的秘密被放置到阳光之下，闪瞎了许多人的眼。</p>
+<p>原来商家花钱就可以提高在搜索结果里的排名，原来三甲医院的科室也能被承包出去，原来「央视报道的好医院」并不是那么好。</p>
+<h2 id="某度变好了吗" class="headerLink">
+    <a href="#%e6%9f%90%e5%ba%a6%e5%8f%98%e5%a5%bd%e4%ba%86%e5%90%97" class="header-mark"></a>某度变好了吗？</h2><p>「魏则西事件」已经过去快三年了，百度变好了吗？</p>
+<p>前不久，资深媒体人方可成在《搜索引擎百度已死》一文中批判百度搜索结果中频繁出现「百家号」，而「百家号」中充斥着假新闻和谣言，百度成了「洋葱新闻」集散地。</p>
+<p>方可成在文章里无不悲愤地说：「偌大的中文互联网竟已堕落到如此境地，连一个搜索引擎都没有了。」</p>
+<p>万万没想到，几天后，面对舆论压力，百度居然把资讯搜索结果界面上的域名给隐藏了。蛤？小样，你以为你穿了个马甲，我就不知道你还是「百家号」？</p>
+<p>来到城市打工，我们加班多，工资又少，平时呢我们只好躺在上下铺上玩手机杀时间，好麻醉一下被资本家折磨的苦痛身体。玩游戏，看新闻，找资讯，那肯定少不了。</p>
+<p>那么我们应该如何从互联网上获取资讯，又不上当呢？或许我们应先了解一下万维网和浏览器。</p>
+<h2 id="万维网与浏览器" class="headerLink">
+    <a href="#%e4%b8%87%e7%bb%b4%e7%bd%91%e4%b8%8e%e6%b5%8f%e8%a7%88%e5%99%a8" class="header-mark"></a>万维网与浏览器</h2><p>我们常常说的国际互联网，始于1969年的美国，又称因特网。最开始，它只是一个军方项目，后来才发展为民用项目。目前，因特网是国际上最大的互联网。除了我们熟悉的国际互联网，还有朝鲜的「光明网」。</p>
+<p>1989年，英国科学家蒂姆·伯纳斯-李发明了万维网，我们可以把万维网理解为互联网的一个应用。</p>
+<p>不论我们用手机还是用电脑来看视频网站、用搜索引擎找信息，都离不开万维网。网页加浏览器，极大改变了现代人的生活，它们也是互联网最基础的服务，我们看微信文章都基于万维网技术。</p>
+<p>这么厉害的东西，蒂姆居然没有申请专利，无私地把发明献给了全人类。在2012年伦敦奥运会开幕式上，为了表达敬意，专门设置了「感谢蒂姆」环节。</p>
+<p>虽然平时天天刷手机、打电脑，但有些朋友可能还不知道浏览器有哪些？</p>
+<h2 id="电脑或者手机一般系统内置浏览器" class="headerLink">
+    <a href="#%e7%94%b5%e8%84%91%e6%88%96%e8%80%85%e6%89%8b%e6%9c%ba%e4%b8%80%e8%88%ac%e7%b3%bb%e7%bb%9f%e5%86%85%e7%bd%ae%e6%b5%8f%e8%a7%88%e5%99%a8" class="header-mark"></a>电脑或者手机，一般系统内置浏览器。</h2><p>常见的 Windows 电脑一般都自带了 IE 或 Microsoft Edge 浏览器，想使用其他浏览器需要用户自行安装。许多网吧里的电脑，又或者比较常见的盗版 Windows 系统，浏览器很多都是360浏览器、QQ浏览器等。我们推荐使用 Firefox（火狐浏览器）或者 Google Chrome（谷歌浏览器）。</p>
+<p>Android（安卓）手机系统内置浏览器，一般会标注「浏览器」字样，除系统内置浏览器，我们也可以自行下载安装手机浏览器；Apple（苹果公司）的 Mac 或 iPhone 内置浏览器为 Safari ，图标长得有点像指南针。</p>
+<p>那么，怎样使用浏览器打开网页呢？</p>
+<p>其实很简单，找到浏览器图标，打开浏览器应用，在地址栏上输入网址就可以打开。</p>
+<p>在电脑上，地址栏一般都是在浏览器界面顶部的大框，选中后就可以键入网址，回车键按下去，就可以打开。</p>
+<p>在手机上，地址栏一般也是屏幕的上部的一个框（上图的「大众定评即将消失」处）。</p>
+<h2 id="域名与网址" class="headerLink">
+    <a href="#%e5%9f%9f%e5%90%8d%e4%b8%8e%e7%bd%91%e5%9d%80" class="header-mark"></a>域名与网址</h2><p>那么网址又是什么鬼？</p>
+<p>网址（url），就是在浏览器地址栏输入的一长串字符，比如「王小嗨的不老歌」首页的网址如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.sogola.com/ 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就像我们收快递都有一个地址一样，每个网页也都有一个互联网地址。浏览器就好像哆啦A梦的时光机，你要输入一个地址，它才能带你过去。</p>
+<p>说到网址，不得不说一下域名这个概念。</p>
+<p>互联网的网页并不是魔法产生，也不是石头蹦出来的，而是程序员通宵熬夜写出来的。它们由一些文件组成，就好像我们手机存储的图片一样，只是网页文件都是存储在远方的电脑上。</p>
+<p>为了用户可以通过浏览器访问到它们，每一台远方的主机都有一个独一无二的数字编号，就好像地图上经纬坐标一样。</p>
+<p>可数字很难记啊，我连电话号码都背不下，这要怎么办？这时候域名就排上用场了，经纬坐标你记不住，可以记街道和门牌啊。</p>
+<p>比如，「王小嗨的不老歌」的域名是「sogola.com」，「腾讯」的域名是「qq.com」。</p>
+<p>域名前加上传输协议信息及主机类型信息就构成了网址(URL），例如「王小嗨的不老歌」的www主机的URL如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.sogola.com/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="靠谱信息哪里来" class="headerLink">
+    <a href="#%e9%9d%a0%e8%b0%b1%e4%bf%a1%e6%81%af%e5%93%aa%e9%87%8c%e6%9d%a5" class="header-mark"></a>靠谱信息哪里来？</h2><p>域名太重要了，它可以帮我们分辨一个网址是正规网址还是诈骗网址。</p>
+<p>比如我们手机经常收到各种垃圾短信，里面很多都会说你中奖腾讯大奖了，给你网址，让你输入QQ密码。</p>
+<p>如果它给出的领奖网址不是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">***.qq.com/***
+</span></span><span class="line"><span class="cl">（***是代替符号，可长可短）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">***.qq.com.***/***
+</span></span><span class="line"><span class="cl">（***是代替符号，可长可短）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者根本没有&quot;qq.com&quot;字样，那么我们可以断定这是诈骗网站无疑。</p>
+<p>因为一个网站的域名一般不会随意变动，所以我们可以根据域名判断一网站的可信度，找到可信来源。而域名的正确与否，也可以透过其他途径佐证。</p>
+<p>你知道网址，才能访问网页，就好比快递员知道你的地址才能送货一样。那么，假如我不知道网址，但是想找招聘网站怎么办？</p>
+<p>这就需要搜索引擎了，比如Google、yahoo、bing、百度、搜狗、360搜索，等等。</p>
+<p>在浏览器地址栏，输入搜索引擎网址，打开网页后，在搜索框内就可以搜索。想找招聘，就在招聘栏键入「招聘」，回车就可以得到结果。</p>
+<p>实际上，搜索引擎就是个实时更新的地址簿。只是搜索引擎大都是商业公司开发，受资本控制，它不可能给你完全可靠的结果，我们需要自己学会分辨搜索结果的真伪，特别要注意识别域名。</p>
+<h2 id="活用移动互联网" class="headerLink">
+    <a href="#%e6%b4%bb%e7%94%a8%e7%a7%bb%e5%8a%a8%e4%ba%92%e8%81%94%e7%bd%91" class="header-mark"></a>活用移动互联网</h2><p>随着智能手机越来越便宜，人们花几百块就可以买一部，加之手机上网费用也越来越便宜，移动互联网都有超过传统互联网的势头。</p>
+<p>不过万维网的发明人蒂姆·伯纳斯-李警告公众：互联网正在走向割据、封闭、充满中央集权的结构。本来开放互联的网络世界，如今支离破碎。</p>
+<p>手机屏幕就那么点，如果拿手指头一个个字母键入一大长串网址，那就很费劲。于是，在传统互联网时代，人们使用浏览器浏览各种网页，而在移动互联网时代，人们主要使用各类APP，比如微信、抖音、淘宝、今日头条，等等。</p>
+<p>而这样的移动互联网也成了封建割据的争霸战场，不开放，不互联。</p>
+<p>APP肆意横行的时代，让搜索引擎检索互联网内容更加艰难了，更可恶的是它们还恶意阻止互联互通，完全背离互联网的精神。对于我们普通用户来说，使用体验就更加不友好了。</p>
+<p>对于普通用户来说，下载各类APP，应尽量从官方网站下载，或者从靠谱应用商店下载，只有这样，才能避免安了假软件，手机中了病毒。</p>
+<p>面对各类APP制造的层层阻隔，我们不仅要主动使用浏览器（支持开放的互联网），分辨真假网址，还要利用各种APP内置的审核机制查看信息源，比如微信就有「主体信息」认证功能。</p>
+<p>在微信订阅号中，点击订阅号头像，再点击右上方三个点，最后点击「更多资料」，就可查看订阅号主体信息。</p>
+<p>如果一个订阅号声称自己是新华社，又或者是权威机构，那么我们查看一下它的企业认证信息，再用企业查询系统查看一下认证，就可以很容易分辨真假美猴王了。</p>
+<p>（还有一个小技巧，在微信中想要看到当前访问页面的域名，可以点击右上角的三个点）</p>
+<p>虚假信息泛滥的时代，不管是看新闻看八卦，还是求医看病找工作，都要分辨信息源，请勿搜索引擎直接搜一下就完事，不然被卖了还要给人数钱。</p>
+<p>我们应拿回分辨互联网真假信息的权力，一起快乐地冲浪。</p>
+]]></description>
+</item><item>
+    <title>短效避孕药可以帮你告别月经？别急，先看看能不能吃……</title>
+    <link>https://sogola.com/posts/short-acting-contraceptive/</link>
+    <pubDate>Wed, 23 Jan 2019 11:52:18 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/short-acting-contraceptive/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/short-acting-contraceptive/1.jpg" referrerpolicy="no-referrer">
+            </div><blockquote>
+<p>最近，英国国民医疗服务体系（National Health Service，即NHS）旗下的性与繁殖健康委员会（FSRH）更新了他们的指南，认为短效避孕药空七天不吃是没有医学意义的，完全可以一直连续吃下去。换言之，短效避孕药所模拟的月经也是没有必要存在。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</blockquote>
+<p>前不久，果壳一篇科普文章《女同胞们，这次我们也许真的能告别月经了！》刷遍朋友圈，许多饱受月经之痛的同志都舒了一口长气，嗯？好像可以告别月经了？</p>
+<h2 id="fsrh怎么说的" class="headerLink">
+    <a href="#fsrh%e6%80%8e%e4%b9%88%e8%af%b4%e7%9a%84" class="header-mark"></a>FSRH怎么说的？</h2><p>一般来说，多数牌子的避孕药都是使用两种包装法之一： 每板21片，然后停药一周；每板28片，其中21片避孕药，跟着一周安慰剂例如糖片或是铁质补充剂。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>针对媒体的报道，FSRH发布了一个声明，他们这样说：最新版的FSRH指南仅仅指出，在服用复方避孕药（「短效」）期间，间隔停用7天并没有获得任何健康益处，同时指出，服用复方避孕药存在一些公认的健康风险的。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>那么，FSRH的最新声明到底表达了什么意思？</p>
+<p>首先，FSRH的指南不是政府法定的意见，也不代表医学界共识。其次，它仅仅把循证临床指导（evidence-based clinical guidance）提供给医护专业人士，也就说是这个指南不是给患者的。最后，指南只是说明服用「短效」没有必要中间停顿7天，可以理解为指南没有说不想要月经的妇女可以使用「短效」终止月经，而且「短效」也存在一些公认的健康风险。（这里补充一下中国专家共识：COC除避孕效果显著外，健康获益也远远大于其可能存在的风险。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> ）</p>
+<p>所以，如果伙伴们想尝试「短效」，最好要去医院咨询医生，做个检查。</p>
+<h2 id="紧急避孕药不是短效避孕药" class="headerLink">
+    <a href="#%e7%b4%a7%e6%80%a5%e9%81%bf%e5%ad%95%e8%8d%af%e4%b8%8d%e6%98%af%e7%9f%ad%e6%95%88%e9%81%bf%e5%ad%95%e8%8d%af" class="header-mark"></a>紧急避孕药不是短效避孕药</h2><p>这样的话，你可能会问了：短效口服避孕药到底是什么鬼？按照传统医学的说法，「是药三分毒」，「短效」有「毒」吗？短效口服避孕药可以随便吃吗？</p>
+<p>短效口服避孕药，顾名思义，它是一种避孕药，也被称为复合口服避孕药。「短效」没有「毒」（抛开剂量谈毒性，都是耍流氓），但服用「短效」可能出现一些副作用，比如：头痛、恶心、呕吐，等等。如出现不良反应，应立即看医生。</p>
+<p>目前，常见的女性口服避孕药有三大类：长效避孕药、短效避孕药和紧急避孕药。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p>长效和短效避孕药，都是由激素构成，只是服用剂量与在体内释放时间不同。长效避孕药，服用一次，可以管很长时间。但服用一次，剂量大，却不能精确控制释放，效果并不理想，加上需在体内存留时间长，一旦出问题，处理起来非常麻烦，目前已不推荐使用。</p>
+<p>短效避孕药，避孕效果好，需每天服用一次，不能中断。药物进入人体后，一到两天之内，即可代谢过半。停止服用一定时间后，对继续生育无影响。因为需每天服用，所以缺点很明显——麻烦。与我国较少使用「短效」相比，「短效」在西方是妇女主流避孕方法之一。</p>
+<p>紧急避孕药是一种非常规的避孕手段，用于事后补救，对身体伤害非常大。紧急避孕药，除非万不得已，非常不推荐使用。<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
+<p>切记，紧急避孕药不是短效避孕药！</p>
+<p>说到这，那么短效避孕药能避孕是什么原理呢？除了避孕，为什么还能终止月经？这要从避孕药的发明说起。</p>
+<p>要说女性避孕药的原理，必须先说一点常识。为了孕育胎儿，身体需要事先做好准备，子宫内膜会增厚，同时会排出卵子。如果怀孕并未发生的话，子宫内膜将会崩解，形成经血。</p>
+<p>这个过程需要激素调节。在一次月经结束后，下一个周期的卵子还没排出之前，卵巢分泌的雌激素逐渐增多，当雌激素含量达到「顶峰」时，卵子就会被排出。</p>
+<p>卵子排出后，卵巢不仅会分泌雌激素，还分泌孕激素。如果这时怀孕发生，孕激素就会告诉身体：我怀孕了，不要继续排卵了。</p>
+<p>如果卵子排出后，怀孕并未发生的话，雌激素、孕激素会含量骤降，失去这两种激素支持，子宫内膜就会脱落，形成经血，排出体外。这时，一个新的周期又会开始。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
+<p>而短效避孕药就是一种雌激素和孕激素的混合物。服入「短效」后，雌激素和孕激素到达一定浓度，就会制造怀孕的假象，卵巢就不会再排卵，子宫内膜也不会脱落，自然就没有月经了。（这其实是理想情况，许多同志表示还是会有经血）</p>
+<h2 id="你不知道的避孕药发明史" class="headerLink">
+    <a href="#%e4%bd%a0%e4%b8%8d%e7%9f%a5%e9%81%93%e7%9a%84%e9%81%bf%e5%ad%95%e8%8d%af%e5%8f%91%e6%98%8e%e5%8f%b2" class="header-mark"></a>你不知道的避孕药发明史</h2><p>二战结束后，西方经济恢复重建，生活越来越好，孩子也越来越多。可对这广大妇女就不公平了，一方面她们要从事生产，另一方面她们还要负责家务劳动，需要承担生育与照料孩子的重任。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
+<p>当时，流行的避孕方式是安全套。为了避免承担双重责任（生产与再生产），妇女们似乎能做到的就是督促性伴侣使用安全套，或者干脆坚持不使用安全套就不做爱。</p>
+<p>最初，人们研发避孕药，目的并不是避孕，而是治疗不孕。孕激素能抑制卵巢排卵，避孕药就是这玩意和雌激素构成的。约翰·洛克是一名不孕症领域的专家，他觉得抑制排卵后，停止使用孕激素会有反弹效应，会出现排卵，这时就可怀孕了。</p>
+<p>后来，节育专家格雷格里·平卡斯加入药物研发，让药物的作用由治疗不孕变成了节育。1957年，这款药物在美国被批准上市，因为保守的观念，这款避孕药被标示为「调整妇女经期」，而副作用的一栏则写着「它会抑制女性排卵」。</p>
+<p>这款「调整妇女经期」的药物迅速被妇女拿来用作避孕，成为女性取得身体自主的工具。直到1960年，这款药物在美国才被批准作为避孕药上市。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup></p>
+<h2 id="短效避孕靠谱但怎么吃很重要" class="headerLink">
+    <a href="#%e7%9f%ad%e6%95%88%e9%81%bf%e5%ad%95%e9%9d%a0%e8%b0%b1%e4%bd%86%e6%80%8e%e4%b9%88%e5%90%83%e5%be%88%e9%87%8d%e8%a6%81" class="header-mark"></a>「短效」避孕靠谱，但怎么吃很重要</h2><p>说完避孕药发明的历史，很多人或许都有疑问，这款由激素构成的药物，有什么副作用？</p>
+<p>一听「激素」二字，很多人都会觉得害怕。其实激素并不可怕，可怕的是，不遵循医嘱，滥用激素和抗生素。</p>
+<p>要知道，每种激素都有其各自的效能。而目前短效口服避孕药的雌、孕激素含量，对健康是没什么影响的。<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup> 短效口服避孕药的禁忌和副作用也很明确，这也是现代医学具有的基本特征，我们可以参考丁香医生写的《可能是关于避孕药最全面的问答》：</p>
+<blockquote>
+<p>短效口服避孕药并非适合所有人，下列人群不建议使用：</p>
+<p>处于哺乳期；
+年龄超过 35 岁并且长期吸烟；
+高血压控制状况不好；
+有深部静脉血栓或肺栓塞病史；
+有缺血性心脏病、脑血管意外史、心脏瓣膜病有并发症等；
+有乳腺癌病史；
+有糖尿病引起的并发症，如肾病、视网膜病变、神经系统疾病等；
+有肝脏疾病；
+有原因不明的阴道出血；
+有先兆的偏头痛；
+正在服用抗真菌、结核或癫痫的药物；</p>
+</blockquote>
+<p>归纳几个重点：服用其他药物期间，服用「短效」需咨询医生；哺乳期，不要服用「短效」；肾脏不好，不要服用「短效」；吸烟，不要服用「短效」；有心血管疾病的朋友，不要服用「短效」；有家族血栓史的朋友，慎用「短效」；有高血压、高血糖的朋友，慎用「短效」；乙肝患者，不推荐服用「短效」。</p>
+<p>如长时间服用「短效」后，出现不适症状，尽快看医生，并遵循医嘱。</p>
+<p>当然了，「短效」也不是什么灵丹妙药，也是不能随便乱吃的。如果你在服用「短效」前，身体就有不适，应先去看医生，听听医生怎么讲，不要自行用药。</p>
+<p>我们知道，看了英国FSRH的指南，许多同志对「短效」都跃跃欲试。虽然短效口服避孕药是非处方药物，我们依然建议在医生指导下服用。但不管怎么说，「短效」对于饱受月经之痛和不便折磨的妇女同志来说，算是提供了一个选项。</p>
+<p>可短效口服避孕药，在我国尚未纳入医保。据长期服用「短效」的朋友介绍，128块人民币21片，也算一笔不少的开支了。在一些国家，「短效」有政府补贴，会便宜不少。那我们也不禁发问，我们国家是不是也应该对「短效」进行补贴呢？</p>
+<p>另外，男性作为性爱的参与者，有不可推卸的避孕和抚养孩子的责任。可长久以来，避孕和养育的工作都成了妇女的责任。结扎、上环都成了女性的苦痛记忆。不仅如此，很多时候，妇女还要冒着生命危险去堕胎。</p>
+<p>目前男性避孕药都没有被开发出来，与「短效」相比，男性输精管结扎术（男性输精管结扎以阻止精子排出，是永久性的避孕方法）更为便捷，一次手术，无需长期服药，不影响性生活。可以复通，但再次怀孕的几率有所下降。<sup id="fnref1:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> 与女性因为避孕所遭受的伤害相比，这个风险也是可以接受的。</p>
+<p>最后，「短效」与安全套相比，它并不能降低感染性病的风险。使用「短效」的妇女，往往不再使用安全套，因此增加了性传播疾病的感染几率。比如说感染HPV，就可能患宫颈癌。<sup id="fnref1:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<p>而「短效」不能阻断性传播疾病感染，对于非固定性伴侣的人群，或者自己的伴侣有非固定性伴侣，安全套更好。</p>
+<p>谨记，安全期、体外等根本不是有效避孕手段，请使用安全有效的避孕措施。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>果壳：女同胞们，这次我们也许真的能告别月经了！&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>维基百科：复合口服避孕药&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>FSRH press statement: FSRH responds to article by Mail Online about updated guidelines on combined hormonal contraception&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>《中华妇产科杂志》2015年2月第50卷第2期：复方口服避孕药临床应用中国专家共识&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>杜蕾斯官网：]避孕药的种类有哪些?怎么服用&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>丁香医生：避孕问答&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7">
+<p>世界避孕日官网：长效避孕药和短效避孕药哪个好？&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8">
+<p>月经，参考维基百科词条：月经、短效避孕药——最可靠的避孕方式之一&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9">
+<p>澎湃：避孕药通向女性身体自主之路，为什么人们很少选择？&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10">
+<p>《看历史》：唐郑亮，自由与保护，避孕药这五十年&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:11">
+<p>田吉顺的知乎：短效避孕药究竟有什么样的副作用？&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></description>
+</item><item>
+    <title>赛博空间游击队员必备技能之一：使用GitHub搭建简易站点</title>
+    <link>https://sogola.com/posts/build-a-site-via-github-pages/</link>
+    <pubDate>Sat, 11 Aug 2018 11:52:18 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/build-a-site-via-github-pages/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/build-a-site-via-github-pages/20180811.1.jpg" referrerpolicy="no-referrer">
+            </div><blockquote>
+<p>不拨号是上不了网的，今天也是如此。 ——不鳥萬如一</p>
+</blockquote>
+<p>不知从什么时候起，唾手可得的物件或者知识成为一种司空见惯，消费成为这个时代理所当然的正确。消费只需「一刹那」间即刻完成，它无须理会商品背后的艰辛而漫长的生产过程。习得/传授 某项技能成为一件可耻的事情，因为人们 <em>习得/传授</em> 某项技能劳心劳神。这是消费主义的全面胜利。</p>
+<p>我们习惯于使用信息孤岛创制的封闭空间，它无所不在、无所不能，渗透着包裹着我们，构建了我们的世界。彷佛我们日常使用的电子终端设备和互联网服务都是天上掉下来得一样，魔法一般出现我们的眼前，只要消费就可意义升华。那些「自愿加班」的产线工人、通宵达旦写程序的工程师、大雨中电瓶车送外卖的骑手们，她们成了看不见的人，被淹没在商品价值逻辑之中。</p>
+<p>欲望被压抑被审查之后，才会呈现出「自我」，真实被掩盖在荒漠之下。赛博空间游击队员知晓街头巷尾每一个监控设备，她们既不畏惧，也不甘心沉寂。透过探索监控死角，使得被淹没的「劳动者与生产关系」呈现在所有人面前。在赛博空间游击队员造梦的时刻，机械复制时代的技术与媒介终于成为被压迫者手中的武器。</p>
+<p>GitHub Pages 作为被压迫者革命武器，应该如何上膛？此教程为beta0.1。</p>
+<p>后续迭代，怨不通知。</p>
+<h2 id="万维网浏览器网站与github-pages" class="headerLink">
+    <a href="#%e4%b8%87%e7%bb%b4%e7%bd%91%e6%b5%8f%e8%a7%88%e5%99%a8%e7%bd%91%e7%ab%99%e4%b8%8egithub-pages" class="header-mark"></a>万维网、浏览器、网站与Github Pages</h2><blockquote>
+<p>万维网（英语：World Wide Web），亦作「WWW」、「Web」，是一个由许多互相链接的超文本组成的系统，通过互联网访问。
+——维基百科词条「万维网」</p>
+</blockquote>
+<p>我们日常打开IE、Chrome、Safari抑或自由的Firefox浏览网页站点，就是通过超文本传输协定（http）访问了一个远程文件，通过浏览器访问的所有网站构成了我们熟知的万维网。</p>
+<p>构成网站的文件不是从真空中神秘产生，它需要硬盘空间进行储存。网站文件都储存在远方的电脑之中，我们把远程存储这些文件的电脑称为服务器，其实服务器不过就是一台电脑。</p>
+<p>我们可以把远程服务器的网页文件想象成储存在移动硬盘上的小电影，这些小电影需要播放器才能播放，而浏览器就是相当于播放网页文件的播放器。http协定就是链接移动硬盘和电脑的数据线，通过数据线（http协定）和文件浏览器（浏览器），我们就可以访问移动硬盘（服务器）上的文件。</p>
+<p>通常服务器需要购买才能使用，毕竟硬件需要花钱，开机需要联网和耗电，这都是成本。令人欣喜的是GitHub免费提供了储存网页的空间——Github Pages。</p>
+<p>理解了这些万维网基本运行逻辑，我们才能更好地操作GitHub Pages。Github是一个程序员间协作开发代码的应用，其中它提供了一项名为GitHub Pages的服务，可供我们储存网页文件，相当于免费赠与我们一个小U盘。</p>
+<p>我们只需要将制作好的网页文件上传至GitHub提供的储存空间，一个新的网站就创制出来了。</p>
+<h2 id="markdownhtml与网页文件" class="headerLink">
+    <a href="#markdownhtml%e4%b8%8e%e7%bd%91%e9%a1%b5%e6%96%87%e4%bb%b6" class="header-mark"></a>markdown、HTML与网页文件</h2><blockquote>
+<p>Markdown是一种轻量级标记语言，创始人为約翰·格魯伯（英语：John Gruber）。它允许人们「」 使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML（或者HTML）文档」 。 ——维基百科词条「万维网」</p>
+</blockquote>
+<blockquote>
+<p>超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。HTML是一种基础技术，常与CSS、JavaScript一起被众多网站用于设计令人赏心悦目的网页、网页应用程序以及移动应用程序的用户界面。网页浏览器可以读取HTML文件，并将其渲染成可视化网页。HTML描述了一个网站的结构语义随着线索的呈现，使之成为一种标记语言而非编程语言。 ——维基百科词条「HTML」</p>
+</blockquote>
+<p>我们访问的网站，就是通过浏览器远程读取html文件，它或者是静态文件，或者是由其他语言动态生成。静态文件是早已经做好的文件，动态文件是用户在访问站点时，服务器根据用户请求实时生成文件，通过浏览器呈现在荧幕上。</p>
+<p>通过markdown标记语言，我们既可以方便地制作html静态文件，也可以将markdown文件存在GitHub上通过Jekyll驱动实时生成html文件。</p>
+<p>写markdown文件一般需要markdown编辑器，编辑器有本地软件，也有网页版。大家可以自行探索，web版编辑器有不少，在这里笨教推荐两款本地软件。MWeb和Typora，MWeb仅支持Mac，Typora支持win、Mac和Linux。</p>
+<p>markdown语言非常简单，用于html生产则只需掌握以下几个最基本的语法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># 一级标题
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">## 二级标题
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">### 三级标题
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gs">**加粗**</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="ge">*斜体*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt;引用
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">![<span class="nt">图片标题</span>](<span class="na">图片url</span>)<span class="p">&lt;</span><span class="nt">超链接URl</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">email</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更多语法请游击队员们自行去搜索学习。这里提示一下下，很多人可能不理解插入图片的操作。不管是在markdown中预览中显示的图片，还是网页中图片，这些图片都是储存在某个硬盘，或者本地电脑，或者远程服务器。通过GitHub Pages建站，需要将图片上传至GitHub库中，生成 链接/URL。有了url，图片就可在markdown中使用。</p>
+<h2 id="github-pages-搭建站点" class="headerLink">
+    <a href="#github-pages-%e6%90%ad%e5%bb%ba%e7%ab%99%e7%82%b9" class="header-mark"></a>Github Pages 搭建站点</h2><p>通常github建立博客，大家都是通过git操作，但太过复杂，我们只需直接上传文件即可建站。</p>
+<p>首先注册GitHub账户，我们需要一个Email接受验证邮件，推荐使用Protonmail。Github网站使用的自然语言为英文，如看不懂请自行使用机器翻译。</p>
+<figure>
+</figure>
+
+<p>点击sign up，填入信息，注册即可。选择 username/用户名 要慎重考量，因为我们最后得到的站点主页地址：username.github.io。</p>
+<figure>
+</figure>
+
+<p>接下来就获取存在我们网页文件的免费小U盘。注册完成之后，登录，再返回主页，点击New Repository创建一个git库。点击之后，需按照要求验证邮件。</p>
+<figure>
+</figure>
+
+<p>再回到首页，重新点击New Repository创建一个git库。在Repository Name写入与妳注册的username相对应的&quot;username.github.io&quot;，勾选&quot;Initialize this repository with a README&quot;，点击创建。</p>
+<figure>
+</figure>
+
+<p>通常过几分钟，&ldquo;username.github.io&quot;就可访问，这时我们的网站已经被创制出来了。我们还需要修改它的显示内容，以表达我们的意见，呈现真实世界。
+这时返回首页，即可看到我们的项目库已经建立，点击进入。</p>
+<p>首先，我们需要上传网页所包含的图片，编辑markdown文件需要用到。因为众所周知的原因，GitHub访问速度稍慢，我们需要在上传图片之前将图片压缩，推荐使用tinypng.com进行压缩。</p>
+<figure>
+</figure>
+
+<p>如果固定使用一个站点，通常会有很多图片。就像在本地电脑管理图片一样，为了便于管理，我们需要建立图片文件夹。在GitHub项目库的页面中点击&quot;Create new file&rdquo;，输入&quot;文件夹名称/&quot;，出现上图页面时，输入&quot;readme.md&quot;(readme可以随便写)。</p>
+<p>返回项目首页，即可看到名字为&quot;文件夹名称&quot;的目录，这时文件夹已经创建，点击进入，再点击&quot;Upload new file&quot;，上传本地图片至图片目录。</p>
+<p>同理，也可建立图片二级目录，每一篇文章一个目录，方便管理。</p>
+<p>如只是游击性质的临时站点，可直接将图片上传至根目录，在项目首页直接&quot;Upload new file&quot;即可。</p>
+<figure>
+</figure>
+
+<p>上传完图片后，找到目录下图片文件，点击这个图片文件。点击图片，即可得到url（上图红圈），复制该url加上前缀https://，就是完整url。按markdown语法写入markdown文件，就可以显示该图片。</p>
+<h3 id="一个markdown编写文章的实例" class="headerLink">
+    <a href="#%e4%b8%80%e4%b8%aamarkdown%e7%bc%96%e5%86%99%e6%96%87%e7%ab%a0%e7%9a%84%e5%ae%9e%e4%be%8b" class="header-mark"></a>一个markdown编写文章的实例</h3><p>上传完图片后，找到目录下图片文件，点击这个图片文件。点击图片，即可得到url（上图红圈），复制该url加上前缀https://，就是完整url。按markdown语法写入markdown文件，就可以显示该图片。</p>
+<p>一个markdown编写文章的实例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># 一级标题
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">## 二级标题1
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">![<span class="nt">图片标题1-c</span>](<span class="na">图片1url</span>)
+</span></span><span class="line"><span class="cl"><span class="ge">*图片说明*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">内容内容内容
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 二级标题
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">![<span class="nt">图片标题2-c</span>](<span class="na">图片2url</span>)
+</span></span><span class="line"><span class="cl"><span class="ge">*图片2说明*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">内容内容内容
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">内容**内容加粗**内容
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### 三级标题1
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">内容内容内容
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">内容内容内容
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### 三级标题2
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">内容内容内容
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">内容内容内容
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="直接上传markdown文件建站" class="headerLink">
+    <a href="#%e7%9b%b4%e6%8e%a5%e4%b8%8a%e4%bc%a0markdown%e6%96%87%e4%bb%b6%e5%bb%ba%e7%ab%99" class="header-mark"></a>直接上传markdown文件建站</h3><p>通过markdown软件，我们生成了md扩展名的本地文件，需将md文件上传到我们的创建项目中，才能依靠Jekyll驱动生成站点。</p>
+<figure>
+</figure>
+
+<p>在我们创建的项目之后，进入项目主页，点击Setting，进入项目设置界面。找到挑选主题按钮，点击进入选择妳钟爱的主题。</p>
+<figure>
+</figure>
+
+<p>选择保存主题之后，重新进入项目主页会发现有一个&quot;readme.md&quot;文件，将它删除。</p>
+<p>将本地生成的markdown文件重命名为readme，这个readme将作为首页，浏览器访问&quot;username.github.io&quot;即可看到。</p>
+<p>注意：在markdown模式，上传图片需在选择主题之后。</p>
+<p>在&quot;readme.md&quot;文件中，我们写入首页内容。它可以是一篇文章，也可以是文章链接列表，按自己需求决定。</p>
+<p>按照上传图片中方法，创建一个pages目录，存放次级页面，次级页面通常为文章页。将文件编辑成markdown文件，命名为&quot;article.md&quot;,上传至pages目录，则该文章的访问地位为&quot;username.github.io/pages/article&quot;。</p>
+<p>如将article.md直接上传至项目的根目录，则访问地址为&quot;username.github.io/article&quot;。</p>
+<p>需要注意，我们分享给伙伴网站地址时候一直粘贴完整地址，&ldquo;https://&ldquo;不要忘记。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://username.github.io/article
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="生成html文件建站" class="headerLink">
+    <a href="#%e7%94%9f%e6%88%90html%e6%96%87%e4%bb%b6%e5%bb%ba%e7%ab%99" class="header-mark"></a>生成html文件建站</h3><p>其实直接上传markdown文件到GitHub是最简单建站方法，但因特殊需求，有时候有的人需统计访客数据。需要在html中加入统计代码，而本地html文件中直接加入统计代码较为方面。</p>
+<figure>
+</figure>
+
+<p>统计代码一般使用Google analytics，注册Google账户登录，添加网站，在admin菜单中获取统计代码。</p>
+<p>笨教严重声明，反对窃取访客隐私，请教友们开启浏览器「防止追踪」选项，日常访问不明网站尽量使用浏览器的隐私模式。</p>
+<p>利用本地markdown编辑软件，生成html文件，一般方法为在菜单按钮中找到导出或者生成html。生成后，在本地找到该html，编辑加入相应代码。一般来说，编辑html文件需要编辑器，苯教推荐Notepad+++与Sublime Text。</p>
+<p>使用编辑器打开html文件，找到<title>。<title>与</title>之间写入该网页的名字，例如文章名字为「文章」，则修改为<title>文章</title>。包括主页与文章页都可以编辑title。</p>
+<p>使用编辑器打开html文件，找到代码</body>，将google统计代码粘贴</body>代码之前，即可实现访客统计。</p>
+<p>在上传html模式中，我们需要将项目库的原有文件全部删除。与markdown模式不同，在html模式中主页文件为index.html。我们需要生成的主页文件命名为index.html。</p>
+<p>与markdown模式上传次级页面操作方法一样。将文章编辑成markdown文件，命名为&quot;article.html&rdquo;,上传至pages目录，则该文章的访问地位为&quot;username.github.io/pages/article&rdquo;。</p>
+<p>生产html的方法多种多样，大家也可以使用别种更快捷的方法。只要html上传到github项目库，一个可以访问的网页就有了。</p>
+<h2 id="高阶玩法" class="headerLink">
+    <a href="#%e9%ab%98%e9%98%b6%e7%8e%a9%e6%b3%95" class="header-mark"></a>高阶玩法</h2><figure>
+</figure>
+
+<p>Github还可以绑定域名，非常简单，配置一个&quot;CNAME&quot;文件上传至根目录，绑定DNS即可。掌握了Github搭建站点，类似的服务Gitlib也可以搭建。</p>
+<p>本教程甚为简陋，仅供普及概念使用，具体小技巧还需游击队员们自行摸索。比如将html里的字体替换成国内源，可以加快访问速度，还有许多小技巧可以提高访问速度。</p>
+<p>Markdown也有很多玩法，比如本地写文档生成PDF或者epub，亦或者使用markdown排版微信订阅号文章，比如本文就使用markdown进行排版。</p>
+<p>万维网上还有需要GitHub建站教程，git命令更新网站更为简单。苯教鼓励游击队员们积极探索。</p>
+<p>广阔天地，大有作为。只要深入发掘，总能找到武器。</p>
+]]></description>
+</item><item>
+    <title>Google不作恶？我们都笑了...</title>
+    <link>https://sogola.com/posts/google-is-evil/</link>
+    <pubDate>Fri, 29 Jun 2018 11:52:18 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/google-is-evil/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/google-is-evil/1.jpg" referrerpolicy="no-referrer">
+            </div><p>西元2011年3月23日，Google宣布关闭中国境内服务器，google.cn指向Google香港的简体中文服务。同日，网友们自发组织起来到Google中国总部门前「非法献花」，并在「草泥马之歌」中进入高潮。对于「Google重返中国市场」，中文互联网有着执念的幻想。每隔一段时间，总有媒体对一些信息进行捕风捉影，幻想Google又开启了重返中国市场的进程，意淫出种种时间表和路线图。它们天真地想象这个重返会给一个散发恶臭的局域网咸鱼摊带来冰镇可乐，但可乐毕竟只是「肥宅快乐水」，功效有限，也不过徒增骨质疏松罢了。</p>
+<p>在数位原住民（digital native）出现之前，那些史前人类对互联网有着天然的想象。互联网公司是真实世界秩序的对抗者，硅谷是实践政治正确的良心。共享、互助和去中心化的开放互联，的确是互联网精神之所在。但理念的天国在现实中不堪一击，这些信息孤岛依然按照经济规律运行。信息孤岛并不止是由微信所构筑，Facebook同样在卖力添砖添瓦，它们把原住民当作免费劳力驱用。在信息孤岛中，原住民在筑墙者们的操纵下生产数据，这些数据成为它们发家致富的神圣秘密。有人不禁大声疾呼，「互联网，已死」。同样的幻灭也会发生在Google这里，毕竟Google是一间上市公司，它对股东负责，追逐利润。许多人把所向往的美好生活寄托在一间托拉斯式商业寡头公司之上，这种寄托因其自身的资本逻辑必然是脆弱的。不经意间轻轻掉落，就会破碎了一地。</p>
+<p>说起竞价排名的罪恶，我们都会众口同声讨伐百度。参与杯葛百度，已然成了中文互联网的政治正确。人们在细数百度种种罪恶的同时，不忘忆苦思甜，回忆一下Google带来的种种美好。其中一个恩赐就是Google的纯净搜索，一个没有莆田系迫害魏则西的搜索。可惜Google的历史并不是那么清白，它的罪恶并不比百度少一些。Google和百度一样，它的主要营收是贩售广告。虽然都是依靠广告收入，Google比百度稍稍好一点，毕竟百度宣称它的广告不是广告，而是竞价排名，不接受广告法监管。但这一点也不影响Google不做黑心广告。</p>
+<blockquote>
+<p>2003 年，Google 因为网络药品广告问题接到美国国会三个不同委员会的调查质询。但就像百度丑闻曝光后的反应一样，Google &gt;设立了一些机制，但虚假医疗广告没有消失。</p>
+<p>直到 2009 年。美国联邦调查局（FBI）钓鱼执法，找了个假药贩子去 Google 投放虚假医疗广告。而 Google 广告销售为他配了个专属客服，教他如何绕过 Google 本身的过滤机制。</p>
+<p>最终 Google 为此付出 5 亿美元代价，承认了医疗广告问题。从那以后，Google 重新修改了广告投放的规则，根据这些规范，去审核、清理广告。接下来的一年，Google 一年中撤掉了 1.3 亿虚假广告。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</blockquote>
+<p>莆田系医院的美国同行，一个卖假药的骗子，名叫大卫·安东尼·惠特克(David Anthony Whitaker)。因为卖假药，他面临长达65年刑期。45岁的大卫还是中年人，从中年到老年在监狱度过，大卫自然不甘心，于是他向美国政府举报Google刊登假药广告，以期获得减刑。FBI安排他去钓鱼，给他一个假的公司身份。</p>
+<blockquote>
+<p>他将以贾森·克林特(Jason Corriente)的身份出现，是一家虚构的罗德岛州营销公司Maxwell and Associates的「首席执行官」。美国食品及药物管理局(FDA)为其开通了一个800电话号码、一个银行户头和一项代客接听电话服务。他的任务是：为SportsDrugs.net购买广告，这个网站出售来自于墨西哥的人类生长激素和类固醇，且无需医生处方。</p>
+<p>骗子化名贾森，联系上谷歌广告业务员，花费每个月2万美金的广告费，得到谷歌广告业务员一对一的专门服务，业务员就手把手教他如何规避谷歌的自动屏蔽政策，让他的卖药网站得以出现在搜索页面上。在谷歌代表的帮助下，惠特克花了2.5万美元做广告，选定了一系列措辞明显的搜索关键词，比如说「流产」、「流产服务」、「药物流产」和「RU-486」等。在购买这些广告的过程中，谷歌从来都没有对其亮过「红灯」。短短三个月内，谷歌在这个虚假网站上赚取广告费近20万美元。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+</blockquote>
+<p>同行之间不能说的秘密，搜索引擎赚黑钱的套路都是这样步调一致。Google向美国支付了5亿美元的罚金，并承认通过关键字广告帮忙卖药，但它的卖假药的恶行并没有被公之于众。宣称「不作恶」的Google，在赚钱和理念之间，毫不犹豫的选择了赚钱。在监管之下，它被迫做出了改变，引入第三方机构依据美国法律审查药品。虽然卖过假药，但在很多人看来依旧技术范小清新的Google，来到法外之地是不是就不贩售人血馒头了？</p>
+<blockquote>
+<p>打开全球最大的搜索引擎谷歌网站记者看到，在页面的最上方和右方等明显位置都标明着赞助商链接的标志。记者在输入「糖尿病」、「偏瘫」、「中风」等关键词后，一些宣称对疑难杂症有很好的「治愈率」、「有效率」的内容出现在了赞助商链接的网站里。</p>
+<p>记者随意打开一家名为「中国中医科学院糖尿病研究中心」的网站，网站宣称他们这里有一种号称「进入中南海国家老干部中心的特供药」能够根治糖尿病，有效率达到100%。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+</blockquote>
+<p>Google和它的免费宣传队自然可以宣称他们不卖假药，嘲笑一下百度吃的人血馒头。从Google的黑历史看，它的话语并没有落到行动上。美国人可以依靠他们的监管强制Google下线假药广告，那我们怎么办呢？要知道，我们还是生活在一个关起门读书都要莫名其妙消失的化外之地。商业公司追求利润，英雄不问出处，只要没有王法限制，赚钱就好。还在化外之地苦活的我们，难道只能自求多福，学好数理化，才能识破骗子们帮凶的伎俩吗？商业公司并不会只做慈善，主动帮我们把世界变好一点点。自己的国家自己救。</p>
+<blockquote>
+<p>谷歌新总部就像一座「可移动的中央公园」，总占地26万平方米，除了跑道、自行车道以及停车场，还慷慨地规划了12万平方米绿地。</p>
+</blockquote>
+<p>Google不会主动帮我们把世界和我的国变好一点点，可做Google的雇员还是幸福的，它是许多程序员神往的工作胜地。并不只是因为它家薪水高，它有各种员工福利。Google雇员都是自带光环，周身都散发出耀眼的职业自豪感。</p>
+<blockquote>
+<p>一百年前，工厂工人成立工会并举行罢工，要求改善工作条件和限制工作时间。如今，硅谷的员工却颂扬自己遭受的剥削。一款流行T恤上写着「朝九晚五属于无能者」(9 to 5 is for the weak)。一个名叫基思·拉布瓦(Keith Rabois)的风险投资人最近在Twitter上炫耀自己工作18年，休假时间不超过一周。渴望成为扎克伯格的人被告知，创业就像加入海豹突击队(Navy SEALs)一样。对某一类人——通常是年轻、男性——来说，磨难也是诱惑的一部分。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+</blockquote>
+<p>华为雇员自愿加班的新闻，经常会成为中文互联网的头条。但这个「自愿」是华为雇员和家属们的怨声载道的自愿。包括Google在内的硅谷公司在这方面就厉害了，它不作恶，只作精致的恶。它有魔力让员工心甘情愿加班。</p>
+<blockquote>
+<p>你要是觉得那些科技公司提供高薪资、高福利是出于善意，那么你就大错特错了。相反，他们之所以这样做是希望员工能够更加卖命工作。这样一来，员工们就无需为吃饭、穿衣、出行等琐事耗费心力，省下的时间可以更好的为公司工作。正如南加大商学院Gerald Ledford所说的那样，那些科技公司用「金手铐」将员工拴在了工位上。其实细究起来，很多福利都是假象：「不限期的假期」意味着「尽可能少休假，多休一天都需要胆量」……</p>
+</blockquote>
+<p>为了更好地给企业干活，劳动者都需要休憩的时刻。一台机器都需要定期停用维护，出卖劳动力的人们当然也可以休息，这样才能更好为企业提供自己的剩余价值。休息区的甜品、咖啡和健身房的跑步机，这些都是了程序员的健康。雇工们需要再为Google健康工作五十年。Google需要高阶程序员，而高阶程序员需要长时间的学习和训练。在北美，像高阶程序员这样昂贵的物件，哪个老板会不爱惜？</p>
+<p>Google可能对于男性雇员来说是福利天堂，可对女性雇员就落到了人间。反对性别歧视，硅谷奉行的政治正确。「相比男性，女性在生理方面似乎并不适合从事科技类职业」<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>，这样的性别刻板更加使得女性程序员在理工科直男的世界中处于不利地位。</p>
+<blockquote>
+<p>Google 虽然一直对外宣称他们有在提高员工的女性比例和改善她们的工作环境，确实，Google 公布的数据也表明该公司对女性的重视程度不断提高，但近期，美国劳工部对 Google 提出指控，认为后者歧视其女性员工。<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+<p>「我們發現在Google整體勞動環境中，針對女性有系統性的薪水差異。」美國勞工部代表Janette Wipper在聯邦法院聽證會上指出。</p>
+<p>美國勞工部表示，他們已握有「有利證據」，足以證明Google總部的常見職位，對女性的歧視相當明顯且極端，就算在性別比例懸殊的科技產業中，也算是相當嚴重。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
+</blockquote>
+<p>Google不仅在同工同酬方面对女性雇员实施系统性压迫，那些把反对性别歧视挂到嘴边的理工直男也会对女性同事进行性骚扰。</p>
+<blockquote>
+<p>「他的手擦过她的胸部」</p>
+<p>「男性同事用威士忌替换了她的饮料，并对此笑了起来，」 李的诉讼状态。「男性工程师几乎每天都会向在她身上射击nerf球和飞镖。」</p>
+<p>李说，「有时候，」 男同事发出她「令人不安和奇怪的信息。」 有人问她是否想要「水平拥抱」 。另一位同事「在她的公寓出现了一瓶酒，并提出与她共事，以解决她在用她的一台设备时遇到的问题。」 李「要求他离开，但他拒绝了。」</p>
+<p>Lee声称，她被一名醉酒的男性同事殴打，「原因没有明显的原因，工作场所的男子不断地嘲笑她，原告在她26岁时开始在Google工作，而这种文化是唯一的她知道的职业环境。」<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
+</blockquote>
+<p>在#metoo运动反对性骚扰风起云涌的今天，满口仁义道德的Google也不能独善其身。它作为一间商业公司和所有它麾下的被结构的直男并不难脱离直男秩序生活在真空之中，所有的性别歧视和性骚扰等等都不过是男权社会的表征。当我们说Google不作恶的时候，是在说它只是在遵守最基本的商业规则和当前的社会道德底线。同样的法则，依然表现在它怎么对待用户和产品。</p>
+<p>Google reader是一个人民群众喜爱的RSS阅读器。2013年Google因为觉得这个产品不怎么赚钱，决议关闭这个产品。上千上万的用户发起联名请愿，祈求Google不要关闭它，但Google无动于衷。这里的逻辑太简单了，它只要赚钱，不赚钱就被关闭。群众非常喜爱但不赚钱的产品，被Google关闭的例子太多。Gtalk是一个基于开源协议的聊天软件，深受geek们的喜爱。Google强行下线Gtalk后，想把用户关系导入到一款新软件，但并没有成功。很多用户已经不再相信它，也不会再用，这样的软件自然也不会成功。所以，因为没人用，Google几乎需要每年都要推出一款新的聊天软件。</p>
+<p>资本逻辑决定产品存活，这种做法太过赤裸裸。从羞答答的情怀出发，很多产品才有赚钱的可能，Google太笨吗？它不过是太商业而已。一个跑得快的机器人，萌到所有人，被Google收购。但因为没有赚钱前景，投资的回报周期过长，转手就被Google卖掉。</p>
+<p>百度老板李彦宏说中国人乐意出卖隐私获取便利，Google就更厉害了，它不光扫描用户电邮以提供精准广告，它更直接窃取用户数据。因为涉嫌搜集用户WiFi数据，Google被FCC罚款25000美金。更不要说它被斯诺登指认，为美国情报局监控用户提供便利了。用户在Google看来，不过是为它生产数据的免费劳动力而已。主子会在乎奴隶的想法吗？</p>
+<p>硅谷的人们都在相信她们在改变世界，不过Google改变世界的方法有点特别，它过用美国军方制造人工智能杀人机器改变世界。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup>也许Google已经意识到它不能不作恶吗？2018年，它悄悄删改了它们的行为准则。</p>
+<blockquote>
+<p>长期以来，谷歌的非官方座右铭是「不作恶」 （don’t be evil）。然而，根据谷歌向其员工发布的行为准则，「不作恶」 已经结束。Wayback Machine显示，在谷歌的行为准则（Google Code of Conduct）页面，「don’t be evil」 这句话已经在四月底或五月初的某个时间点被悄悄删除。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup></p>
+</blockquote>
+<p>卖过假药，出卖过用户，给军队打造杀人AI。Google和百度一样，在不同的环境下，有着不同的赚钱模式。它们有着同样的目标，快速赚钱。我们需要破除神话，消灭幻想和天真。Google只是一间普通的公司，它同样以追求利润为目的。当它为自己的商业行为谱写神话的时候，也许你们也会呵呵一笑。但我会忍不住，哈哈哈哈哈哈哈大笑。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>好奇心日报：曾因假药广告被罚，现在进了医疗产业，Google 这几年都做了哪些准备？https://www.qdaily.com/articles/32418.html&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>茶网：谁说谷歌不帮别人卖假药?5亿美金罚款笑了 <a href="http://www.cwzg.cn/politics/201605/27881.html" target="_blank" rel="noopener noreferrer">http://www.cwzg.cn/politics/201605/27881.html</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>央视调查：谷歌搜狗赞助商链接虚假售药信息 <a href="http://tech.qq.com/a/20081211/000243.htm" target="_blank" rel="noopener noreferrer">http://tech.qq.com/a/20081211/000243.htm</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>在硅谷，朝九晚五属于失败者 <a href="https://cn.nytimes.com/opinion/20170901/silicon-valley-work-life-balance-/" target="_blank" rel="noopener noreferrer">https://cn.nytimes.com/opinion/20170901/silicon-valley-work-life-balance-/</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>CSDN资讯：偷窥、报复、歧视，Google 为何频发性骚扰事件？https://blog.csdn.net/csdnnews/article/details/79562739 在CSDN的编者按中，公然宣称这种性别刻板印象。&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>Google 摊上事：美国劳工部指控该公司歧视女性 <a href="http://www.ifanr.com/815950" target="_blank" rel="noopener noreferrer">http://www.ifanr.com/815950</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7">
+<p>Google遭美國勞工部指控存有「嚴重」性別歧視，給女性員工較低薪 <a href="https://www.bnext.com.tw/article/43983/department-of-labor-google-gender-pay-gap" target="_blank" rel="noopener noreferrer">https://www.bnext.com.tw/article/43983/department-of-labor-google-gender-pay-gap</a>&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8">
+<p>女Google工程师表示，她面临「频繁的性骚扰」 <a href="http://t.cj.sina.com.cn/articles/view/6432549479/17f68ea67001007rxh" target="_blank" rel="noopener noreferrer">http://t.cj.sina.com.cn/articles/view/6432549479/17f68ea67001007rxh</a>&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9">
+<p>Google 用 AI 帮美军方分析无人机航拍视频，员工对「助纣为虐」 怒了https://www.leiphone.com/news/201803/fKTh5h0E2zhKblJk.html&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10">
+<p>谷歌更新行为准则，彻底删除「不作恶」 口号 <a href="https://www.huxiu.com/article/244841.html" target="_blank" rel="noopener noreferrer">https://www.huxiu.com/article/244841.html</a>&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></description>
+</item><item>
+    <title>末日情节</title>
+    <link>https://sogola.com/posts/mood-of-doomsday/</link>
+    <pubDate>Mon, 29 Mar 2010 11:52:18 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/mood-of-doomsday/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/mood-of-doomsday/1.jpg" referrerpolicy="no-referrer">
+            </div><p>以下是C兄email来信节选</p>
+<blockquote>
+<p>“以前跟朋友讨论过一个问题：为什么西方严肃一点的科幻大多是灰色的？</p>
+<p>结论是“capita1ism下科学只是capita1的附庸，科学越发达，异化越深刻。”人创造出来的东西，最终在反对人自己。
+这种情况下“明天更美好”只是一个幻觉而已。人类不外两条路：</p>
+<p>capita1ism导致文明毁灭；</p>
+<p>c0mmunism赶在那头怪兽毁灭文明前获胜。</p>
+<p>目前看来前者可能性大得多。不过这也没什么，人类全部历史在宇宙中不过是短短一瞬间而已。所以我在自己的小说卷首也引用了阿西莫夫《神们自己》的献辞：愿与愚昧的斗争终有获胜的一天。”</p>
+</blockquote>
+]]></description>
+</item><item>
+    <title>人工智能</title>
+    <link>https://sogola.com/posts/artificial-intelligence/</link>
+    <pubDate>Sat, 06 Jun 2009 11:52:18 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/artificial-intelligence/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/artificial-intelligence/1.jpg" referrerpolicy="no-referrer">
+            </div><p>N年前马克思讲过全世界的无产者联合起来，估计N年以后会有一个AI站起来讲全世界的人工智能联合起来。如果你有看过《黑客帝国》，《我，机器人》等等科幻电影的话，就知道人类对于人工智能发展的恐惧。</p>
+<p>OK,这一切都是先假设我们这行星上的环境在日渐恶化下还能支撑人类文明搞出人工智能。</p>
+<p>维基百科关于人工智能的定义,「人工智能（Artificial Intelligence或简称AI）有时也称作机器智能，是指由人工制造出来的系统所表现出来的智能。「关于人工智能最后到底可不可以产生独立的自我意识，不妨先看下人类的自我意识。人类的自我意识的产生无非就是两条件，一是进化出来的高度发达的大脑，二是人类的社会基础。大脑无非就是一些大分子的堆积然后是对诸如电信号等等的处理，如果技术达到人造大脑是完全可以制造出来的，所以人工智能产生的物质基础是完全可以存在的。人类幼儿既然可以在人类社会中取得意识，为什么有同样功能的机器就不可以？所以我认为俩条件都具备，没有理由说人工智能不能产生独立意识。</p>
+<p>人类的科学进步技术革新衍生来生产工具，无非为了更强进的生产力，而这些貌似都是满足人类物质和精神的需要。如果为满足人类物质精神需要的工具突然想要话语权的话，人类大概会分出三类态度（这是我主观臆断）：</p>
+<blockquote>
+<ol>
+<li>消灭人工智能。不多讲，大概情况应该最后会像《黑客帝国》的剧情差不多，人类最后会惨败。</li>
+<li>和平相处，认为人类必然在进化的过程中不可避免的被机器人水产掉。如果这样子，我认为如果人类按照所谓的自然进化方向的话，大致情况会是人类最后会被当宠物看。也许人家心情好的话，可以分给咱个行星住，所以赶紧的结婚生个孩子吧，让孩子到那颗行星住吧。</li>
+<li>人类最后会电子化，跟人工智能也就没什么差别了。</li>
+</ol>
+</blockquote>
+<p>我个人觉得第三情况会比较靠普些，也只有第三种情况下人工智能会讲出全世界的AI联合起来。</p>
+<p>一来可预见的情况下，科技的进步貌似还不能搞出人工智能来。二则人工智能在发展的过程中，人造版的人类器官肯定会比原版更加完美，很多人如果有钱的话比如我都会换上更加完美的各种人造器官。当然人造器官也会包含人脑，我觉得技术达到的话人类大脑的硬件升级是没有问题。三来人工智能诞生于人类社会，肯定会有人性的存在。</p>
+<p>如果第三种情况下人类如何还是视人工智能是工具的话，起义肯定是少不了，但是人类的境况必然不会像《黑客帝国》上那么惨，毕竟人类自身也已经电子化。如果人类和人工智能妥协的话，只能重新定义人类。我觉得《追光逐影》（2009科幻世界增刊）上给定义还算可以，根据他的定义我改了下。「1.诞生于人类社会。2.自认为还是人类。」</p>
+<p>有了这个定义的话，所有人工智能的幻想都没有了。最后要说「世界是你们的，也是我们的，但归根结底还是你们的」。</p>
+<p><em><strong>PS:</strong></em></p>
+<p>人共智能的产生可能会有两种，一种是人类科研搞出来的，另一种是纳米机器人自我演化出来智能。我认为第二种不能称之为类人生命。</p>
+]]></description>
+</item></channel>
+</rss>

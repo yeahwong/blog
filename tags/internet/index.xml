@@ -1,0 +1,113 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>internet - Tag - 王小嗨的不老歌</title>
+        <link>https://sogola.com/tags/internet/</link>
+        <description>internet - Tag - 王小嗨的不老歌</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>high@sogola.com (王小嗨)</managingEditor>
+            <webMaster>high@sogola.com (王小嗨)</webMaster><lastBuildDate>Mon, 25 Feb 2019 11:52:18 &#43;0800</lastBuildDate><atom:link href="https://sogola.com/tags/internet/" rel="self" type="application/rss+xml" /><item>
+    <title>如果不知道这些，我可能就上了个「假网」</title>
+    <link>https://sogola.com/posts/learn-how-to-surf-the-internet/</link>
+    <pubDate>Mon, 25 Feb 2019 11:52:18 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/learn-how-to-surf-the-internet/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/learn-how-to-surf-the-internet/1.jpg" referrerpolicy="no-referrer">
+            </div><p>2016年4月12日，魏则西不治身亡，他的死激起全网愤怒。</p>
+<p>2014年4月，魏则西检查出滑膜肉瘤，这种病目前并没有有效疗法，没有治愈的希望。</p>
+<p>2014年下半年，魏则西通过百度搜索找到排名领先的北京武警二院，曾4次前往那里进行治疗，花光了家中所有积蓄，还跟亲戚朋友借了不少钱。</p>
+<p>前后花了20多万，钱花了，却没能阻止肿瘤扩散。</p>
+<p>一个青年的死亡，让许多原本隐藏在阴暗处的秘密被放置到阳光之下，闪瞎了许多人的眼。</p>
+<p>原来商家花钱就可以提高在搜索结果里的排名，原来三甲医院的科室也能被承包出去，原来「央视报道的好医院」并不是那么好。</p>
+<h2 id="某度变好了吗" class="headerLink">
+    <a href="#%e6%9f%90%e5%ba%a6%e5%8f%98%e5%a5%bd%e4%ba%86%e5%90%97" class="header-mark"></a>某度变好了吗？</h2><p>「魏则西事件」已经过去快三年了，百度变好了吗？</p>
+<p>前不久，资深媒体人方可成在《搜索引擎百度已死》一文中批判百度搜索结果中频繁出现「百家号」，而「百家号」中充斥着假新闻和谣言，百度成了「洋葱新闻」集散地。</p>
+<p>方可成在文章里无不悲愤地说：「偌大的中文互联网竟已堕落到如此境地，连一个搜索引擎都没有了。」</p>
+<p>万万没想到，几天后，面对舆论压力，百度居然把资讯搜索结果界面上的域名给隐藏了。蛤？小样，你以为你穿了个马甲，我就不知道你还是「百家号」？</p>
+<p>来到城市打工，我们加班多，工资又少，平时呢我们只好躺在上下铺上玩手机杀时间，好麻醉一下被资本家折磨的苦痛身体。玩游戏，看新闻，找资讯，那肯定少不了。</p>
+<p>那么我们应该如何从互联网上获取资讯，又不上当呢？或许我们应先了解一下万维网和浏览器。</p>
+<h2 id="万维网与浏览器" class="headerLink">
+    <a href="#%e4%b8%87%e7%bb%b4%e7%bd%91%e4%b8%8e%e6%b5%8f%e8%a7%88%e5%99%a8" class="header-mark"></a>万维网与浏览器</h2><p>我们常常说的国际互联网，始于1969年的美国，又称因特网。最开始，它只是一个军方项目，后来才发展为民用项目。目前，因特网是国际上最大的互联网。除了我们熟悉的国际互联网，还有朝鲜的「光明网」。</p>
+<p>1989年，英国科学家蒂姆·伯纳斯-李发明了万维网，我们可以把万维网理解为互联网的一个应用。</p>
+<p>不论我们用手机还是用电脑来看视频网站、用搜索引擎找信息，都离不开万维网。网页加浏览器，极大改变了现代人的生活，它们也是互联网最基础的服务，我们看微信文章都基于万维网技术。</p>
+<p>这么厉害的东西，蒂姆居然没有申请专利，无私地把发明献给了全人类。在2012年伦敦奥运会开幕式上，为了表达敬意，专门设置了「感谢蒂姆」环节。</p>
+<p>虽然平时天天刷手机、打电脑，但有些朋友可能还不知道浏览器有哪些？</p>
+<h2 id="电脑或者手机一般系统内置浏览器" class="headerLink">
+    <a href="#%e7%94%b5%e8%84%91%e6%88%96%e8%80%85%e6%89%8b%e6%9c%ba%e4%b8%80%e8%88%ac%e7%b3%bb%e7%bb%9f%e5%86%85%e7%bd%ae%e6%b5%8f%e8%a7%88%e5%99%a8" class="header-mark"></a>电脑或者手机，一般系统内置浏览器。</h2><p>常见的 Windows 电脑一般都自带了 IE 或 Microsoft Edge 浏览器，想使用其他浏览器需要用户自行安装。许多网吧里的电脑，又或者比较常见的盗版 Windows 系统，浏览器很多都是360浏览器、QQ浏览器等。我们推荐使用 Firefox（火狐浏览器）或者 Google Chrome（谷歌浏览器）。</p>
+<p>Android（安卓）手机系统内置浏览器，一般会标注「浏览器」字样，除系统内置浏览器，我们也可以自行下载安装手机浏览器；Apple（苹果公司）的 Mac 或 iPhone 内置浏览器为 Safari ，图标长得有点像指南针。</p>
+<p>那么，怎样使用浏览器打开网页呢？</p>
+<p>其实很简单，找到浏览器图标，打开浏览器应用，在地址栏上输入网址就可以打开。</p>
+<p>在电脑上，地址栏一般都是在浏览器界面顶部的大框，选中后就可以键入网址，回车键按下去，就可以打开。</p>
+<p>在手机上，地址栏一般也是屏幕的上部的一个框（上图的「大众定评即将消失」处）。</p>
+<h2 id="域名与网址" class="headerLink">
+    <a href="#%e5%9f%9f%e5%90%8d%e4%b8%8e%e7%bd%91%e5%9d%80" class="header-mark"></a>域名与网址</h2><p>那么网址又是什么鬼？</p>
+<p>网址（url），就是在浏览器地址栏输入的一长串字符，比如「王小嗨的不老歌」首页的网址如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.sogola.com/ 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就像我们收快递都有一个地址一样，每个网页也都有一个互联网地址。浏览器就好像哆啦A梦的时光机，你要输入一个地址，它才能带你过去。</p>
+<p>说到网址，不得不说一下域名这个概念。</p>
+<p>互联网的网页并不是魔法产生，也不是石头蹦出来的，而是程序员通宵熬夜写出来的。它们由一些文件组成，就好像我们手机存储的图片一样，只是网页文件都是存储在远方的电脑上。</p>
+<p>为了用户可以通过浏览器访问到它们，每一台远方的主机都有一个独一无二的数字编号，就好像地图上经纬坐标一样。</p>
+<p>可数字很难记啊，我连电话号码都背不下，这要怎么办？这时候域名就排上用场了，经纬坐标你记不住，可以记街道和门牌啊。</p>
+<p>比如，「王小嗨的不老歌」的域名是「sogola.com」，「腾讯」的域名是「qq.com」。</p>
+<p>域名前加上传输协议信息及主机类型信息就构成了网址(URL），例如「王小嗨的不老歌」的www主机的URL如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.sogola.com/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="靠谱信息哪里来" class="headerLink">
+    <a href="#%e9%9d%a0%e8%b0%b1%e4%bf%a1%e6%81%af%e5%93%aa%e9%87%8c%e6%9d%a5" class="header-mark"></a>靠谱信息哪里来？</h2><p>域名太重要了，它可以帮我们分辨一个网址是正规网址还是诈骗网址。</p>
+<p>比如我们手机经常收到各种垃圾短信，里面很多都会说你中奖腾讯大奖了，给你网址，让你输入QQ密码。</p>
+<p>如果它给出的领奖网址不是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">***.qq.com/***
+</span></span><span class="line"><span class="cl">（***是代替符号，可长可短）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">***.qq.com.***/***
+</span></span><span class="line"><span class="cl">（***是代替符号，可长可短）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者根本没有&quot;qq.com&quot;字样，那么我们可以断定这是诈骗网站无疑。</p>
+<p>因为一个网站的域名一般不会随意变动，所以我们可以根据域名判断一网站的可信度，找到可信来源。而域名的正确与否，也可以透过其他途径佐证。</p>
+<p>你知道网址，才能访问网页，就好比快递员知道你的地址才能送货一样。那么，假如我不知道网址，但是想找招聘网站怎么办？</p>
+<p>这就需要搜索引擎了，比如Google、yahoo、bing、百度、搜狗、360搜索，等等。</p>
+<p>在浏览器地址栏，输入搜索引擎网址，打开网页后，在搜索框内就可以搜索。想找招聘，就在招聘栏键入「招聘」，回车就可以得到结果。</p>
+<p>实际上，搜索引擎就是个实时更新的地址簿。只是搜索引擎大都是商业公司开发，受资本控制，它不可能给你完全可靠的结果，我们需要自己学会分辨搜索结果的真伪，特别要注意识别域名。</p>
+<h2 id="活用移动互联网" class="headerLink">
+    <a href="#%e6%b4%bb%e7%94%a8%e7%a7%bb%e5%8a%a8%e4%ba%92%e8%81%94%e7%bd%91" class="header-mark"></a>活用移动互联网</h2><p>随着智能手机越来越便宜，人们花几百块就可以买一部，加之手机上网费用也越来越便宜，移动互联网都有超过传统互联网的势头。</p>
+<p>不过万维网的发明人蒂姆·伯纳斯-李警告公众：互联网正在走向割据、封闭、充满中央集权的结构。本来开放互联的网络世界，如今支离破碎。</p>
+<p>手机屏幕就那么点，如果拿手指头一个个字母键入一大长串网址，那就很费劲。于是，在传统互联网时代，人们使用浏览器浏览各种网页，而在移动互联网时代，人们主要使用各类APP，比如微信、抖音、淘宝、今日头条，等等。</p>
+<p>而这样的移动互联网也成了封建割据的争霸战场，不开放，不互联。</p>
+<p>APP肆意横行的时代，让搜索引擎检索互联网内容更加艰难了，更可恶的是它们还恶意阻止互联互通，完全背离互联网的精神。对于我们普通用户来说，使用体验就更加不友好了。</p>
+<p>对于普通用户来说，下载各类APP，应尽量从官方网站下载，或者从靠谱应用商店下载，只有这样，才能避免安了假软件，手机中了病毒。</p>
+<p>面对各类APP制造的层层阻隔，我们不仅要主动使用浏览器（支持开放的互联网），分辨真假网址，还要利用各种APP内置的审核机制查看信息源，比如微信就有「主体信息」认证功能。</p>
+<p>在微信订阅号中，点击订阅号头像，再点击右上方三个点，最后点击「更多资料」，就可查看订阅号主体信息。</p>
+<p>如果一个订阅号声称自己是新华社，又或者是权威机构，那么我们查看一下它的企业认证信息，再用企业查询系统查看一下认证，就可以很容易分辨真假美猴王了。</p>
+<p>（还有一个小技巧，在微信中想要看到当前访问页面的域名，可以点击右上角的三个点）</p>
+<p>虚假信息泛滥的时代，不管是看新闻看八卦，还是求医看病找工作，都要分辨信息源，请勿搜索引擎直接搜一下就完事，不然被卖了还要给人数钱。</p>
+<p>我们应拿回分辨互联网真假信息的权力，一起快乐地冲浪。</p>
+]]></description>
+</item></channel>
+</rss>
