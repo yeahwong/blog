@@ -4,7 +4,264 @@
         <link>https://sogola.com/categories/toys/</link>
         <description>Toys - Category - 王小嗨的不老歌</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>high@sogola.com (王小嗨)</managingEditor>
-            <webMaster>high@sogola.com (王小嗨)</webMaster><lastBuildDate>Sun, 31 Dec 2023 19:35:00 &#43;0800</lastBuildDate><atom:link href="https://sogola.com/categories/toys/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>high@sogola.com (王小嗨)</webMaster><lastBuildDate>Tue, 16 Jan 2024 07:52:00 &#43;0800</lastBuildDate><atom:link href="https://sogola.com/categories/toys/" rel="self" type="application/rss+xml" /><item>
+    <title>網路受限下部署Fediverse實例GoToSocial</title>
+    <link>https://sogola.com/posts/how-to-use-gotosocial/</link>
+    <pubDate>Tue, 16 Jan 2024 07:52:00 &#43;0800</pubDate><author>
+        <name>王小嗨</name>
+    </author><guid>https://sogola.com/posts/how-to-use-gotosocial/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/how-to-use-gotosocial/1.png" referrerpolicy="no-referrer">
+            </div><h2 id="緣起" class="headerLink">
+    <a href="#%e7%b7%a3%e8%b5%b7" class="header-mark"></a>緣起</h2><p>帝國的旗幟隨風飄揚，新皇冉冉升起。盆地到雪山，稻田到工廠，白天到黑夜，祂的身影籠罩整片大地。城牆內外，禮樂崩壞，舊有秩序轟然倒塌，新人尚未現身。人們畏懼開口，每個人頭上都戴著枷鎖，自我放逐與驅逐他人成為日常生活。</p>
+<p>言說，在何處言說，業已成為現代臣民的必修課。不消說封閉的社交網路的書報審查，長篇累牘的賣身契自不待言，有誰會甘願淪為賽博農奴，不知疲倦地為科技資本寡頭生產數據。那麼，我們何以為家？從馬一龍的肆意妄為，再到扎克伯格的生意經，互聯互通的聯邦社交網路似乎成為無奈之選。</p>
+<p>在聯邦宇宙之中，一旦選擇加入一個實例，即意味著簽下契約，我們的帳戶隨時面臨管理者之鎚，與此同時，還要時刻擔心站點倒閉造成的數據丟失。相對應地，倘如對實例進行自託管，那只需追尋內心，同時承擔相應的風險。</p>
+<p>於城牆之內，網路被阻擋是對臣民的恩澤。誠如口罩可以成為主權者的強制，但也讓人們有了戴口罩規避監視器的權利，網路受限使得臣民被迫武裝在賽博空間。有了武器，借助 <a href="https://www.cloudflare.com/products/tunnel/" target="_blank" rel="noopener noreferrer">Cloudflare Tunnel</a>，我們能夠輕鬆地在受限地區的家庭網路中部署 <a href="https://gotosocial.org/" target="_blank" rel="noopener noreferrer">GoToSocial</a>，在聯邦宇宙中互通交流。</p>
+<p>GoToSocial 是一個使用 Golang 編寫的 ActivityPub 社交網絡伺服器。至於為什麼選擇 GoToSocial？因為它需要的資源足夠少，單板機足以運行，且開發者較為活躍。我的實例使用 <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">docker</a> 部署在香橙派3B，那我們開始吧。</p>
+<h2 id="部署" class="headerLink">
+    <a href="#%e9%83%a8%e7%bd%b2" class="header-mark"></a>部署</h2><figure>
+</figure>
+
+<p>在網路受限的情況下，例如無法直接訪問 <a href="https://joinmastodon.org/" target="_blank" rel="noopener noreferrer">Mastodon</a> 的官方實例 <a href="https://mastodon.social/" target="_blank" rel="noopener noreferrer">mastodon.social</a>，我們需要依賴 Clash 作為跳板，以建立到聯邦宇宙的連接。同時，由於網路受限，無法獲得公網 IP，因此我們必須借助 Cloudflare Tunnel，將 GoToSocial 實例暴露在公共網絡上，以供訪問。</p>
+<h3 id="安裝-docker部署-clash" class="headerLink">
+    <a href="#%e5%ae%89%e8%a3%9d-docker%e9%83%a8%e7%bd%b2-clash" class="header-mark"></a>安裝 docker，部署 Clash</h3><p>由此可知，部署 clash 是首要步驟。要部署 clash 容器，首先要在系統上安裝 docker。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -fsSL https://get.docker.com -o get-docker.sh
+</span></span><span class="line"><span class="cl">sh get-docker.sh --mirror Aliyun
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用以上命令，安裝 docker，並指定鏡像源為 Aliyun。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker network create -d macvlan \
+</span></span><span class="line"><span class="cl">  --subnet=your_subnet/24 \
+</span></span><span class="line"><span class="cl">  --gateway=your_router_ip \
+</span></span><span class="line"><span class="cl">  -o parent=your_eth_name \
+</span></span><span class="line"><span class="cl">  macvlan
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用以上命令，在docker中創建一個 macvlan 网络，clash 容器連結到這個網路後，使用與主路由相同的網段。其中，parent 為設備的以太網網卡名稱。設置路由器 ip 為 192.168.1.1，以上的 subnet 為 192.168.1.0/24， gateway 為  192.168.1.1。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run -d \
+</span></span><span class="line"><span class="cl">  --name clash \
+</span></span><span class="line"><span class="cl">  -e USER_ID=1000 \
+</span></span><span class="line"><span class="cl">  -e GROUP_ID=1000 \
+</span></span><span class="line"><span class="cl">  -v ~/docker/clash/config/proxy.yaml:/root/.config/clash/config.yaml \
+</span></span><span class="line"><span class="cl">  -v ~/docker/clash/ui:/ui \
+</span></span><span class="line"><span class="cl">  --restart=always \
+</span></span><span class="line"><span class="cl">  --network=macvlan \
+</span></span><span class="line"><span class="cl">  --ip=your_clash_ip \
+</span></span><span class="line"><span class="cl">  --privileged \
+</span></span><span class="line"><span class="cl">  --device=/dev/net/tun \
+</span></span><span class="line"><span class="cl">  dreamacro/clash-premium:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用以上命令，部署 clash 容器。其中詳細配置，請參照文章「<a href="https://haoyu.love/blog1412.html" target="_blank" rel="noopener noreferrer">Docker Clash 旁路由网关模式透明代理</a>」，這裡不再贅述。</p>
+<h3 id="部署-gotosocial" class="headerLink">
+    <a href="#%e9%83%a8%e7%bd%b2-gotosocial" class="header-mark"></a>部署 GoToSocial</h3><p>完成 clash 的部署後，下載 GoToSocial 的配置文件 <a href="https://github.com/superseriousbusiness/gotosocial/blob/main/example/config.yaml" target="_blank" rel="noopener noreferrer">config.yaml</a>，修改以下內容。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Both allow-ips and block-ips default to an empty array.
+</span></span><span class="line"><span class="cl">  allow-ips: [&#34;your_device_ip/32&#34;]
+</span></span><span class="line"><span class="cl">  block-ips: []
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成修改後，將 config.yaml 拷貝至 <code>~/docker/gotosocial/</code>。其中 <code>your_device_ip</code> 為妳的伺服器在內網的IP地址。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run -d \
+</span></span><span class="line"><span class="cl">  --name gotosocial \
+</span></span><span class="line"><span class="cl">  -p your_gotosocial_port:8080 \
+</span></span><span class="line"><span class="cl">  -e GTS_HOST=your_gts_domain_name \
+</span></span><span class="line"><span class="cl">  -e GTS_DB_TYPE=sqlite \
+</span></span><span class="line"><span class="cl">  -e GTS_DB_ADDRESS=/gotosocial/storage/sqlite.db \
+</span></span><span class="line"><span class="cl">  -e GTS_LETSENCRYPT_ENABLED=false \
+</span></span><span class="line"><span class="cl">  -e TZ=Asia/Taipei \
+</span></span><span class="line"><span class="cl">  -e USER_ID=1000 \
+</span></span><span class="line"><span class="cl">  -e GROUP_ID=1000 \
+</span></span><span class="line"><span class="cl">  -e HTTP_PROXY=socks5://your_clash_ip:your_clash_port \
+</span></span><span class="line"><span class="cl">  -e HTTPS_PROXY=socks5://your_clash_ip:your_clash_port \
+</span></span><span class="line"><span class="cl">  -v ~/docker/gotosocial/data:/gotosocial/storage \
+</span></span><span class="line"><span class="cl">  -v ~/docker/gotosocial/config.yaml:/gotosocial/config.yaml \
+</span></span><span class="line"><span class="cl">  --restart=always \
+</span></span><span class="line"><span class="cl">  superseriousbusiness/gotosocial:latest \
+</span></span><span class="line"><span class="cl">  /gotosocial --config-path ./config.yaml server start
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>運行以上命令，部署 GoToSocial。其中 <code>GTS_HOST</code> 為 GoToSocial 的域名，這裡需要將域名添加至 Cloudflare，並域名服務商處將 DNS 修改為 Cloudflare 的 DNS。接下來，我們只需要將 GoToSocial 的本地端口連結至 Cloudflare Tunnel，就萬事大吉了。</p>
+<h3 id="部署-cloudflare-tunnel" class="headerLink">
+    <a href="#%e9%83%a8%e7%bd%b2-cloudflare-tunnel" class="header-mark"></a>部署 Cloudflare Tunnel</h3><p>要使用 Cloudflare Tunnel 服務，首先要登錄 Cloudflare，註冊 <a href="https://www.cloudflare.com/zero-trust/" target="_blank" rel="noopener noreferrer">Zero Trust</a>，選擇免費套餐即可。</p>
+<figure>
+</figure>
+
+<p>完成註冊，進入 Zero Trust 後台，選擇 Tunnels 菜單，Create a tunnel （新建一個隧道）。</p>
+<figure>
+</figure>
+
+<p>完成創建後，進入以上頁面，選擇 Docker，其中 <code>--token</code> 之後的字串為 <code>your_token</code>，請勿將該字串洩漏給任何第三方，以免相關服務被劫持。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run -d \
+</span></span><span class="line"><span class="cl">  --name cloudflare_tunnel \
+</span></span><span class="line"><span class="cl">  -e USER_ID=1000 \
+</span></span><span class="line"><span class="cl">  -e GROUP_ID=1000 \
+</span></span><span class="line"><span class="cl">  -e HTTP_PROXY=socks5://your_clash_ip:your_clash_port \
+</span></span><span class="line"><span class="cl">  -e HTTPS_PROXY=socks5://your_clash_ip:your_clash_port \
+</span></span><span class="line"><span class="cl">  --restart=always \
+</span></span><span class="line"><span class="cl">  cloudflare/cloudflared:latest-arm64 tunnel --no-autoupdate \
+</span></span><span class="line"><span class="cl">  run --token your_token
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>獲得 <code>your_token</code> 之後，使用以上命令部署 Cloudflare Tunnel。</p>
+<figure>
+</figure>
+
+<p>回到 Cloudflare Tunnel 的後台，返回至隧道列表，進入至指定隧道的配置頁面。選擇公開服務，點擊增加一個新的公網域名。</p>
+<figure>
+</figure>
+
+<p>於 Subdomain 初寫入想要的二級域名，亦可不寫；於 Domain 初選擇之前添加的域名；於 Type 初選擇 HTTP；於 URL 寫入 <code>your_device_ip:your_gotosocial_port</code>。</p>
+<p>至此，我們部署已完成，若如無意外，我們的 GoToSocial 已進入聯邦宇宙。</p>
+<h2 id="用戶設置與使用" class="headerLink">
+    <a href="#%e7%94%a8%e6%88%b6%e8%a8%ad%e7%bd%ae%e8%88%87%e4%bd%bf%e7%94%a8" class="header-mark"></a>用戶設置與使用</h2><h3 id="設置" class="headerLink">
+    <a href="#%e8%a8%ad%e7%bd%ae" class="header-mark"></a>設置</h3><p>日前，GoToSocial 並無完善的用戶管理頁面，需要使用命令行來管理用戶。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker exec -it gotosocial \
+</span></span><span class="line"><span class="cl">  /gotosocial/gotosocial admin account create \
+</span></span><span class="line"><span class="cl">  --username your_username \
+</span></span><span class="line"><span class="cl">  --email your_email \
+</span></span><span class="line"><span class="cl">  --password &#39;your_password&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用以上命令，創建一個用戶。完成用戶創建後，可以登錄 <code>your_domain_name/admin</code>，進行一些必要之用戶設置，比如暱稱、頭像等。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker exec -it your_container_name \
+</span></span><span class="line"><span class="cl">  /gotosocial/gotosocial admin account promote \
+</span></span><span class="line"><span class="cl">  --username your_username
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用以上命令，將一個用戶提升至管理員。使用管理員帳戶登錄 <code>your_domain_name/admin</code>，可以進行一些全站設置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker exec -it your_container_name \
+</span></span><span class="line"><span class="cl">  /gotosocial/gotosocial admin account demote \
+</span></span><span class="line"><span class="cl">  --username your_username
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用以上命令，將一個管理員降級至普通用戶。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker exec -it your_container_name \
+</span></span><span class="line"><span class="cl">  /gotosocial/gotosocial admin account password \
+</span></span><span class="line"><span class="cl">  --username your_username \
+</span></span><span class="line"><span class="cl">  --password your_new_password
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">使用以上命令，修改某個用戶的密碼。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8" class="header-mark"></a>使用</h3><p>日前，GoToSocial 亦無一個網頁來進行內容發布與瀏覽，但它可以兼容 Mastodon 的一些客戶端，可訪問 <a href="https://joinmastodon.org/apps" target="_blank" rel="noopener noreferrer">Mastodon App</a> 列表查看更多。</p>
+<p>我的聯邦宇宙帳戶為 <code>@yeahwong@hi.sogo.la</code>，歡迎關注。</p>
+<h2 id="參考資料" class="headerLink">
+    <a href="#%e5%8f%83%e8%80%83%e8%b3%87%e6%96%99" class="header-mark"></a>參考資料</h2><ul>
+<li>
+<p><a href="https://docs.gotosocial.org/en/latest/" target="_blank" rel="noopener noreferrer">GoToSocial Documentation</a></p>
+</li>
+<li>
+<p><a href="https://tourcoder.com/how-to-use-gotosocial/" target="_blank" rel="noopener noreferrer">搭建自己的节点之 Gotosocial 篇</a></p>
+</li>
+</ul>
+]]></description>
+</item><item>
     <title>香橙派3B：丐版HomeLab之良品</title>
     <link>https://sogola.com/posts/orangepi-3b-as-homelab/</link>
     <pubDate>Sun, 31 Dec 2023 19:35:00 &#43;0800</pubDate><author>
