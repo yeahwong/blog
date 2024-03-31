@@ -9,7 +9,7 @@
 
 在聯邦宇宙之中，一旦選擇加入一個實例，即意味著簽下契約，我們的帳戶隨時面臨管理者之鎚，與此同時，還要時刻擔心站點倒閉造成的數據丟失。相對應地，倘如對實例進行自託管，那只需追尋內心，同時承擔相應的風險。
 
-於城牆之內，網路被阻擋是對臣民的恩澤。誠如口罩可以成為主權者的強制，但也讓人們有了戴口罩規避監視器的權利，網路受限使得臣民被迫武裝在賽博空間。有了武器，借助 [Cloudflare Tunnel](https://www.cloudflare.com/products/tunnel/)，我們能夠輕鬆地在受限地區的家庭網路中部署 [GoToSocial](https://gotosocial.org/)，在聯邦宇宙中互通交流。
+於城牆之內，網路被阻擋是對臣民的恩澤。誠如口罩可以成為主權者的強制，但也讓人們有了戴口罩規避監視器的權利，網路受限使得臣民被迫武裝在賽博空間。有了武器，借助 [Cloudflare Tunnel](https://www.cloudflare.com/products/tunnel/)，我們能夠輕鬆地於受限地區的家庭網路中部署 [GoToSocial](https://gotosocial.org/)，在聯邦宇宙中互通交流。
 
 GoToSocial 是一個使用 Golang 編寫的 ActivityPub 社交網絡伺服器。至於為什麼選擇 GoToSocial？因為它需要的資源足夠少，單板機足以運行，且開發者較為活躍。我的實例使用 [docker](https://www.docker.com/) 部署在香橙派3B，那我們開始吧。
 

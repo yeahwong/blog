@@ -16,7 +16,7 @@
     <a href="#%e7%b7%a3%e8%b5%b7" class="header-mark"></a>緣起</h2><p>帝國的旗幟隨風飄揚，新皇冉冉升起。盆地到雪山，稻田到工廠，白天到黑夜，祂的身影籠罩整片大地。城牆內外，禮樂崩壞，舊有秩序轟然倒塌，新人尚未現身。人們畏懼開口，每個人頭上都戴著枷鎖，自我放逐與驅逐他人成為日常生活。</p>
 <p>言說，在何處言說，業已成為現代臣民的必修課。不消說封閉的社交網路的書報審查，長篇累牘的賣身契自不待言，有誰會甘願淪為賽博農奴，不知疲倦地為科技資本寡頭生產數據。那麼，我們何以為家？從馬一龍的肆意妄為，再到扎克伯格的生意經，互聯互通的聯邦社交網路似乎成為無奈之選。</p>
 <p>在聯邦宇宙之中，一旦選擇加入一個實例，即意味著簽下契約，我們的帳戶隨時面臨管理者之鎚，與此同時，還要時刻擔心站點倒閉造成的數據丟失。相對應地，倘如對實例進行自託管，那只需追尋內心，同時承擔相應的風險。</p>
-<p>於城牆之內，網路被阻擋是對臣民的恩澤。誠如口罩可以成為主權者的強制，但也讓人們有了戴口罩規避監視器的權利，網路受限使得臣民被迫武裝在賽博空間。有了武器，借助 <a href="https://www.cloudflare.com/products/tunnel/" target="_blank" rel="noopener noreferrer">Cloudflare Tunnel</a>，我們能夠輕鬆地在受限地區的家庭網路中部署 <a href="https://gotosocial.org/" target="_blank" rel="noopener noreferrer">GoToSocial</a>，在聯邦宇宙中互通交流。</p>
+<p>於城牆之內，網路被阻擋是對臣民的恩澤。誠如口罩可以成為主權者的強制，但也讓人們有了戴口罩規避監視器的權利，網路受限使得臣民被迫武裝在賽博空間。有了武器，借助 <a href="https://www.cloudflare.com/products/tunnel/" target="_blank" rel="noopener noreferrer">Cloudflare Tunnel</a>，我們能夠輕鬆地於受限地區的家庭網路中部署 <a href="https://gotosocial.org/" target="_blank" rel="noopener noreferrer">GoToSocial</a>，在聯邦宇宙中互通交流。</p>
 <p>GoToSocial 是一個使用 Golang 編寫的 ActivityPub 社交網絡伺服器。至於為什麼選擇 GoToSocial？因為它需要的資源足夠少，單板機足以運行，且開發者較為活躍。我的實例使用 <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">docker</a> 部署在香橙派3B，那我們開始吧。</p>
 <h2 id="部署" class="headerLink">
     <a href="#%e9%83%a8%e7%bd%b2" class="header-mark"></a>部署</h2><figure>

@@ -14,3 +14,5 @@
 {{< friend "沧域的小站" "https://blog.icyu.me" "/images/default.png" "技术学习经验与一些个人想法" >}}
 
 {{< friend "forecho's Blog" "https://blog.forecho.com" "https://avatars0.githubusercontent.com/u/1725326" "把生命浪费在美好的事物上" >}}
+
+{{< friend "面条" "https://mt.ci/" "https://miantiao.me/logo.png" "🪐 Self-hosting 爱好者" >}}
